@@ -33,7 +33,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
     public function lexemeMatches()
     {
         return array(
-          // array(<user_string>, <measurement_quantity>, <measurement_unit>,  <parsed_string>),
+          // array(<user_string>, <food>, <measurement_quantity>, <measurement_unit>,  <parsed_string>),
           array('3 tablespoons sugar', 'sugar', '3', 'tbsp.', '3 tbsp. sugar'),
           array("76 oz steak"," steak",76,"oz.","76 oz. steak"),
           array("7 6 ozs. steaks"," steaks",42,"oz.","42 oz. steaks"),
