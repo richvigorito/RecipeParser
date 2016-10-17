@@ -314,6 +314,9 @@ class RecipeParser
       $this->measurement_quantity = (1.5 * $this->measurement_quantity);
   }
 
+
+  /** Lifted right out of tummy. Was trying to get a litte tricker, and preg_replace fractions based on a regex and
+     w/ their decimal value but this is fine and the preg_replace is a little more difficult than it sounds */
   private static function convert_fractions ($text) {
 
         // Replace all ¼ fractions with decimals to cleanse numbers for the db
