@@ -46,7 +46,7 @@ class RecipeParser
  
   public function parse($string) 
   {
-    $return = [];
+    $return = array();
     $return['user_string'] = $this->user_string = $string;
 
     $string = $this->prep($string);
