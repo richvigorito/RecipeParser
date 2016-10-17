@@ -1,0 +1,40 @@
+{
+    "name": "rv/RecipeParser",
+		"type": "library",
+    "description": "Recipe Parsing",
+    "license": "GNU",
+    "version": "0.1",
+    "repositories": [
+      {
+        "type": "package",
+        "package": {
+            "name": "rv/Lexer",
+            "version": "master",
+            "source": {
+                "url": "git@github.com:richvigorito/Lexer.git",
+                "type": "git",
+                "reference": "8dd57cea75455c792ea25757bb33cf7f1a437b63"
+            }
+        }
+      }
+    ],
+    "authors": [
+        {
+            "name": "Rich Vigorito",
+            "email": "vigoritor@gmail.com"
+        }
+    ],
+    "require": {
+     "php": ">=5.3.3",
+     "rv/Lexer": "@dev"
+		},
+    "require-dev": {
+        "phpunit/phpunit": "4.8.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "rv\\RecipeParser\\": "src/",
+            "rv\\Lexer\\": "vendor/rv/Lexer/src"
+        }
+    }
+}
