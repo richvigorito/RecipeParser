@@ -54,7 +54,7 @@ class RecipeParser
     $l = $this->scanner;
     $tree = $l::parse($string);
 
-    $this->expr($tree->getNode('T_EXPR'));
+    $this->expr($tree->getNode('T_TERM'));
   
     $return['food'] = trim($this->food);
 

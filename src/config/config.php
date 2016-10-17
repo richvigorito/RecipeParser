@@ -89,7 +89,7 @@ $defaults =  array(
         "/^(\ )?T_NUMBER(\ )+T_RECIPE_INGREDIENT(\ )?$/"                    => "T_RECIPE_INGREDIENT_MULT",
 //        "/^(\ )?T_MULTIPLER(\ )+T_RECIPE_INGREDIENT(\ )?$/"                    => "T_RECIPE_INGREDIENT_MULT",    TEST 
 
-        "/^(\ )?T_RECIPE_INGREDIENT|T_RECIPE_INGREDIENT_MULT(\ )?$/"        => "T_EXPR",
+        "/^(\ )?T_RECIPE_INGREDIENT|T_RECIPE_INGREDIENT_MULT(\ )?$/"        => "T_TERM",
   ),
 
 
