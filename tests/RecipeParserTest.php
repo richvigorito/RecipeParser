@@ -36,7 +36,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
           // array(<user_string>, <measurement_quantity>, <measurement_unit>,  <parsed_string>),
           array('3 tablespoons sugar', 'sugar', '3', 'tbsp.', '3 tbsp. sugar'),
           array("76 oz steak"," steak",76,"oz.","76 oz. steak"),
-          array("7 6 oz steak"," steak",42,"oz.","42 oz. steak"),
+          array("7 6 ozs. steaks"," steaks",42,"oz.","42 oz. steaks"),
           array("2 tablespoon garlic"," garlic",2,"tbsp.","2 tbsp. garlic"),
           array("2 tbsp garlic"," garlic",2,"tbsp.","2 tbsp. garlic"),
           array("50 oz sword fish"," sword fish",50,"oz.","50 oz. sword fish"),
