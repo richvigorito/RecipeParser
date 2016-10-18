@@ -74,11 +74,11 @@ $defaults =  array(
          "/^(?!T_)[a-zA-z]*$/"                                              => "T_WORD",
          "/^(\ )?(T_WORD(\ )+)*T_WORD$/"                                    => "T_FOOD", 
   
-        //---may be a kludge, 
+        //---may be a kludge??, 
         // can result in food -> food -> food -> word
         //  necessary for  '2 cups rice', 'chocolate chip cookies', & 'garlic salt 2 teaspoons'  to all work, w/o 1 o4 2 work not all 3 
         "/^T_FOOD$/"                                                        => "T_FOOD", 
-        /// --- end kludge
+        /// --- end (potential) kludge
 
         "/^(T_OUNCE|T_GRAM|T_CUP|T_LITER|T_TABLESPOON|T_TEASPOON)$/"        => "T_PRECISE_UNIT", 
         
