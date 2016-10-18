@@ -1,4 +1,3 @@
-                                                                                  85,1          Bot
 <?php
 
 $defaults =  array(
