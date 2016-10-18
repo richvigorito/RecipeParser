@@ -145,9 +145,9 @@ class RecipeParser
   }
 
   private function container(ExpressionTree $t)
-  {  /* do nothing, we have a precise measurement */ }
+  {  /* do nothing, we already have a precise measurement we can use */ }
   private function container_mult(ExpressionTree $t)
-  { /* do nothing, we have a precise measurement */  }
+  { /* do nothing, we already have a precise measurement we can use */  }
   
 
   private function imprecise_measure(ExpressionTree $im)
