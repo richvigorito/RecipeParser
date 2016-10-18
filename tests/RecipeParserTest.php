@@ -8,6 +8,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @dataProvider lexemeMatches
+     * @ dataProvider lexemeMatches1_off_Matches_to_test_specific
      */
     public function testRecipieMatching($user_string,$food,$measurement_quantity,$measurement_unit,$parse_string)
     {
@@ -134,6 +135,16 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
           array("60 g. bread with a heavily seeded crust"," bread with heavily seeded crust",60,"g.","60 g. bread with heavily seeded crust"),
           array("hot and sour soup"," hot and sour soup",1,"","1 hot and sour soup"),
           array("1/2 red pepper"," red pepper",0.5,"","0.5 red pepper"),
+	  array("1 can 14.5 oz. cream of mushroom soup", "cream mushroom soup", 14.5,"oz.","14.5 oz. cream mushroom soup"), 
+	  array("1 can (14.5 ounCes) cream of mushroom soup", "cream mushroom soup", 14.5,"oz.","14.5 oz. cream mushroom soup"), 
+	  array(" (14.5 oz.) bacon", "bacon", 14.5,"oz.","14.5 oz. bacon"), 
+        ); 
+    }
+
+    public function lexemeMatches1_off_Matches_to_test_specific(){
+	return array(
+  		array("1 can (14.5 oz.) cream of mushroom soup", "cream mushroom soup", 14.5,"oz.","14.5 oz. cream mushroom soup"), 
+  		array(" (14.5 oz.) bacon", "bacon", 14.5,"oz.","14.5 oz. bacon"), 
         ); 
     }
 }

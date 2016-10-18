@@ -31,6 +31,8 @@ class RecipeParser
   
   public function prep($string) 
   {
+    $string = str_replace("(", " ( ",$string);
+    $string = str_replace(")", " ) ",$string);
     $string = trim($string);
     $pattern =  "/(\d)(mg|cg|dg|g|kg|ml|cl|dl|l|kl|oz|tbsp|tsp|ts|t|c|lg|sm|m)(\.|\w*)/i";
     $string =  trim(preg_replace($pattern,"$1 $2",$string));
@@ -87,11 +89,23 @@ class RecipeParser
 
 
   private function recipe_ingredient(ExpressionTree $ri){
-    $food = $ri->getNode('T_FOOD');
-    $number = $ri->getNode('T_NUMBER');
-    $precise_measure = $ri->getNode('T_PRECISE_MEASURE');
-    $imprecise_measure = $ri->getNode('T_IMPRECISE_MEASURE');
-    if (  $precise_measure != false &&  $food != false) {
+    $food 		= $ri->getNode('T_FOOD');
+    $number 		= $ri->getNode('T_NUMBER');
+    $precise_measure 	= $ri->getNode('T_PRECISE_MEASURE');
+    $imprecise_measure 	= $ri->getNode('T_IMPRECISE_MEASURE');
+    
+    $container_mult 	= $ri->getNode('T_CONTAINER_MULT');
+    $container 		= $ri->getNode('T_CONTAINER');
+    $recipe_ingredient 	= $ri->getNode('T_RECIPE_INGREDIENT');
+
+
+    if (  $recipe_ingredient != false &&  $container_mult != false) {
+      $this->container_mult($container_mult);
+      $this->recipe_ingredient($recipe_ingredient);
+    } elseif (  $recipe_ingredient != false &&  $container != false) {
+      $this->container($container);
+      $this->recipe_ingredient($recipe_ingredient);
+    } else if (  $precise_measure != false &&  $food != false) {
       $this->precise_measure($precise_measure);
       $this->food($food);
     } elseif ( false != $imprecise_measure  && false != $number && false != $food){
@@ -115,15 +129,26 @@ class RecipeParser
 
   private function precise_measure(ExpressionTree $pm)
   {
-      $this->precise_unit($pm->getNode('T_PRECISE_UNIT'));
-     
-      $number = $pm->getNode('T_NUMBER');
+      $precise_measure = $pm->getNode('T_PRECISE_MEASURE');
+      if ( $precise_measure != false) {
+	$this->precise_measure($precise_measure);
+      } else {
 
-      if ( $number != false) {
-        $this->measurement_quantity = $this->number($number);
+      	$this->precise_unit($pm->getNode('T_PRECISE_UNIT'));
+     
+      	$number = $pm->getNode('T_NUMBER');
+
+      	if ( $number != false) {
+        	$this->measurement_quantity = $this->number($number);
+      	}
       }
   }
 
+  private function container(ExpressionTree $t)
+  {  /* do nothing, we have a precise measurement */ }
+  private function container_mult(ExpressionTree $t)
+  { /* do nothing, we have a precise measurement */  }
+  
 
   private function imprecise_measure(ExpressionTree $im)
   {
