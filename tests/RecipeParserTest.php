@@ -138,6 +138,20 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	  array("1 can 14.5 oz. cream of mushroom soup", "cream mushroom soup", 14.5,"oz.","14.5 oz. cream mushroom soup"), 
 	  array("1 can (14.5 ounCes) cream of mushroom soup", "cream mushroom soup", 14.5,"oz.","14.5 oz. cream mushroom soup"), 
 	  array(" (14.5 oz.) bacon", "bacon", 14.5,"oz.","14.5 oz. bacon"), 
+	  array("tea" , "tea", 1,"","1 tea"), 
+	  array("1 nakd bar" , "nakd bar", 1,"","1 nakd bar"), 
+	  array("6g Marmite" , "Marmite", 6,"g.","6 g. Marmite"), 
+	  array("1c spaggetti squash" , "spaggetti squash", 1,"cup","1 cup spaggetti squash"), 
+	  array("kale spinach and mango smoothie" , "kale spinach and mango smoothie", 1,"","1 kale spinach and mango smoothie"), 
+	  array("1 box (50 ounCes) mac n cheese", "mac n cheese", 50,"oz.","50 oz. mac n cheese"), 
+	  array("1 jar (6 ounCes) moonshine", "moonshine", 6,"oz.","6 oz. moonshine"), 
+	  array("1 bag (4 teaspoons) tea", "tea", 4,"tsp.","4 tsp. tea"), 
+	  array("1 packet (2 mg) koolaid", "koolaid", 2,"mg.","2 mg. koolaid"), 
+	  array("1 carton (1/2 gallon) milk", "milk", .5,"gal.","0.5 gal. milk"), 
+	  //array("1 pint (1/2 quart) beer", "beer", .5,"qt.",".5 qt. beer"), 
+	  //array("1 pint (quart 1/2 quart) beer", "beer", .5,"qt.",".5 qt. koolaid"), 
+	  //array("1 packet (2 mg) kool-aid", "kool-aid", 2,"mg.","2 mg. kool-aid"), 
+//	  array("2 boxes (50 ounCes) mac n cheese", "mac n cheese", 100,"oz.","100 oz. mac n cheese"), 
         ); 
     }
 
@@ -145,6 +159,8 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	return array(
   		array("1 can (14.5 oz.) cream of mushroom soup", "cream mushroom soup", 14.5,"oz.","14.5 oz. cream mushroom soup"), 
   		array(" (14.5 oz.) bacon", "bacon", 14.5,"oz.","14.5 oz. bacon"), 
+	  	array("Spinach, edamame beans and pickles" , "Spinach, edamame beans and pickles", 1,"","1 Spinach, edamame beans and pickles"), 
+	  	array("kale, spinach and mango smoothie" , "kale, spinach and mango smoothie", 1,"","1 kale, spinach and mango smoothie"), 
         ); 
     }
 }

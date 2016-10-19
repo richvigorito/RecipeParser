@@ -178,6 +178,23 @@ class RecipeParser
       $this->$function();
   }
 
+
+
+  private function pint(ExpressionTree $p)
+  {
+    $this->measurement_unit = 'pt.'; 
+  }
+
+  private function quart(ExpressionTree $p)
+  {
+    $this->measurement_unit = 'qt.'; 
+  }
+
+  private function gallon(ExpressionTree $p)
+  {
+    $this->measurement_unit = 'gal.'; 
+  }
+
   private function teaspoon(ExpressionTree $p)
   {
     $this->measurement_unit = 'tsp.'; 
@@ -196,11 +213,6 @@ class RecipeParser
   private function cup(ExpressionTree $p)
   {
     $this->measurement_unit = 'cup'; 
-  }
-
-  private function gallon(ExpressionTree $p)
-  {
-    $this->measurement_unit = 'gallon'; 
   }
 
   private function liter(ExpressionTree $p)

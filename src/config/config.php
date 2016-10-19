@@ -39,9 +39,16 @@ $defaults =  array(
       //  "/^(\ )?fluid ounce(s)?$/i"                                                     => "T_OUNCE", ?fluid ounce ? 
       //  "/^(\ )?fl(\.)? oz(\.)?$/i"                                                     => "T_OUNCE", ?fluid ounce ?
  
-      //  "/^(\ )?gallon(s)?$/i"                               => "T_GALLON", 
-      //  "/^(\ )*(k|m)?g(\.)?$/"                              => "T_GALLON",
+       "/^(\ )?gallon(s)?$/i"                               		    => "T_GALLON", 
+       "/^(\ )?gal(\.)?$/i"                               		    => "T_GALLON", 
+  
+        "/^(\ )?pint(s)?$/i"                               	=> "T_PINT", 
+        "/^(\ )?pt(s)?(\.)?$/i"                               	=> "T_PINT", 
+      
+         "/^(\ )?quart(s)?$/i"                               	=> "T_QUART", 
+        "/^(\ )?qt(s)?(\.)?$/i"                               	=> "T_QUART", 
  
+
 
         "/^(\ )?ounce(s)?$/i"                                               => "T_OUNCE",
         "/^(\ )?oz(s)?(\.)?$/i"                                             => "T_OUNCE",
@@ -55,8 +62,9 @@ $defaults =  array(
      //   "/^(\ )*(2x|3x|4x|5x)$/"                                          => "T_MULTIPLER", TEST
 
 
-        "/^(\ )?(can|glass|bowl)$/i"   					    => "T_CONTAINER" ,
-        "/^(\ )?(T_NUMBER\ )(T_CONTAINER)$/i" 		    		    => "T_CONTAINER_MULT" ,
+        "/^(\ )?(can(s)?|mug(s)?|bottle(s)?|glass|bowl(s)?)$/i"   	    	=> "T_CONTAINER" ,
+        "/^(\ )?(carton(s)?|jar(s)?|bag(s)?|packet(s)?|box(es)?)$/i" 		=> "T_CONTAINER" ,
+        "/^(\ )?(T_NUMBER\ )(T_CONTAINER)$/i" 		    		    	=> "T_CONTAINER_MULT" ,
 
         "/^(extra |really |very )?(\ )*(tiny|little|small|medium|large|big|huge)$/i"   => "T_IMPRECISE_UNIT" ,
         "/^(\ )*(sm|m|lg|x-lg|)(\.)?$/i"                                               => "T_IMPRECISE_UNIT" , 
@@ -80,7 +88,8 @@ $defaults =  array(
         "/^T_FOOD$/"                                                        => "T_FOOD", 
         /// --- end kludge
 
-        "/^(T_OUNCE|T_GRAM|T_CUP|T_LITER|T_TABLESPOON|T_TEASPOON)$/"        => "T_PRECISE_UNIT", 
+        "/^(T_OUNCE|T_GRAM|T_CUP|T_LITER|T_TABLESPOON|T_TEASPOON)$/"        	=> "T_PRECISE_UNIT", 
+        "/^(T_GALLON|T_PINT|T_QUART)$/"        					=> "T_PRECISE_UNIT", 
         
         "/^(\ )?(T_NUMBER\ )?(\ )?T_IMPRECISE_UNIT$/"                       => "T_IMPRECISE_MEASURE",
        // "/^(\ )?T_NUMBER(\ )*T_PRECISE_UNIT$/"                              => "T_PRECISE_MEASURE",
