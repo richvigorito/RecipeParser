@@ -166,7 +166,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	  array("1 jar (6 ounCes) moonshine", "moonshine", 6,"oz.","6 oz. moonshine"), 
 	  array("1 bag (4 teaspoons) tea", "tea", 4,"tsp.","4 tsp. tea"), 
 	  array("1 packet (2 mg) koolaid", "koolaid", 2,"mg.","2 mg. koolaid"), 
-	 // array("1 packet (2 mg) kool-aid", "koolaid", 2,"mg.","2 mg. kool-aid"), 
+	 array("1 packet (2 mg) kool-aid", "kool-aid", 2,"mg.","2 mg. kool-aid"), 
 	  array("1 carton (1/2 gallon) milk", "milk", .5,"gal.","0.5 gal. milk"), 
 	  array("2 cartons (1/2 gallon) milk", "milk", 1,"gal.","1 gal. milk"), 
 	  array("7 cartons (1/2 gallon) milk", "milk", 3.5,"gal.","3.5 gal. milk"), 

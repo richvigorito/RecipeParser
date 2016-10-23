@@ -77,7 +77,7 @@ $defaults =  array(
     //    pot | glass | bowl
 
 
-         "/^(?!T_)[a-zA-z]*$/"                                              => "T_WORD",
+         "/^(?!T_)[a-zA-z-]*$/"                                              => "T_WORD",
          "/^(\ )?(T_WORD(\ )+(T_COMMA(\ )+)?)*T_WORD$/"                       => "T_FOOD", 
          "/^(\ )?(T_WORD(\ )+)*T_WORD$/"                                    => "T_FOOD", 
   
