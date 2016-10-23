@@ -36,10 +36,6 @@ $defaults =  array(
         "/^(\ )?tea(s)?(\.)$/i"                                             => "T_TEASPOON",
         "/^(\ )?t(s)?(\.)?(\ )?$/i"                                         => "T_TEASPOON", 
 
-
-      //  "/^(\ )?fluid ounce(s)?$/i"                                                     => "T_OUNCE", ?fluid ounce ? 
-      //  "/^(\ )?fl(\.)? oz(\.)?$/i"                                                     => "T_OUNCE", ?fluid ounce ?
- 
        "/^(\ )?gallon(s)?$/i"                               		    => "T_GALLON", 
        "/^(\ )?gal(\.)?$/i"                               		    => "T_GALLON", 
   
@@ -49,8 +45,9 @@ $defaults =  array(
          "/^(\ )?quart(s)?$/i"                               	=> "T_QUART", 
         "/^(\ )?qt(s)?(\.)?$/i"                               	=> "T_QUART", 
  
-
-
+        "/^(\ )?fluid ounce(s)?$/i"                                         => "T_FLUID_OUNCE",
+        "/^(\ )?fl(\.)? oz(s)?(\.)?$/i"                                     => "T_FLUID_OUNCE",
+ 
         "/^(\ )?ounce(s)?$/i"                                               => "T_OUNCE",
         "/^(\ )?oz(s)?(\.)?$/i"                                             => "T_OUNCE",
  
@@ -90,8 +87,8 @@ $defaults =  array(
         "/^T_FOOD$/"                                                        => "T_FOOD", 
         /// --- end (potential) kludge
 
-        "/^(T_OUNCE|T_GRAM|T_CUP|T_LITER|T_TABLESPOON|T_TEASPOON)$/"        	=> "T_PRECISE_UNIT", 
-        "/^(T_GALLON|T_PINT|T_QUART)$/"        					=> "T_PRECISE_UNIT", 
+        "/^(T_FLUID_OUNCE|T_OUNCE|T_GRAM|T_CUP|T_TABLESPOON|T_TEASPOON)$/"        	=> "T_PRECISE_UNIT", 
+        "/^(T_GALLON|T_PINT|T_QUART|T_LITER)$/"        					=> "T_PRECISE_UNIT", 
         
         "/^(\ )?(T_NUMBER\ )?(\ )?T_IMPRECISE_UNIT$/"                       => "T_IMPRECISE_MEASURE",
        // "/^(\ )?T_NUMBER(\ )*T_PRECISE_UNIT$/"                              => "T_PRECISE_MEASURE",

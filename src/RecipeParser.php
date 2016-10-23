@@ -241,6 +241,10 @@ class RecipeParser
     $this->measurement_unit = 'tbsp.'; 
   }
 
+  private function fluid_ounce(ExpressionTree $p)
+  {
+    $this->measurement_unit = 'fl. oz.'; 
+  }
   private function ounce(ExpressionTree $p)
   {
     $this->measurement_unit = 'oz.'; 
