@@ -60,9 +60,9 @@ $defaults =  array(
      //   "/^(\ )*(2x|3x|4x|5x)$/"                                          => "T_MULTIPLER", TEST
 
 
-        "/^(\ )?(can(s)?|mug(s)?|bottle(s)?|glass|bowl(s)?)$/i"   	    	=> "T_CONTAINER" ,
+        "/^(\ )?(can(s)?|mug(s)?|bottle(s)?|glass(es)?|bowl(s)?)$/i"   	=> "T_CONTAINER" ,
         "/^(\ )?(carton(s)?|jar(s)?|bag(s)?|packet(s)?|box(es)?)$/i" 		=> "T_CONTAINER" ,
-        "/^(\ )?(T_NUMBER\ )(T_CONTAINER)$/i" 		    		    	=> "T_CONTAINER_MULT" ,
+        "/^(\ )?(T_NUMBER\ )(T_CONTAINER)$/i" 		    		    	        => "T_CONTAINER_MULT" ,
 
         "/^(extra |really |very )?(\ )*(tiny|little|small|medium|large|big|huge)$/i"   => "T_IMPRECISE_UNIT" ,
         "/^(\ )*(sm|m|lg|x-lg|)(\.)?$/i"                                               => "T_IMPRECISE_UNIT" , 
@@ -91,7 +91,6 @@ $defaults =  array(
         "/^(T_GALLON|T_PINT|T_QUART|T_LITER)$/"        					=> "T_PRECISE_UNIT", 
         
         "/^(\ )?(T_NUMBER\ )?(\ )?T_IMPRECISE_UNIT$/"                       => "T_IMPRECISE_MEASURE",
-       // "/^(\ )?T_NUMBER(\ )*T_PRECISE_UNIT$/"                              => "T_PRECISE_MEASURE",
         "/^(\ )?T_NUMBER(\ )*T_PRECISE_UNIT$/"                              => "T_PRECISE_MEASURE",
 
         "/^(\ )?(T_LPAREN)(\ )*T_PRECISE_MEASURE(\ )*(T_RPAREN)$/"     => "T_PRECISE_MEASURE",
