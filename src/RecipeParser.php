@@ -33,6 +33,7 @@ class RecipeParser
   {
     $string = str_replace("(", " ( ",$string);
     $string = str_replace(")", " ) ",$string);
+    $string = str_replace(",", " , ",$string);
     $string = trim($string);
     $pattern =  "/(\d)(mg|cg|dg|g|kg|ml|cl|dl|l|kl|oz|tbsp|tsp|ts|t|c|lg|sm|m)(\.|\w*)/i";
     $string =  trim(preg_replace($pattern,"$1 $2",$string));
@@ -56,9 +57,17 @@ class RecipeParser
     $l = $this->scanner;
     $tree = $l::parse($string);
 
-    $this->expr($tree->getNode('T_TERM'));
+    $err  = $tree->getNode('ERROR');
+
+    if ( false != $err) {
+    	$this->error($err);
+    	$return['error'] = true;
+    } else {
+    	$this->expr($tree->getNode('T_TERM'));
+    }
   
     $return['food'] = trim($this->food);
+    $return['food'] = str_replace(" , ", ", ",$return['food']);
 
     if(isset($this->measurement_quantity))   $return['measurement_quantity'] = $this->measurement_quantity;
     if(isset($this->measurement_unit))       $return['measurement_unit']     = $this->measurement_unit;
@@ -86,6 +95,29 @@ class RecipeParser
     $this->measurement_quantity = ($this->measurement_quantity * $this->multiplier);
     // apply multipler
   }
+
+  /**
+   This is kind of a catch all, if input doesnt match a grammar, then we hope we can find 
+   something find nodes that we can act on 
+  */
+  private function error(ExpressionTree $p)
+  {
+      	$recipe_ingredient_mult 	= $p->getNode('T_RECIPE_INGREDIENT_MULT');
+	$recipe_ingredient 		= $p->getNode('T_RECIPE_INGREDIENT');
+    	$precise_measure 		= $p->getNode('T_PRECISE_MEASURE');
+    	$imprecise_measure 		= $p->getNode('T_IMPRECISE_MEASURE');
+ 	$food 				= $p->getNode('T_FOOD');
+    	$number 			= $p->getNode('T_NUMBER');
+   
+
+      if 	( false != $recipe_ingredient_mult ) 	$this->recipe_ingredient_mult($recipe_ingredient_mult);
+      elseif 	( false != $recipe_ingredient ) 	$this->recipe_ingredient($recipe_ingredient);
+      elseif 	( false != $precise_measure ) 		$this->precise_measure($precise_measure);
+      elseif 	( false != $imprecise_measure )		$this->imprecise_measure($imprecise_measure);
+      elseif 	( false != $food)			$this->food($food);
+      elseif 	( false != $number)			$this->number($number);
+  
+ }
 
 
   private function recipe_ingredient(ExpressionTree $ri){
@@ -146,8 +178,12 @@ class RecipeParser
 
   private function container(ExpressionTree $t)
   {  /* do nothing, we already have a precise measurement we can use */ }
+
+
   private function container_mult(ExpressionTree $t)
-  { /* do nothing, we already have a precise measurement we can use */  }
+  {
+	$this->multiplier *= $this->number($t->getNode('T_NUMBER'));
+  }
   
 
   private function imprecise_measure(ExpressionTree $im)
@@ -305,6 +341,8 @@ class RecipeParser
         $this->food($p->arr[$k][$key]);  
       } elseif($key == 'T_WORD'){
         //$this->word($p->getNode('T_WORD'));  
+        $this->word($p->arr[$k][$key]);  
+      } elseif($key == 'T_COMMA'){
         $this->word($p->arr[$k][$key]);  
       } else {
         throw new Exception ('todo, figure error handling');

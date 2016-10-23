@@ -7,6 +7,7 @@ $defaults =  array(
 
         "/^\($/"                                             		    => "T_LPAREN",
         "/^\)$/"                                             		    => "T_RPAREN",
+        "/^,$/"                                             		    => "T_COMMA",
 
         "/^([0-9]+)?\.[0-9]+$/"                                             => "T_DECIMAL",
         "/^([0-9])+$/"                                                      => "T_INTEGER" ,
@@ -80,6 +81,7 @@ $defaults =  array(
 
 
          "/^(?!T_)[a-zA-z]*$/"                                              => "T_WORD",
+         "/^(\ )?(T_WORD(\ )+(T_COMMA(\ )+)?)*T_WORD$/"                       => "T_FOOD", 
          "/^(\ )?(T_WORD(\ )+)*T_WORD$/"                                    => "T_FOOD", 
   
         //---may be a kludge??, 

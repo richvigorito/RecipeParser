@@ -16,6 +16,8 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 
       $parser = new RecipeParser($defaults['grammar']);
       $json = $parser->parse($user_string);
+      $return_decoded = json_decode($json);
+
       $array = array(); 
       $array['user_string']           = $user_string;
       $array['food']                  = trim($food);
@@ -26,8 +28,25 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
       $array['parse_string']          = $parse_string;  
      
       $json_assert = json_encode($array);
+
       $this->assertEquals($json,$json_assert);
+      $this->assertTrue(!isset($return_decoded->error));
     }
+
+    /**
+     * @dataProvider lexemeFuzzyMatchesWithErrors
+     * 
+     *  just make sure that we could at least grab a food
+     */
+    public function testFuzzyRecipieMatching($user_string,$food,$measurement_quantity,$measurement_unit,$parse_string)
+    {
+      include __DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."src".DIRECTORY_SEPARATOR."config".DIRECTORY_SEPARATOR."config.php";
+      $parser = new RecipeParser($defaults['grammar']);
+      $json = $parser->parse($user_string);
+      $result_array = json_decode($json);
+      $this->assertTrue(isset($result_array->error));
+      $this->assertTrue(isset($result_array->food));
+    } 
 
     /**
      */
@@ -148,6 +167,9 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	  array("1 bag (4 teaspoons) tea", "tea", 4,"tsp.","4 tsp. tea"), 
 	  array("1 packet (2 mg) koolaid", "koolaid", 2,"mg.","2 mg. koolaid"), 
 	  array("1 carton (1/2 gallon) milk", "milk", .5,"gal.","0.5 gal. milk"), 
+	  array("2 cartons (1/2 gallon) milk", "milk", 1,"gal.","1 gal. milk"), 
+	  array("kale, spinach and mango smoothie" , "kale, spinach and mango smoothie", 1,"","1 kale, spinach and mango smoothie"), 
+	  array("Spinach, edamame beans and pickles" , "Spinach, edamame beans and pickles", 1,"","1 Spinach, edamame beans and pickles"), 
 	  //array("1 pint (1/2 quart) beer", "beer", .5,"qt.",".5 qt. beer"), 
 	  //array("1 pint (quart 1/2 quart) beer", "beer", .5,"qt.",".5 qt. koolaid"), 
 	  //array("1 packet (2 mg) kool-aid", "kool-aid", 2,"mg.","2 mg. kool-aid"), 
@@ -155,12 +177,26 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
         ); 
     }
 
+    public function lexemeFuzzyMatchesWithErrors(){
+	return array(
+ // 		array(" (14.5 oz.) bacon", "bacon", 14.5,"oz.","14.5 oz. bacon"), 
+	  	array("(Spinach, edamame beans and pickles)" , "Spinach, edamame beans and pickles", 1,"","1 Spinach, edamame beans and pickles"), 
+	  //	array("kale, spinach and mango smoothie" , "kale, spinach and mango smoothie", 1,"","1 kale, spinach and mango smoothie"), 
+	  //	array("kale spinach and mango- smoothie)" , "kale spinach and mango smoothie", 1,"","1 kale spinach and mango smoothie"), 
+        ); 
+    }
+
+
     public function lexemeMatches1_off_Matches_to_test_specific(){
 	return array(
-  		array("1 can (14.5 oz.) cream of mushroom soup", "cream mushroom soup", 14.5,"oz.","14.5 oz. cream mushroom soup"), 
-  		array(" (14.5 oz.) bacon", "bacon", 14.5,"oz.","14.5 oz. bacon"), 
-	  	array("Spinach, edamame beans and pickles" , "Spinach, edamame beans and pickles", 1,"","1 Spinach, edamame beans and pickles"), 
-	  	array("kale, spinach and mango smoothie" , "kale, spinach and mango smoothie", 1,"","1 kale, spinach and mango smoothie"), 
+  //		array("1 can (14.5 oz.) cream of mushroom soup", "cream mushroom soup", 14.5,"oz.","14.5 oz. cream mushroom soup"), 
+ // 		array(" (14.5 oz.) bacon", "bacon", 14.5,"oz.","14.5 oz. bacon"), 
+//	  	array("Spinach, edamame beans and pickles" , "Spinach, edamame beans and pickles", 1,"","1 Spinach, edamame beans and pickles"), 
+	 // 	array("kale, spinach and mango smoothie" , "kale, spinach and mango smoothie", 1,"","1 kale, spinach and mango smoothie"), 
+
+	  	array("2 cartons (1/2 gallon each) milk", "milk", 1,"gal.","1 gal. milk"), 
+	  //	array("Frittata (egg, potato, cheese, onion & tomato)" , "kale, spinach and mango smoothie", 1,"","1 kale, spinach and mango smoothie"), 
+	  	//array("kale spinach and mango- smoothie)" , "kale spinach and mango smoothie", 1,"","1 kale spinach and mango smoothie"), 
         ); 
     }
 }
