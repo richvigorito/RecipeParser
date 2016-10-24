@@ -179,6 +179,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	  array("16 fl. oz. apple juice", "apple juice", 16,"fl. oz.","16 fl. oz. apple juice"), 
 	  array("16 fl. ozs. apple juice", "apple juice", 16,"fl. oz.","16 fl. oz. apple juice"),
 	  array("16 fl ozs apple juice", "apple juice", 16,"fl. oz.","16 fl. oz. apple juice"), 
+	  array("1 fl ozs frank's red hot sauce", "frank's red hot sauce", 1,"fl. oz.","1 fl. oz. frank's red hot sauce"), 
 	  //array("1 pint (1/2 quart) beer", "beer", .5,"qt.",".5 qt. beer"), 
 	  //array("1 pint (quart 1/2 quart) beer", "beer", .5,"qt.",".5 qt. koolaid"), 
 	  //array("1 packet (2 mg) kool-aid", "kool-aid", 2,"mg.","2 mg. kool-aid"), 
