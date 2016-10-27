@@ -12,9 +12,10 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
      */
     public function testRecipieMatching($user_string,$food,$measurement_quantity,$measurement_unit,$parse_string)
     {
-      include __DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."src".DIRECTORY_SEPARATOR."config".DIRECTORY_SEPARATOR."config.php";
+    //  include __DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."src".DIRECTORY_SEPARATOR."config".DIRECTORY_SEPARATOR."config.php";
 
-      $parser = new RecipeParser($defaults['grammar']);
+      //$parser = new RecipeParser($defaults['grammar']);
+      $parser = new RecipeParser();
       $json = $parser->parse($user_string);
       $return_decoded = json_decode($json);
 
@@ -180,10 +181,12 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	  array("16 fl. ozs. apple juice", "apple juice", 16,"fl. oz.","16 fl. oz. apple juice"),
 	  array("16 fl ozs apple juice", "apple juice", 16,"fl. oz.","16 fl. oz. apple juice"), 
 	  array("1 fl ozs frank's red hot sauce", "frank's red hot sauce", 1,"fl. oz.","1 fl. oz. frank's red hot sauce"), 
+	  array("2 packet (3.5 mg) kool-aid", "kool-aid", 7,"mg.","7 mg. kool-aid"), 
+	  array("2 boxes (50 ounCes) mac n cheese", "mac n cheese", 100,"oz.","100 oz. mac n cheese"), 
+	//  array("2 cartons (1/2 gallon each) milk", "milk", 1,"gal.","1 gal. milk"), 
 	  //array("1 pint (1/2 quart) beer", "beer", .5,"qt.",".5 qt. beer"), 
 	  //array("1 pint (quart 1/2 quart) beer", "beer", .5,"qt.",".5 qt. koolaid"), 
-	  //array("1 packet (2 mg) kool-aid", "kool-aid", 2,"mg.","2 mg. kool-aid"), 
-//	  array("2 boxes (50 ounCes) mac n cheese", "mac n cheese", 100,"oz.","100 oz. mac n cheese"), 
+	  //array("2 packet (3 1/2 mg) kool-aid", "kool-aid", 7,"mg.","7 mg. kool-aid"), 
         ); 
     }
 

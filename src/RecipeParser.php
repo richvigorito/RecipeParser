@@ -20,10 +20,14 @@ class RecipeParser
   private $scanner ;
   private $multiplier;
 
-  public function __construct($grammar) 
+  public function __construct() 
   {
-    $this->grammar  = $grammar;
-    $this->scanner    = new LexicalScanner($grammar);
+
+    $pathinfo = pathinfo(__FILE__);
+    require $pathinfo['dirname'].DIRECTORY_SEPARATOR."config".DIRECTORY_SEPARATOR."config.php";
+
+    $this->grammar    = $defaults['grammar'];
+    $this->scanner    = new LexicalScanner($defaults['grammar']);
     $this->multiplier = 1 ;
     $this->measurement_quantity = 1;
   }
