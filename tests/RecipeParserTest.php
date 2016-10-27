@@ -194,6 +194,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	return array(
  // 		array(" (14.5 oz.) bacon", "bacon", 14.5,"oz.","14.5 oz. bacon"), 
 	  	array("(Spinach, edamame beans and pickles)" , "Spinach, edamame beans and pickles", 1,"serving","1 Spinach, edamame beans and pickles"), 
+	  	array("1pkg \"Recover\"", "milk", 1,"gal.","1 gal. milk"), 
 	  //	array("kale, spinach and mango smoothie" , "kale, spinach and mango smoothie", 1,"","1 kale, spinach and mango smoothie"), 
 	  //	array("kale spinach and mango- smoothie)" , "kale spinach and mango smoothie", 1,"","1 kale spinach and mango smoothie"), 
         ); 
@@ -207,7 +208,8 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 //	  	array("Spinach, edamame beans and pickles" , "Spinach, edamame beans and pickles", 1,"","1 Spinach, edamame beans and pickles"), 
 	 // 	array("kale, spinach and mango smoothie" , "kale, spinach and mango smoothie", 1,"","1 kale, spinach and mango smoothie"), 
 
-	  	array("2 cartons (1/2 gallon each) milk", "milk", 1,"gal.","1 gal. milk"), 
+	 // 	array("1pkg \"Recover\"", "milk", 1,"gal.","1 gal. milk"), 
+	  	//array("2 cartons (1/2 gallon each) milk", "milk", 1,"gal.","1 gal. milk"), 
 	  //	array("Frittata (egg, potato, cheese, onion & tomato)" , "kale, spinach and mango smoothie", 1,"","1 kale, spinach and mango smoothie"), 
 	  	//array("kale spinach and mango- smoothie)" , "kale spinach and mango smoothie", 1,"","1 kale spinach and mango smoothie"), 
         ); 

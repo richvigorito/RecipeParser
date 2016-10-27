@@ -38,10 +38,14 @@ class RecipeParser
     $string = str_replace("(", " ( ",$string);
     $string = str_replace(")", " ) ",$string);
     $string = str_replace(",", " , ",$string);
+    $string = str_replace('"', ' " ',$string);
     $string = trim($string);
     $pattern =  "/(\d)(mg|cg|dg|g|kg|ml|cl|dl|l|kl|oz|tbsp|tsp|ts|t|c|lg|sm|m)(\.|\w*)/i";
     $string =  trim(preg_replace($pattern,"$1 $2",$string));
     
+    $pattern =  "/(\d)(pkg|package)(\.|\w*)/i";
+    $string =  trim(preg_replace($pattern,"$1 $2",$string));
+
     $string =  trim(preg_replace("/^(.*)( of | a )(.*)$/i","$1 $3",$string));
     $string =  trim(preg_replace("/^(a )(.*)/i","$2",$string));
     $string = self::convert_fractions($string);
@@ -160,6 +164,12 @@ class RecipeParser
     } elseif ( false != $number && false != $food){
       $this->food($food);
       $this->measurement_quantity = $this->number($number);
+	 } elseif ( false != $container_mult && false != $food){
+      $this->food($food);
+      $this->container_mult($container_mult);
+   } elseif ( false != $container && false != $food){
+      $this->food($food);
+      $this->container($container);
     } else {
       throw new Exception ('todo, figure error handling');
     } 
@@ -354,6 +364,8 @@ class RecipeParser
         //$this->word($p->getNode('T_WORD'));  
         $this->word($p->arr[$k][$key]);  
       } elseif($key == 'T_COMMA'){
+        $this->word($p->arr[$k][$key]);  
+      } elseif($key == 'T_DOUBLE_QUOTE'){
         $this->word($p->arr[$k][$key]);  
       } else {
         throw new Exception ('todo, figure error handling');
