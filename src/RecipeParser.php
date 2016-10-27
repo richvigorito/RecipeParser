@@ -52,6 +52,7 @@ class RecipeParser
     if( ! preg_match("/\d/", $string) > 0) 
       $string = "1 $string";
     $string = preg_replace('/(\ )+/',' ',$string);
+    $string = str_replace(' . ', ' ',$string);
     return trim($string);
   }
  

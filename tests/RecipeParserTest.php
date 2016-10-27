@@ -183,6 +183,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	  array("1 fl ozs frank's red hot sauce", "frank's red hot sauce", 1,"fl. oz.","1 fl. oz. frank's red hot sauce"), 
 	  array("2 packet (3.5 mg) kool-aid", "kool-aid", 7,"mg.","7 mg. kool-aid"), 
 	  array("2 boxes (50 ounCes) mac n cheese", "mac n cheese", 100,"oz.","100 oz. mac n cheese"), 
+	 	array("1/2. Grated carrot", "Grated carrot", .5,"serving","0.5 Grated carrot"), 
 	//  array("2 cartons (1/2 gallon each) milk", "milk", 1,"gal.","1 gal. milk"), 
 	  //array("1 pint (1/2 quart) beer", "beer", .5,"qt.",".5 qt. beer"), 
 	  //array("1 pint (quart 1/2 quart) beer", "beer", .5,"qt.",".5 qt. koolaid"), 
@@ -207,7 +208,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
  // 		array(" (14.5 oz.) bacon", "bacon", 14.5,"oz.","14.5 oz. bacon"), 
 //	  	array("Spinach, edamame beans and pickles" , "Spinach, edamame beans and pickles", 1,"","1 Spinach, edamame beans and pickles"), 
 	 // 	array("kale, spinach and mango smoothie" , "kale, spinach and mango smoothie", 1,"","1 kale, spinach and mango smoothie"), 
-
+	  	//array("1/2. Grated carrot", "milk", 1,"gal.","1 gal. milk"), 
 	 // 	array("1pkg \"Recover\"", "milk", 1,"gal.","1 gal. milk"), 
 	  	//array("2 cartons (1/2 gallon each) milk", "milk", 1,"gal.","1 gal. milk"), 
 	  //	array("Frittata (egg, potato, cheese, onion & tomato)" , "kale, spinach and mango smoothie", 1,"","1 kale, spinach and mango smoothie"), 
