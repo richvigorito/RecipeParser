@@ -48,6 +48,7 @@ class RecipeParser
 
     $string =  trim(preg_replace("/^(.*)( of | a )(.*)$/i","$1 $3",$string));
     $string =  trim(preg_replace("/^(a )(.*)/i","$2",$string));
+    $string =  trim(preg_replace("/(\d)([a-zA-Z].*)/","$1 $2",$string));
     $string = self::convert_fractions($string);
     if( ! preg_match("/\d/", $string) > 0) 
       $string = "1 $string";
