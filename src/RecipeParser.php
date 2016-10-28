@@ -381,14 +381,14 @@ class RecipeParser
   }
 
 
+  private function tiny() 				{$this->extra_small();}
+  private function very_small() 	{$this->extra_small();}
   private function extra_small()
   {
     if(!empty($this->measurement_quantity)) 
       $this->measurement_quantity = (.25 * $this->measurement_quantity);
   }
 
-  // synonym to very_small
-  private function very_small() {$this->extra_small();}
   private function small()
   {
     if(!empty($this->measurement_quantity)) 

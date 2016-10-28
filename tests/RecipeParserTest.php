@@ -12,9 +12,6 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
      */
     public function testRecipieMatching($user_string,$food,$measurement_quantity,$measurement_unit,$parse_string)
     {
-    //  include __DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."src".DIRECTORY_SEPARATOR."config".DIRECTORY_SEPARATOR."config.php";
-
-      //$parser = new RecipeParser($defaults['grammar']);
       $parser = new RecipeParser();
       $json = $parser->parse($user_string);
       $return_decoded = json_decode($json);
@@ -186,6 +183,10 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	 	array("1/2. Grated carrot", "Grated carrot", .5,"serving","0.5 Grated carrot"), 
 	 	array("1egg", "egg", 1,"serving","1 egg"), 
 	 	array("1green onion", "green onion", 1,"serving","1 green onion"), 
+	 	array("coke cola 150 ml", "coke cola", 150,"ml.","150 ml. coke cola"), 
+	 	array("2 tiny pears", "pears", .5,"serving","0.5 pears"), 
+	 	array("1 very small glass of white wine", "white wine", .25,"serving","0.25 white wine"), 
+
 	//  array("2 cartons (1/2 gallon each) milk", "milk", 1,"gal.","1 gal. milk"), 
 	  //array("1 pint (1/2 quart) beer", "beer", .5,"qt.",".5 qt. beer"), 
 	  //array("1 pint (quart 1/2 quart) beer", "beer", .5,"qt.",".5 qt. koolaid"), 
@@ -212,7 +213,12 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	 // 	array("kale, spinach and mango smoothie" , "kale, spinach and mango smoothie", 1,"","1 kale, spinach and mango smoothie"), 
 	  	//array("1/2. Grated carrot", "milk", 1,"gal.","1 gal. milk"), 
 //	  	array("1egg", "milk", 1,"gal.","1 gal. milk"), 
-	  	array("i cup of coffee", "milk", 1,"gal.","1 gal. milk"), 
+//	  	array("Fennel tea with heaped teaspoon on collagen", "milk", 1,"gal.","1 gal. milk"), 
+	  ///	array("1 pot of yogurt", "milk", 1,"gal.","1 gal. milk"), 
+
+	 		array("1 very small glass of white wine", "white wine", .25,"serving","0.25 white wine"), 
+	  //	array("coke cola 150 ml", "milk", 1,"gal.","1 gal. milk"), 
+	  	//array("i cup of coffee", "milk", 1,"gal.","1 gal. milk"), 
 	 // 	array("1pkg \"Recover\"", "milk", 1,"gal.","1 gal. milk"), 
 	  	//array("2 cartons (1/2 gallon each) milk", "milk", 1,"gal.","1 gal. milk"), 
 	  //	array("Frittata (egg, potato, cheese, onion & tomato)" , "kale, spinach and mango smoothie", 1,"","1 kale, spinach and mango smoothie"), 
