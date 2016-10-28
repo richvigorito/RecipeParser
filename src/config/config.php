@@ -58,10 +58,10 @@ $defaults =  array(
       
         "/^(T_INTEGER|T_DECIMAL)$/"                                         						=> "T_NUMBER", 
        
- 
-// Half a banana TODO!
-     //   "/^(\ )*(single|double|triple|quadruple)$/"                       => "T_MULTIPLER", TEST
-     //   "/^(\ )*(2x|3x|4x|5x)$/"                                          => "T_MULTIPLER", TEST
+        "/^(\ )*(half|third|quarter|forth|fifth)$/i"                       							=> "T_MULTIPLIER",
+        "/^(\ )?(single|double|triple|quadruple)$/i"                       							=> "T_MULTIPLIER", 
+        "/^(\ )*(.50x|.5x|.25x|.33x|.20x|.2x)$/i"                              					=> "T_MULTIPLIER", //TEST
+        "/^(\ )*(2x|3x|4x|5x)$/i"                                          							=> "T_MULTIPLIER", 
 
 
         "/^(\ )?(can(s)?|mug(s)?|bottle(s)?|glass(es)?|bowl(s)?)$/i"   									=> "T_CONTAINER" ,
@@ -111,8 +111,8 @@ $defaults =  array(
 
         "/^(\ )?(T_NUMBER\ )(\ )?T_FOOD(\ )?$/"                            		=> "T_RECIPE_INGREDIENT",  
     
+        "/^(\ )?(T_NUMBER(\ )+)?(T_MULTIPLIER)(\ )+T_FOOD(\ )?$/"   						=> "T_RECIPE_INGREDIENT_MULT",   // TEST 
         "/^(\ )?T_NUMBER(\ )+T_RECIPE_INGREDIENT(\ )?$/"                    	=> "T_RECIPE_INGREDIENT_MULT",
-//        "/^(\ )?T_MULTIPLER(\ )+T_RECIPE_INGREDIENT(\ )?$/"                    => "T_RECIPE_INGREDIENT_MULT",    TEST 
 
         "/^(\ )?T_RECIPE_INGREDIENT|T_RECIPE_INGREDIENT_MULT(\ )?$/"        	=> "T_TERM",
   ),

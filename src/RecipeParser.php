@@ -48,7 +48,8 @@ class RecipeParser
 
     $string =  trim(preg_replace("/^(.*)( of | a )(.*)$/i","$1 $3",$string));
     $string =  trim(preg_replace("/^(a )(.*)/i","$2",$string));
-    $string =  trim(preg_replace("/(\d)([a-zA-Z].*)/","$1 $2",$string));
+		// 2x is special, ie 2x cookies
+    $string =  trim(preg_replace("/(\d)([abcdefghijklmnopqrstuvwyzABCDEFGHIJKLMNOPQRSTUVWYZ].*)/","$1 $2",$string));
     $string = self::convert_fractions($string);
     if( ! preg_match("/\d/", $string) > 0) 
       $string = "1 $string";
@@ -99,12 +100,25 @@ class RecipeParser
     $recipe_ingredient_mult = $expr->getNode('T_RECIPE_INGREDIENT_MULT');
     if ( $recipe_ingredient_mult != false) {
       $recipe_ingredient  = $recipe_ingredient_mult->getNode('T_RECIPE_INGREDIENT');
-      $this->multiplier         *= $this->number($recipe_ingredient_mult->getNode('T_NUMBER'));
+      $food  							= $recipe_ingredient_mult->getNode('T_FOOD');
+    	if ( $recipe_ingredient != false) {
+    		$this->recipe_ingredient($recipe_ingredient);
+    	} elseif ( $food != false) {
+    		$this->food($food);
+			}
+      $multiplier         = $recipe_ingredient_mult->getNode('T_MULTIPLIER');
+      $number         		= $recipe_ingredient_mult->getNode('T_NUMBER');
+    	if ( $number != false) {
+      	$this->multiplier         *= $this->number($number);
+    	} 
+			if ( $multiplier != false) {
+      	$this->multiplier         *= $this->multiplier($multiplier);
+			}
     } else {
       $recipe_ingredient = $expr->getNode('T_RECIPE_INGREDIENT');
+    	$this->recipe_ingredient($recipe_ingredient);
     }
 
-    $this->recipe_ingredient($recipe_ingredient);
     $this->measurement_quantity = ($this->measurement_quantity * $this->multiplier);
     // apply multipler
   }
@@ -342,6 +356,30 @@ class RecipeParser
     }
     // ttake care of centi, deci, milli, kilo 
     //throw new Exception ('todo, figure error handling');
+  }
+
+
+  private function multiplier(ExpressionTree $p)
+  {
+			switch (strtolower($p->arr[0])){	
+				case 'fifth':	case '.2x':
+        	return .2;
+				case 'quarter': case 'forth':	case '.25x':
+        	return .25;
+				case 'third':	case '.33x':
+        	return .33;
+				case 'half':	case '.5x':
+        	return .5;
+				case 'double': 	case '2x':
+        	return 2;
+				case 'triple': 	case '3x':
+        	return 3;
+				case 'quadruple': 	case '4x':
+        	return 4;
+			  default:
+        return 1;
+    	}
+
   }
 
   private function number(ExpressionTree $p)
