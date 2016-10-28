@@ -59,9 +59,9 @@ $defaults =  array(
         "/^(T_INTEGER|T_DECIMAL)$/"												=> "T_NUMBER", 
        
         "/^(\ )*(half|third|quarter|forth|fifth)$/i"			=> "T_MULTIPLIER",
-        "/^(\ )?(single|double|triple|quadruple)$/i"                       							=> "T_MULTIPLIER", 
-        "/^(\ )*(.50x|.5x|.25x|.33x|.20x|.2x)$/i"                              					=> "T_MULTIPLIER", 
-        "/^(\ )*(2x|3x|4x|5x)$/i"                                          							=> "T_MULTIPLIER", 
+        "/^(\ )?(single|double|triple|quadruple)$/i" 			=> "T_MULTIPLIER", 
+        "/^(\ )*(.50x|.5x|.25x|.33x|.20x|.2x)$/i"					=> "T_MULTIPLIER", 
+        "/^(\ )*(2x|3x|4x|5x)$/i"													=> "T_MULTIPLIER", 
 
 
         "/^(\ )?(can(s)?|mug(s)?|bottle(s)?|glass(es)?|bowl(s)?)$/i"   									=> "T_CONTAINER" ,
@@ -82,11 +82,12 @@ $defaults =  array(
     //    pot | glass | bowl
 
 
-         "/^(?!T_)[a-zA-z-']*$/"                                              => "T_WORD",
-         "/^(\ )?(T_WORD(\ )+(T_COMMA(\ )+)?)*T_WORD$/"                       => "T_FOOD", 
-         "/^(\ )?(T_WORD(\ )+)*T_WORD$/"                                    	=> "T_FOOD", 
-         "/^(\ )?(T_DOUBLE_QUOTE)(\ )*T_WORD(\ )*(T_DOUBLE_QUOTE)$/"   				=> "T_FOOD",
-         "/^(\ )?(T_DOUBLE_QUOTE)(\ )*T_FOOD(\ )*(T_DOUBLE_QUOTE)$/"   				=> "T_FOOD",
+         "/^(?!T_)[a-zA-z-']*$/"																							=> "T_WORD",
+
+         "/^(\ )?(T_WORD(\ )+(T_COMMA(\ )+)?)*T_WORD$/"												=> "T_FOOD", 
+         "/^(\ )?(T_WORD(\ )+)*T_WORD$/"																			=> "T_FOOD", 
+         "/^(\ )?(T_DOUBLE_QUOTE)(\ )*T_WORD(\ )*(T_DOUBLE_QUOTE)$/"					=> "T_FOOD",
+         "/^(\ )?(T_DOUBLE_QUOTE)(\ )*T_FOOD(\ )*(T_DOUBLE_QUOTE)$/"					=> "T_FOOD",
   
         //---may be a kludge??, 
         // can result in food -> food -> food -> word
@@ -94,27 +95,27 @@ $defaults =  array(
         "/^T_FOOD$/"                                                        	=> "T_FOOD", 
         /// --- end (potential) kludge
 
-        "/^(T_FLUID_OUNCE|T_OUNCE|T_GRAM|T_CUP|T_TABLESPOON|T_TEASPOON)$/"   	=> "T_PRECISE_UNIT", 
-        "/^(T_GALLON|T_PINT|T_QUART|T_LITER)$/"        												=> "T_PRECISE_UNIT", 
+        "/^(T_FLUID_OUNCE|T_OUNCE|T_GRAM|T_CUP|T_TABLESPOON|T_TEASPOON)$/"		=> "T_PRECISE_UNIT", 
+        "/^(T_GALLON|T_PINT|T_QUART|T_LITER)$/"																=> "T_PRECISE_UNIT", 
         
-				"/^(\ )?(T_NUMBER\ )?(\ )?(T_IMPRECISE_UNIT)(\ )+T_CONTAINER$/" 			=> "T_IMPRECISE_MEASURE",
-				"/^(\ )?(T_NUMBER\ )?(\ )?(T_IMPRECISE_UNIT)$/"  											=> "T_IMPRECISE_MEASURE",
+				"/^(\ )?(T_NUMBER\ )?(\ )?(T_IMPRECISE_UNIT)(\ )+T_CONTAINER$/"				=> "T_IMPRECISE_MEASURE",
+				"/^(\ )?(T_NUMBER\ )?(\ )?(T_IMPRECISE_UNIT)$/"												=> "T_IMPRECISE_MEASURE",
 
-        "/^(T_CONTAINER_MULT|T_CONTAINER)(\ )+T_RECIPE_INGREDIENT$/"   				=> "T_RECIPE_INGREDIENT",  
-        "/^(\ )?T_NUMBER(\ )*T_PRECISE_UNIT$/"                              	=> "T_PRECISE_MEASURE",
+        "/^(T_CONTAINER_MULT|T_CONTAINER)(\ )+T_RECIPE_INGREDIENT$/"					=> "T_RECIPE_INGREDIENT",  
+        "/^(\ )?T_NUMBER(\ )*T_PRECISE_UNIT$/"																=> "T_PRECISE_MEASURE",
 
-        "/^(\ )?(T_LPAREN)(\ )*T_PRECISE_MEASURE(\ )*(T_RPAREN)$/"     				=> "T_PRECISE_MEASURE",
+        "/^(\ )?(T_LPAREN)(\ )*T_PRECISE_MEASURE(\ )*(T_RPAREN)$/"						=> "T_PRECISE_MEASURE",
         
-        "/^(\ )?T_PRECISE_MEASURE(\ )*T_FOOD(\ )?$/"                        	=> "T_RECIPE_INGREDIENT",
+        "/^(\ )?T_PRECISE_MEASURE(\ )*T_FOOD(\ )?$/"													=> "T_RECIPE_INGREDIENT",
         "/^(\ )?T_FOOD(\ )*T_PRECISE_MEASURE(\ )?$/"                        	=> "T_RECIPE_INGREDIENT",
-        "/^(\ )?(T_NUMBER)?T_IMPRECISE_MEASURE(\ )*T_FOOD(\ )?$/"           	=> "T_RECIPE_INGREDIENT",
+        "/^(\ )?(T_NUMBER)?T_IMPRECISE_MEASURE(\ )*T_FOOD(\ )?$/"							=> "T_RECIPE_INGREDIENT",
 
-        "/^(\ )?(T_NUMBER\ )(\ )?T_FOOD(\ )?$/"                            		=> "T_RECIPE_INGREDIENT",  
+        "/^(\ )?(T_NUMBER\ )(\ )?T_FOOD(\ )?$/"																=> "T_RECIPE_INGREDIENT",  
     
-        "/^(\ )?(T_NUMBER(\ )+)?(T_MULTIPLIER)(\ )+T_FOOD(\ )?$/"   						=> "T_RECIPE_INGREDIENT_MULT",   
-        "/^(\ )?T_NUMBER(\ )+T_RECIPE_INGREDIENT(\ )?$/"                    	=> "T_RECIPE_INGREDIENT_MULT",
+        "/^(\ )?(T_NUMBER(\ )+)?(T_MULTIPLIER)(\ )+T_FOOD(\ )?$/"							=> "T_RECIPE_INGREDIENT_MULT",   
+        "/^(\ )?T_NUMBER(\ )+T_RECIPE_INGREDIENT(\ )?$/"											=> "T_RECIPE_INGREDIENT_MULT",
 
-        "/^(\ )?T_RECIPE_INGREDIENT|T_RECIPE_INGREDIENT_MULT(\ )?$/"        	=> "T_TERM",
+        "/^(\ )?T_RECIPE_INGREDIENT|T_RECIPE_INGREDIENT_MULT(\ )?$/"				=> "T_TERM",
   ),
 
 
