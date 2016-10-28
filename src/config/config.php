@@ -60,7 +60,7 @@ $defaults =  array(
        
         "/^(\ )*(half|third|quarter|forth|fifth)$/i"                       							=> "T_MULTIPLIER",
         "/^(\ )?(single|double|triple|quadruple)$/i"                       							=> "T_MULTIPLIER", 
-        "/^(\ )*(.50x|.5x|.25x|.33x|.20x|.2x)$/i"                              					=> "T_MULTIPLIER", //TEST
+        "/^(\ )*(.50x|.5x|.25x|.33x|.20x|.2x)$/i"                              					=> "T_MULTIPLIER", 
         "/^(\ )*(2x|3x|4x|5x)$/i"                                          							=> "T_MULTIPLIER", 
 
 
@@ -111,7 +111,7 @@ $defaults =  array(
 
         "/^(\ )?(T_NUMBER\ )(\ )?T_FOOD(\ )?$/"                            		=> "T_RECIPE_INGREDIENT",  
     
-        "/^(\ )?(T_NUMBER(\ )+)?(T_MULTIPLIER)(\ )+T_FOOD(\ )?$/"   						=> "T_RECIPE_INGREDIENT_MULT",   // TEST 
+        "/^(\ )?(T_NUMBER(\ )+)?(T_MULTIPLIER)(\ )+T_FOOD(\ )?$/"   						=> "T_RECIPE_INGREDIENT_MULT",   
         "/^(\ )?T_NUMBER(\ )+T_RECIPE_INGREDIENT(\ )?$/"                    	=> "T_RECIPE_INGREDIENT_MULT",
 
         "/^(\ )?T_RECIPE_INGREDIENT|T_RECIPE_INGREDIENT_MULT(\ )?$/"        	=> "T_TERM",
