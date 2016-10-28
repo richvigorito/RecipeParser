@@ -6,59 +6,59 @@ $defaults =  array(
 
   'grammar' => array(
 
-        "/^\($/"                                             		    										=> "T_LPAREN",
-        "/^\)$/"                                             		    										=> "T_RPAREN",
-        "/^,$/"                                             		    										=> "T_COMMA",
-        "/^\"$/"                                             		    										=> "T_DOUBLE_QUOTE",
+        "/^\($/"																					=> "T_LPAREN",
+        "/^\)$/"																					=> "T_RPAREN",
+        "/^,$/"																						=> "T_COMMA",
+        "/^\"$/"																					=> "T_DOUBLE_QUOTE",
 
-        "/^([0-9]+)?\.[0-9]+$/"                                             						=> "T_DECIMAL",
-        "/^([0-9])+$/"                                                      						=> "T_INTEGER" ,
+        "/^([0-9]+)?\.[0-9]+$/"														=> "T_DECIMAL",
+        "/^([0-9])+$/"																		=> "T_INTEGER" ,
         
-        "/^(\ )*(centi|milli|kilo|deci)?gram(s)?$/i"                        						=> "T_GRAM",
-        "/^(\ )*(k|m)?g(\.)?$/"                                             						=> "T_GRAM",
+        "/^(\ )*(centi|milli|kilo|deci)?gram(s)?$/i"			=> "T_GRAM",
+        "/^(\ )*(k|m)?g(\.)?$/"														=> "T_GRAM",
     
  //       "/^(\ )*pound(s)?$/i"                                                   => "T_POUND", TEST (be mindful of pound cake) 
  //       "/^(\ )*lbs(\.)?$/"                                                     => "T_POUND", TEST 
  
-        "/^(\ )*(centi|milli|kilo|deci)?liter(s)?$/i"                       						=> "T_LITER",
-        "/^(\ )*(k|m|c)?l(\.)?$/"                                           						=> "T_LITER",
+        "/^(\ )*(centi|milli|kilo|deci)?liter(s)?$/i"			=> "T_LITER",
+        "/^(\ )*(k|m|c)?l(\.)?$/"													=> "T_LITER",
  
-        "/^(\ )?tablespoon(s)?$/i"                                          						=> "T_TABLESPOON",
-        "/^(\ )?table spoon(s)?$/i"                                         						=> "T_TABLESPOON", 
-        "/^(\ )?tablespn(s)?$/i"                                            						=> "T_TABLESPOON",
-        "/^(\ )?tblspoon(s)?$/i"                                            						=> "T_TABLESPOON", 
-        "/^(\ )?tblspn(s)?$/i"                                              						=> "T_TABLESPOON", 
-        "/^(\ )?spoonful(s)?$/i"                                            						=> "T_TABLESPOON",
-        "/^(\ )?tbsp(\.)?$/i"                                               						=> "T_TABLESPOON",
-        "/^(\ )?tb(s|l|ls|sps)?(\.)?$/i"                                    						=> "T_TABLESPOON",
+        "/^(\ )?tablespoon(s)?$/i"												=> "T_TABLESPOON",
+        "/^(\ )?table spoon(s)?$/i"												=> "T_TABLESPOON", 
+        "/^(\ )?tablespn(s)?$/i"													=> "T_TABLESPOON",
+        "/^(\ )?tblspoon(s)?$/i"													=> "T_TABLESPOON", 
+        "/^(\ )?tblspn(s)?$/i"														=> "T_TABLESPOON", 
+        "/^(\ )?spoonful(s)?$/i"													=> "T_TABLESPOON",
+        "/^(\ )?tbsp(\.)?$/i"															=> "T_TABLESPOON",
+        "/^(\ )?tb(s|l|ls|sps)?(\.)?$/i"									=> "T_TABLESPOON",
   
-        "/^(\ )?teaspoon(s)?$/i"                                            						=> "T_TEASPOON",
-        "/^(\ )?tea spoon(s)?$/i"                                           						=> "T_TEASPOON", 
-        "/^(\ )?tsp(\.)?$/i"                                                						=> "T_TEASPOON",
-        "/^(\ )?tea(s)?(\.)$/i"                                             						=> "T_TEASPOON",
-        "/^(\ )?t(s)?(\.)?(\ )?$/i"                                         						=> "T_TEASPOON", 
+        "/^(\ )?teaspoon(s)?$/i"													=> "T_TEASPOON",
+        "/^(\ )?tea spoon(s)?$/i"													=> "T_TEASPOON", 
+        "/^(\ )?tsp(\.)?$/i"															=> "T_TEASPOON",
+        "/^(\ )?tea(s)?(\.)$/i"														=> "T_TEASPOON",
+        "/^(\ )?t(s)?(\.)?(\ )?$/i"												=> "T_TEASPOON", 
 
-       "/^(\ )?gallon(s)?$/i"                               		    										=> "T_GALLON", 
-       "/^(\ )?gal(\.)?$/i"                               		    											=> "T_GALLON", 
+       "/^(\ )?gallon(s)?$/i"															=> "T_GALLON", 
+       "/^(\ )?gal(\.)?$/i"																=> "T_GALLON", 
   
-        "/^(\ )?pint(s)?$/i"                               															=> "T_PINT", 
-        "/^(\ )?pt(s)?(\.)?$/i"                               													=> "T_PINT", 
+        "/^(\ )?pint(s)?$/i"															=> "T_PINT", 
+        "/^(\ )?pt(s)?(\.)?$/i"														=> "T_PINT", 
       
-         "/^(\ )?quart(s)?$/i"                               														=> "T_QUART", 
-        "/^(\ )?qt(s)?(\.)?$/i"                               													=> "T_QUART", 
+         "/^(\ )?quart(s)?$/i"														=> "T_QUART", 
+        "/^(\ )?qt(s)?(\.)?$/i"														=> "T_QUART", 
  
-        "/^(\ )?fluid ounce(s)?$/i"                                         						=> "T_FLUID_OUNCE",
-        "/^(\ )?fl(\.)? oz(s)?(\.)?$/i"                                     						=> "T_FLUID_OUNCE",
+        "/^(\ )?fluid ounce(s)?$/i"												=> "T_FLUID_OUNCE",
+        "/^(\ )?fl(\.)? oz(s)?(\.)?$/i"										=> "T_FLUID_OUNCE",
  
-        "/^(\ )?ounce(s)?$/i"                                               						=> "T_OUNCE",
-        "/^(\ )?oz(s)?(\.)?$/i"                                             						=> "T_OUNCE",
+        "/^(\ )?ounce(s)?$/i"															=> "T_OUNCE",
+        "/^(\ )?oz(s)?(\.)?$/i"														=> "T_OUNCE",
  
-        "/^(\ )*cup(s)?$/i"                                                 						=> "T_CUP",
-        "/^(\ )*c(\.)?$/"                                                   						=> "T_CUP",
+        "/^(\ )*cup(s)?$/i"																=> "T_CUP",
+        "/^(\ )*c(\.)?$/"																	=> "T_CUP",
       
-        "/^(T_INTEGER|T_DECIMAL)$/"                                         						=> "T_NUMBER", 
+        "/^(T_INTEGER|T_DECIMAL)$/"												=> "T_NUMBER", 
        
-        "/^(\ )*(half|third|quarter|forth|fifth)$/i"                       							=> "T_MULTIPLIER",
+        "/^(\ )*(half|third|quarter|forth|fifth)$/i"			=> "T_MULTIPLIER",
         "/^(\ )?(single|double|triple|quadruple)$/i"                       							=> "T_MULTIPLIER", 
         "/^(\ )*(.50x|.5x|.25x|.33x|.20x|.2x)$/i"                              					=> "T_MULTIPLIER", //TEST
         "/^(\ )*(2x|3x|4x|5x)$/i"                                          							=> "T_MULTIPLIER", 
