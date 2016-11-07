@@ -46,6 +46,12 @@ class RecipeParser
     $pattern =  "/(\d)(pkg|package)(\.|\w*)/i";
     $string =  trim(preg_replace($pattern,"$1 $2",$string));
 
+    $pattern =  "/(\d)(\ )+(teaspoon[s]+)(\.)(\w*)/i";
+    $string =  trim(preg_replace($pattern,"$1 $3 $5",$string));
+
+    $pattern =  "/(\d)(\ )+(tablespoon[s]+)(\.)(\w*)/i";
+    $string =  trim(preg_replace($pattern,"$1 $3 $5",$string));
+
     $string =  trim(preg_replace("/^(.*)( of | a )(.*)$/i","$1 $3",$string));
     $string =  trim(preg_replace("/^(a )(.*)/i","$2",$string));
 		// 2x is special, ie 2x cookies
@@ -249,46 +255,17 @@ class RecipeParser
 
 
 
-  private function pint(ExpressionTree $p)
-  {
-    $this->measurement_unit = 'pt.'; 
-  }
+  private function cup(ExpressionTree $p)				{  $this->measurement_unit = 'cup';		}
+  private function pint(ExpressionTree $p)				{  $this->measurement_unit = 'pt.';		}
+  private function quart(ExpressionTree $p)				{  $this->measurement_unit = 'qt.';		}
+  private function ounce(ExpressionTree $p)				{  $this->measurement_unit = 'oz.';		}
+  private function gallon(ExpressionTree $p)			{  $this->measurement_unit = 'gal.';	}
+  private function teaspoon(ExpressionTree $p)			{  $this->measurement_unit = 'tsp.';	}
+  private function tablespoon(ExpressionTree $p)		{  $this->measurement_unit = 'tbsp.';   }
+  private function fluid_ounce(ExpressionTree $p)		{  $this->measurement_unit = 'fl. oz.'; }
+  private function dessertspoon(ExpressionTree $p)		{  $this->measurement_unit = 'dstspn.'; }
 
-  private function quart(ExpressionTree $p)
-  {
-    $this->measurement_unit = 'qt.'; 
-  }
-
-  private function gallon(ExpressionTree $p)
-  {
-    $this->measurement_unit = 'gal.'; 
-  }
-
-  private function teaspoon(ExpressionTree $p)
-  {
-    $this->measurement_unit = 'tsp.'; 
-  }
-
-  private function tablespoon(ExpressionTree $p)
-  {
-    $this->measurement_unit = 'tbsp.'; 
-  }
-
-  private function fluid_ounce(ExpressionTree $p)
-  {
-    $this->measurement_unit = 'fl. oz.'; 
-  }
-  private function ounce(ExpressionTree $p)
-  {
-    $this->measurement_unit = 'oz.'; 
-  }
-
-  private function cup(ExpressionTree $p)
-  {
-    $this->measurement_unit = 'cup'; 
-  }
-
-  private function liter(ExpressionTree $p)
+  private function liter(ExpressionTree $p)	
   {
     $input = strtolower($p->arr[0]); 
     switch ($input){
@@ -418,9 +395,14 @@ class RecipeParser
     $this->food .= ' '.implode(' ',array_reverse($p->arr));
   }
 
+  private function scant()
+  {
+    if(!empty($this->measurement_quantity)) 
+      $this->measurement_quantity = (.875 * $this->measurement_quantity);
+  }
 
-  private function tiny() 				{$this->extra_small();}
-  private function very_small() 	{$this->extra_small();}
+  private function tiny()			{$this->extra_small();}
+  private function very_small()		{$this->extra_small();}
   private function extra_small()
   {
     if(!empty($this->measurement_quantity)) 
@@ -434,6 +416,13 @@ class RecipeParser
   }
 
   private function medium() { /*  times by one, ie dont do shit  */ }
+
+  private function heaping()		{$this->heaped();}
+  private function heaped()		
+  {
+    if(!empty($this->measurement_quantity)) 
+      $this->measurement_quantity = (1.125 * $this->measurement_quantity);
+  }
 
   private function big() {$this->large();}
   private function large()

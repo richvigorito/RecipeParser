@@ -36,6 +36,10 @@ $defaults =  array(
         "/^(\ )?tea(s)?(\.)$/i"                           => "T_TEASPOON",
         "/^(\ )?t(s)?(\.)?(\ )?$/i"                       => "T_TEASPOON", 
 
+        "/^(\ )?dessertspoon(s)?$/i"					  => "T_DESSERTSPOON",
+        "/^(\ )?dessert spoon(s)?$/i"					  => "T_DESSERTSPOON",
+        "/^(\ )?(ds|dsp|dstspn)(\.)?$/i"                  => "T_DESSERTSPOON",
+
        "/^(\ )?gallon(s)?$/i"                             => "T_GALLON", 
        "/^(\ )?gal(\.)?$/i"                               => "T_GALLON", 
   
@@ -67,8 +71,8 @@ $defaults =  array(
         "/^(\ )?(package(s)?|pkg(s)?(\.)?)$/i"                                           => "T_CONTAINER" ,
         "/^(\ )?(T_NUMBER\ )(T_CONTAINER)$/i"                                            => "T_CONTAINER_MULT" ,
 
-        "/^(extra |really |very )?(\ )*(tiny|little|small|medium|large|big|huge)$/i"     => "T_IMPRECISE_UNIT" ,
-        "/^(\ )*(sm|m|lg|x-lg|)(\.)?$/i"                                                 => "T_IMPRECISE_UNIT" , 
+        "/^(extra |really |very )?(\ )*(tiny|scant|heaped|heaping|little|small|medium|large|big|huge)$/i"	=> "T_IMPRECISE_UNIT" ,
+        "/^(\ )*(sm|m|lg|x-lg|)(\.)?$/i"																	=> "T_IMPRECISE_UNIT" , 
 
 
     //   "/^(\ )*(tall|venti|grande|tall)$/"                                       => "T_STARBUCKS_UNIT" ,
@@ -93,8 +97,8 @@ $defaults =  array(
         "/^T_FOOD$/"                                                          => "T_FOOD", 
         /// --- end (potential) kludge
 
-        "/^(T_FLUID_OUNCE|T_OUNCE|T_GRAM|T_CUP|T_TABLESPOON|T_TEASPOON)$/"    => "T_PRECISE_UNIT", 
-        "/^(T_GALLON|T_PINT|T_QUART|T_LITER)$/"                               => "T_PRECISE_UNIT", 
+        "/^(T_FLUID_OUNCE|T_OUNCE|T_DESSERTSPOON|T_TABLESPOON|T_TEASPOON)$/"  => "T_PRECISE_UNIT", 
+        "/^(T_GALLON|T_PINT|T_QUART|T_LITER|T_GRAM|T_CUP)$/"                  => "T_PRECISE_UNIT", 
         
         "/^(\ )?(T_NUMBER\ )?(\ )?(T_IMPRECISE_UNIT)(\ )+T_CONTAINER$/"       => "T_IMPRECISE_MEASURE",
         "/^(\ )?(T_NUMBER\ )?(\ )?(T_IMPRECISE_UNIT)$/"                       => "T_IMPRECISE_MEASURE",
