@@ -263,7 +263,7 @@ class RecipeParser
   private function teaspoon(ExpressionTree $p)			{  $this->measurement_unit = 'tsp.';	}
   private function tablespoon(ExpressionTree $p)		{  $this->measurement_unit = 'tbsp.';   }
   private function fluid_ounce(ExpressionTree $p)		{  $this->measurement_unit = 'fl. oz.'; }
-  private function dessertspoon(ExpressionTree $p)		{  $this->measurement_unit = 'dstspn.'; }
+  private function dessertspoon(ExpressionTree $p)		{  $this->measurement_unit = 'dsp.'; }
 
   private function liter(ExpressionTree $p)	
   {
