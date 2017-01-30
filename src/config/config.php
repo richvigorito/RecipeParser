@@ -104,6 +104,7 @@ $defaults =  array(
         "/^(\ )?(T_NUMBER\ )?(\ )?(T_IMPRECISE_UNIT)$/"                       => "T_IMPRECISE_MEASURE",
 
         "/^(T_CONTAINER_MULT|T_CONTAINER)(\ )+T_RECIPE_INGREDIENT$/"          => "T_RECIPE_INGREDIENT",  
+        "/^(T_CONTAINER_MULT|T_CONTAINER)(\ )+T_FOOD$/"						  => "T_RECIPE_INGREDIENT",  
         "/^(\ )?T_NUMBER(\ )*T_PRECISE_UNIT$/"                                => "T_PRECISE_MEASURE",
 
         "/^(\ )?(T_LPAREN)(\ )*T_PRECISE_MEASURE(\ )*(T_RPAREN)$/"            => "T_PRECISE_MEASURE",

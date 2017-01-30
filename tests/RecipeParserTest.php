@@ -221,6 +221,8 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	 	array("150ml coke cola", "coke cola", 150,"ml.","150 ml. coke cola"), 
 	 	array("300 ml. pasteurized grapefruit juice", "pasteurized grapefruit juice", 300,"ml.","300 ml. pasteurized grapefruit juice"), 
 	 	array("2 tablespoons.chia seeds", "chia seeds", 2,"tbsp.","2 tbsp. chia seeds"),
+    array("2 glasses of milk"," milk",2,"serving","2 milk"),
+	// 	array("1pkg \"Recover\"", "milk", 1,"gal.","1 gal. milk"),  /// not fuzzy any more
 
 	//  array("2 cartons (1/2 gallon each) milk", "milk", 1,"gal.","1 gal. milk"), 
 	  //array("1 pint (1/2 quart) beer", "beer", .5,"qt.",".5 qt. beer"), 
@@ -232,8 +234,8 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
     public function lexemeFuzzyMatchesWithErrors(){
 	return array(
  // 		array(" (14.5 oz.) bacon", "bacon", 14.5,"oz.","14.5 oz. bacon"), 
+//	  	array("1pkg \"Recover\"", "milk", 1,"gal.","1 gal. milk"),  /// not fuzzy any more
 	  	array("(Spinach, edamame beans and pickles)" , "Spinach, edamame beans and pickles", 1,"serving","1 Spinach, edamame beans and pickles"), 
-	  	array("1pkg \"Recover\"", "milk", 1,"gal.","1 gal. milk"), 
 	  //	array("kale, spinach and mango smoothie" , "kale, spinach and mango smoothie", 1,"","1 kale, spinach and mango smoothie"), 
 	  //	array("kale spinach and mango- smoothie)" , "kale spinach and mango smoothie", 1,"","1 kale spinach and mango smoothie"), 
         ); 
@@ -253,7 +255,8 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 
 	 //		array("double shot latte", "white wine", .25,"serving","0.25 white wine"), 
 	 		//array("2x latte", "sugar", 2,"tbsp.","2 tbsp. sugar"), 
-	 	array("2 tablespoons.chia seeds", "chia seeds", 2,"tbsp.","2 tbsp. chia seeds"),
+          array("2 glasses of milk"," coke",2,"serving","1 glasses milk"),
+	 	//array("2 tablespoons.chia seeds", "chia seeds", 2,"tbsp.","2 tbsp. chia seeds"),
          
 	  	//array("coke cola 150 ml", "milk", 1,"gal.","1 gal. milk"), 
 	  	//array("i cup of coffee", "milk", 1,"gal.","1 gal. milk"), 
