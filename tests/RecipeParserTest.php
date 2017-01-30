@@ -70,7 +70,9 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
           array("50 oz sword fish"," sword fish",50,"oz.","50 oz. sword fish"),
           array("50 OUNcEs sword fish"," sword fish",50,"oz.","50 oz. sword fish"),
           array("2 small cokes"," cokes",1,"serving","1 cokes"),
+          array("little apple","apple",.5,"serving","0.5 apple"),
           array(" medium coke"," coke",1,"serving","1 coke"),
+          array("rice","rice",1,"serving","1 rice"),
           array("2 large cokes"," cokes",2.5,"serving","2.5 cokes"),
           array("2 22.5 oz beers"," beers",45,"oz.","45 oz. beers"),
           array("2 22.5 oz tasty beers"," tasty beers",45,"oz.","45 oz. tasty beers"),
@@ -255,6 +257,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 
 	 //		array("double shot latte", "white wine", .25,"serving","0.25 white wine"), 
 	 		//array("2x latte", "sugar", 2,"tbsp.","2 tbsp. sugar"), 
+          //array("2 glasses of milk"," coke",2,"serving","1 glasses milk"),
           array("2 glasses of milk"," coke",2,"serving","1 glasses milk"),
 	 	//array("2 tablespoons.chia seeds", "chia seeds", 2,"tbsp.","2 tbsp. chia seeds"),
          

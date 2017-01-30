@@ -385,6 +385,7 @@ class RecipeParser
       $this->measurement_quantity = (.25 * $this->measurement_quantity);
   }
 
+  private function little()			{$this->small();}
   private function small()
   {
     if(!empty($this->measurement_quantity)) 
