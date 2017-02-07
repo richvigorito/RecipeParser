@@ -52,6 +52,11 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
     {
         return array(
           // array(<user_string>, <food>, <measurement_quantity>, <measurement_unit>,  <parsed_string>),
+
+          array("1 heaping tablespoon sugar","sugar",1.125,"tbsp.","1.125 tbsp. sugar"),
+          array("1 scant cup sugar","sugar",.875,"cup","0.875 cup sugar"),
+          array("1 large cup sugar","sugar",1.25,"cup","1.25 cup sugar"),
+
           array("76 oz steak"," steak",76,"oz.","76 oz. steak"),
           array("7 6 ozs. steaks"," steaks",42,"oz.","42 oz. steaks"),
           array("2 tablespoon garlic"," garlic",2,"tbsp.","2 tbsp. garlic"),
@@ -258,8 +263,11 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	 //		array("double shot latte", "white wine", .25,"serving","0.25 white wine"), 
 	 		//array("2x latte", "sugar", 2,"tbsp.","2 tbsp. sugar"), 
           //array("2 glasses of milk"," coke",2,"serving","1 glasses milk"),
-          array("2 glasses of milk"," coke",2,"serving","1 glasses milk"),
+          //array("2 glasses of milk"," coke",2,"serving","1 glasses milk"),
+//array("6 oz. coffee with 2 tbsp. creamer","coke",2,"serving","xx"), UNDO
 	 	//array("2 tablespoons.chia seeds", "chia seeds", 2,"tbsp.","2 tbsp. chia seeds"),
+	 		//array("0.5 tbsp sugar", "sugar", .5,"tbsp.","0.5 tbsp. sugar"), 
+          array("1 heaping tablespoon sugar","sugar",1.125,"tbsp.","1.125 tbsp. sugar"),
          
 	  	//array("coke cola 150 ml", "milk", 1,"gal.","1 gal. milk"), 
 	  	//array("i cup of coffee", "milk", 1,"gal.","1 gal. milk"), 
@@ -269,5 +277,21 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	  	//array("kale spinach and mango- smoothie)" , "kale spinach and mango smoothie", 1,"","1 kale spinach and mango smoothie"), 
         ); 
     }
+
+
+ 
+//array("1 to 2 cans( 14.5 oz each) tomatoes","coke",2,"serving","xx"), TODO to_quantity
+//array("1 cup shredded cheese","coke",2,"serving","xx"), 							TODO to_quantity
+
+//array("1 cup cubed cheese","coke",2,"serving","xx"), 									TODO ingredient_preparation:preparation (adjective)
+//array("1 cup lettuce, shredded","coke",2,"serving","xx"), 						TODO ingredient_preparation:preparation (adjective)
+// --- look in recipies table in foodgeeks DB for more examples
+
+
+//array("1 tbsp yellow Aji, Amarillo or Chile power","coke",2,"serving","xx"), 		TODO substutions
+/// dont match "7 or 8 beers" hahaha
+
+
+/// TODO: THat big if/else function in recipe_ingredients have a param to know which application: foodgeeks or tummy
 }
 

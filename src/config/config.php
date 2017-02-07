@@ -84,6 +84,7 @@ $defaults =  array(
     //    pot | glass | bowl
 
 
+      //   "/^(?!T_)with(\ )?$/"												  => "T_CONJUCT",
          "/^(?!T_)[a-zA-z-']*$/"                                              => "T_WORD",
 
          "/^(\ )?(T_WORD(\ )+(T_COMMA(\ )+)?)*T_WORD$/"                       => "T_FOOD", 
@@ -106,6 +107,8 @@ $defaults =  array(
         "/^(T_CONTAINER_MULT|T_CONTAINER)(\ )+T_RECIPE_INGREDIENT$/"          => "T_RECIPE_INGREDIENT",  
         "/^(T_CONTAINER_MULT|T_CONTAINER)(\ )+T_FOOD$/"						  => "T_RECIPE_INGREDIENT",  
         "/^(\ )?T_NUMBER(\ )*T_PRECISE_UNIT$/"                                => "T_PRECISE_MEASURE",
+        
+		"/^(\ )?T_NUMBER(\ )*T_IMPRECISE_MEASURE(\ )*T_PRECISE_UNIT$/"        => "T_PRECISE_MEASURE",   /// This is a known 'precise measure' w/ an imprecse adjective: 'heaping tbsp'
 
         "/^(\ )?(T_LPAREN)(\ )*T_PRECISE_MEASURE(\ )*(T_RPAREN)$/"            => "T_PRECISE_MEASURE",
         
@@ -118,6 +121,7 @@ $defaults =  array(
         "/^(\ )?(T_NUMBER(\ )+)?(T_MULTIPLIER)(\ )+T_FOOD(\ )?$/"             => "T_RECIPE_INGREDIENT_MULT",   
         "/^(\ )?T_NUMBER(\ )+T_RECIPE_INGREDIENT(\ )?$/"                      => "T_RECIPE_INGREDIENT_MULT",
 
+      //  "/^(\ )?(T_RECIPE_INGREDIENT|T_RECIPE_INGREDIENT_MULT)T_CONJUST(T_RECIPE_INGREDIENT|T_RECIPE_INGREDIENT_MULT)(\ )?$/"        	=> "T_TERM",
         "/^(\ )?T_RECIPE_INGREDIENT|T_RECIPE_INGREDIENT_MULT(\ )?$/"        	=> "T_TERM",
   ),
 

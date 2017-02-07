@@ -136,11 +136,11 @@ class RecipeParser
   private function error(ExpressionTree $p)
   {
       	$recipe_ingredient_mult 	= $p->getNode('T_RECIPE_INGREDIENT_MULT');
-	$recipe_ingredient 		= $p->getNode('T_RECIPE_INGREDIENT');
-    	$precise_measure 		= $p->getNode('T_PRECISE_MEASURE');
-    	$imprecise_measure 		= $p->getNode('T_IMPRECISE_MEASURE');
- 	$food 				= $p->getNode('T_FOOD');
-    	$number 			= $p->getNode('T_NUMBER');
+		$recipe_ingredient			= $p->getNode('T_RECIPE_INGREDIENT');
+    	$precise_measure			= $p->getNode('T_PRECISE_MEASURE');
+    	$imprecise_measure			= $p->getNode('T_IMPRECISE_MEASURE');
+		$food						= $p->getNode('T_FOOD');
+    	$number						= $p->getNode('T_NUMBER');
    
 
       if 	( false != $recipe_ingredient_mult ) 	$this->recipe_ingredient_mult($recipe_ingredient_mult);
@@ -200,9 +200,10 @@ class RecipeParser
 
   private function precise_measure(ExpressionTree $pm)
   {
+
       $precise_measure = $pm->getNode('T_PRECISE_MEASURE');
       if ( $precise_measure != false) {
-	$this->precise_measure($precise_measure);
+			$this->precise_measure($precise_measure);
       } else {
 
       	$this->precise_unit($pm->getNode('T_PRECISE_UNIT'));
@@ -213,6 +214,8 @@ class RecipeParser
         	$this->measurement_quantity = $this->number($number);
       	}
       }
+	  $imprecise_measure 	= $pm->getNode('T_IMPRECISE_MEASURE');
+      if( false != $imprecise_measure )		$this->imprecise_measure($imprecise_measure);
   }
 
   private function container(ExpressionTree $t)
