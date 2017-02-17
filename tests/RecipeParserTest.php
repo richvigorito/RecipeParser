@@ -213,11 +213,17 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	 	array("1egg", "egg", 1,"serving","1 egg"), 
 	 	array("1green onion", "green onion", 1,"serving","1 green onion"), 
 	 	array("coke cola 150 ml", "coke cola", 150,"ml.","150 ml. coke cola"), 
-	 	array("1 scant bowl pears", "pears", .875,"serving","0.875 pears"), 
-	 	array("1 heaped bowl pears", "pears", 1.125,"serving","1.125 pears"), 
-	 	array("1 heaping bowl pears", "pears", 1.125,"serving","1.125 pears"), 
-	 	array("2 tiny pears", "pears", .5,"serving","0.5 pears"), 
-	 	array("1 very small glass of white wine", "white wine", .25,"serving","0.25 white wine"), 
+	 	array("1 bowl soup", "soup", 12,"fl. oz.","12 fl. oz. soup"), 
+	 	array("2 bowls white bean chili", "white bean chili", 24,"fl. oz.","24 fl. oz. white bean chili"), 
+	 	array("1 flute champagne", "champagne", 6,"fl. oz.","6 fl. oz. champagne"), 
+	 	array("4.5 flutes champagne", "champagne", 27,"fl. oz.","27 fl. oz. champagne"), 
+
+
+	 	array("1 scant bowl pears", "pears",10.5,"fl. oz.","10.5 fl. oz. pears"), 
+	 	array("1 heaped bowl pears", "pears", 13.5,"fl. oz.","13.5 fl. oz. pears"), 
+	 	array("1 heaping bowl pears", "pears", 13.5,"fl. oz.","13.5 fl. oz. pears"), 
+	 	array("2 tiny pears", "pears", 1,"serving","1 pears"), 
+	 	array("1 very small glass of white wine", "white wine", 4,"fl. oz.","4 fl. oz. white wine"), 
 	 	array("butternut squash (350 mg)", "butternut squash", 350,"mg.","350 mg. butternut squash"), 
 	 	array("double shot latte", "shot latte", 2,"serving","2 shot latte"), 
 	 	array("4 triple shot latte", "shot latte", 12,"serving","12 shot latte"), 
@@ -240,7 +246,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	 	array("150ml coke cola", "coke cola", 150,"ml.","150 ml. coke cola"), 
 	 	array("300 ml. pasteurized grapefruit juice", "pasteurized grapefruit juice", 300,"ml.","300 ml. pasteurized grapefruit juice"), 
 	 	array("2 tablespoons.chia seeds", "chia seeds", 2,"tbsp.","2 tbsp. chia seeds"),
-    array("2 glasses of milk"," milk",32,"fl. oz.","32 fl. oz. milk"),
+    array("2 glasses of milk"," milk",16,"fl. oz.","16 fl. oz. milk"),
 	// 	array("1pkg \"Recover\"", "milk", 1,"gal.","1 gal. milk"),  /// not fuzzy any more
 
 	//  array("2 cartons (1/2 gallon each) milk", "milk", 1,"gal.","1 gal. milk"), 

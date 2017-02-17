@@ -237,13 +237,21 @@ class RecipeParser
 
   private function imprecise_measure(ExpressionTree $im)
   {
-      $number = $im->getNode('T_NUMBER');
+      $number		= $im->getNode('T_NUMBER');
+      $container	= $im->getNode('T_CONTAINER');
 
       if ( $number != false) {
         $this->measurement_quantity = $this->number($number);
       }
 
       $this->imprecise_unit($im->getNode('T_IMPRECISE_UNIT'));
+
+      if ( $container != false) {
+		$this->container($container);
+      }
+
+
+
   }
 
   private function precise_unit(ExpressionTree $p)
@@ -393,7 +401,7 @@ class RecipeParser
   private function extra_small()
   {
     if(!empty($this->measurement_quantity)) 
-      $this->measurement_quantity = (.25 * $this->measurement_quantity);
+      $this->measurement_quantity = (.5 * $this->measurement_quantity);
   }
 
   private function little()			{$this->small();}
@@ -450,8 +458,12 @@ class RecipeParser
   private function packet()   {   $this->ounce();		  $this->multiplier *= 2.5 ;	 }
   private function carton()   {   $this->fluid_ounce();	  $this->multiplier *= 16 ;	 }
   private function cartons()  {  $this->carton(); }
-  private function glass()    {   $this->fluid_ounce();	  $this->multiplier *= 16 ;	 }
+  private function glass()    {   $this->fluid_ounce();	  $this->multiplier *= 8 ;	 }
   private function glasses()  {   $this->glass(); }
+  private function bowl()     {   $this->fluid_ounce();	  $this->multiplier *= 12 ;	 }
+  private function bowls()    {   $this->bowl(); }
+  private function flute()    {   $this->fluid_ounce();	  $this->multiplier *= 6 ;	 }
+  private function flutes()   {   $this->flute() ; }
 
   /** Lifted right out of tummy. Was trying to get a litte tricker, and preg_replace fractions based on a regex and
      w/ their decimal value but this is fine and the preg_replace is a little more difficult than it sounds */
