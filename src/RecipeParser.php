@@ -26,6 +26,7 @@ class RecipeParser
     $pathinfo = pathinfo(__FILE__);
     require $pathinfo['dirname'].DIRECTORY_SEPARATOR."config".DIRECTORY_SEPARATOR."config.php";
 
+	$this->is_precise = false;
     $this->grammar    = $defaults['grammar'];
     $this->scanner    = new LexicalScanner($defaults['grammar']);
     $this->multiplier = 1 ;
@@ -160,13 +161,13 @@ class RecipeParser
     $imprecise_measure 	= $ri->getNode('T_IMPRECISE_MEASURE');
     
     $container_mult 	= $ri->getNode('T_CONTAINER_MULT');
-    $container 		= $ri->getNode('T_CONTAINER');
+    $container			= $ri->getNode('T_CONTAINER');
     $recipe_ingredient 	= $ri->getNode('T_RECIPE_INGREDIENT');
 
 
     if (  $recipe_ingredient != false &&  $container_mult != false) {
-      $this->container_mult($container_mult);
       $this->recipe_ingredient($recipe_ingredient);
+      $this->container_mult($container_mult);
     } elseif (  $recipe_ingredient != false &&  $container != false) {
       $this->container($container);
       $this->recipe_ingredient($recipe_ingredient);
@@ -200,7 +201,7 @@ class RecipeParser
 
   private function precise_measure(ExpressionTree $pm)
   {
-
+	  $this->is_precise = true;
       $precise_measure = $pm->getNode('T_PRECISE_MEASURE');
       if ( $precise_measure != false) {
 			$this->precise_measure($precise_measure);
@@ -219,12 +220,18 @@ class RecipeParser
   }
 
   private function container(ExpressionTree $t)
-  {  /* do nothing, we already have a precise measurement we can use */ }
+  { 
+		if( ! $this->is_precise){
+			$container = array_pop($t->arr);
+			$this->$container();
+		}
+  }
 
 
   private function container_mult(ExpressionTree $t)
   {
 	$this->multiplier *= $this->number($t->getNode('T_NUMBER'));
+	$this->container($t->getNode('T_CONTAINER'));
   }
   
 
@@ -258,15 +265,16 @@ class RecipeParser
 
 
 
-  private function cup(ExpressionTree $p)				{  $this->measurement_unit = 'cup';		}
-  private function pint(ExpressionTree $p)				{  $this->measurement_unit = 'pt.';		}
-  private function quart(ExpressionTree $p)				{  $this->measurement_unit = 'qt.';		}
-  private function ounce(ExpressionTree $p)				{  $this->measurement_unit = 'oz.';		}
-  private function gallon(ExpressionTree $p)			{  $this->measurement_unit = 'gal.';	}
-  private function teaspoon(ExpressionTree $p)			{  $this->measurement_unit = 'tsp.';	}
-  private function tablespoon(ExpressionTree $p)		{  $this->measurement_unit = 'tbsp.';   }
-  private function fluid_ounce(ExpressionTree $p)		{  $this->measurement_unit = 'fl. oz.'; }
-  private function dessertspoon(ExpressionTree $p)		{  $this->measurement_unit = 'dsp.'; }
+  private function cup(ExpressionTree $p = null)				{  $this->measurement_unit = 'cup';		}
+  private function pint(ExpressionTree $p = null)				{  $this->measurement_unit = 'pt.';		}
+  private function quart(ExpressionTree $p = null)				{  $this->measurement_unit = 'qt.';		}
+  private function ounce(ExpressionTree $p = null)				{  $this->measurement_unit = 'oz.';		}
+  private function gallon(ExpressionTree $p = null)				{  $this->measurement_unit = 'gal.';	}
+  private function teaspoon(ExpressionTree $p = null)			{  $this->measurement_unit = 'tsp.';	}
+  private function tablespoon(ExpressionTree $p = null)			{  $this->measurement_unit = 'tbsp.';   }
+  private function pound(ExpressionTree $p = null)				{  $this->measurement_unit = 'lbs.';   }
+  private function fluid_ounce(ExpressionTree $p = null)		{  $this->measurement_unit = 'fl. oz.'; }
+  private function dessertspoon(ExpressionTree $p = null)		{  $this->measurement_unit = 'dsp.'; }
 
   private function liter(ExpressionTree $p)	
   {
@@ -421,6 +429,29 @@ class RecipeParser
       $this->measurement_quantity = (1.5 * $this->measurement_quantity);
   }
 
+
+	/* imprecise units */
+  private function sprinkle() {   $this->teaspoon();		}
+  private function bite()	  {   $this->tablespoon();		}
+  private function mouthful() {   $this->tablespoon();		}
+  private function dollop()	  {   $this->fluid_ounce();     }
+  private function knob()	  {   $this->fluid_ounce();		}
+  private function smidge()	  {   $this->smidgen();			}
+  private function smidgen()  {   $this->fluid_ounce();   $this->multiplier *= 0.00520833 ; }
+  private function dash()	  {   $this->fluid_ounce();   $this->multiplier *= 0.0208333 ;	}
+  private function handful()  {   $this->fluid_ounce();   $this->multiplier *= 2.67 ;		}
+
+
+  private function can()	  {   $this->fluid_ounce();   $this->multiplier *= 15 ;			}
+  private function box()      {   $this->ounce();		  $this->multiplier *= 12.8 ;		}
+  private function boxes()    {   $this->box();			  }
+  private function jar()      {   $this->fluid_ounce();	  $this->multiplier *= 46 ;			}
+  private function bag()      {   $this->pound();		   }
+  private function packet()   {   $this->ounce();		  $this->multiplier *= 2.5 ;	 }
+  private function carton()   {   $this->fluid_ounce();	  $this->multiplier *= 16 ;	 }
+  private function cartons()  {  $this->carton(); }
+  private function glass()    {   $this->fluid_ounce();	  $this->multiplier *= 16 ;	 }
+  private function glasses()  {   $this->glass(); }
 
   /** Lifted right out of tummy. Was trying to get a litte tricker, and preg_replace fractions based on a regex and
      w/ their decimal value but this is fine and the preg_replace is a little more difficult than it sounds */

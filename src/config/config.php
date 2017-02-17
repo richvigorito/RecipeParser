@@ -66,14 +66,15 @@ $defaults =  array(
         "/^(\ )*(2x|3x|4x|5x)$/i"                         => "T_MULTIPLIER", 
 
 
-        "/^(\ )?(can(s)?|mug(s)?|bottle(s)?|glass(es)?|bowl(s)?)$/i"                     => "T_CONTAINER" ,
-        "/^(\ )?(carton(s)?|jar(s)?|bag(s)?|packet(s)?|box(es)?)$/i"                     => "T_CONTAINER" ,
+        "/^(\ )?(can(s)?|mug(s)?|bottle(s)?|pot(s)|glass(es)?|bowl(s)?)$/i"              => "T_CONTAINER" ,
+        "/^(\ )?(carton(s)?|jar(s)?|bag(s)?|packet(s)?|flute(s)?|box(es)?)$/i"           => "T_CONTAINER" ,
         "/^(\ )?(package(s)?|pkg(s)?(\.)?)$/i"                                           => "T_CONTAINER" ,
         "/^(\ )?(T_NUMBER\ )(T_CONTAINER)$/i"                                            => "T_CONTAINER_MULT" ,
 
         "/^(extra |really |very )?(\ )*(tiny|scant|heaped|heaping|little|small|medium|large|big|huge)$/i"	=> "T_IMPRECISE_UNIT" ,
         "/^(\ )*(sm|m|lg|x-lg|)(\.)?$/i"																	=> "T_IMPRECISE_UNIT" , 
 
+        "/^(\ )*(dash|sprinkle|bite|handful|mouthful|dollop|knob|smidge|smidgen)(\.)?$/i"					=> "T_IMPRECISE_UNIT" , 
 
     //   "/^(\ )*(tall|venti|grande|tall)$/"                                       => "T_STARBUCKS_UNIT" ,
     //   "/^(\ )*(mouth(\ )?full)$/"                                               => "T_IMPRECISE_UNIT" ,

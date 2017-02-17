@@ -53,6 +53,18 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
         return array(
           // array(<user_string>, <food>, <measurement_quantity>, <measurement_unit>,  <parsed_string>),
 
+          array("1 sprinkle sugar","sugar",1,"tsp.","1 tsp. sugar"),
+          array("1 bite sugar","sugar",1,"tbsp.","1 tbsp. sugar"),
+          array("1 mouthful sugar","sugar",1,"tbsp.","1 tbsp. sugar"),
+          array("1 dollop sugar","sugar",1,"fl. oz.","1 fl. oz. sugar"),
+          array("1 knob sugar","sugar",1,"fl. oz.","1 fl. oz. sugar"),
+
+          array("1 smidge sugar","sugar",0.00520833,"fl. oz.","0.00520833 fl. oz. sugar"),
+          array("1 smidgen sugar","sugar",0.00520833,"fl. oz.","0.00520833 fl. oz. sugar"),
+          array("1 dash sugar","sugar",0.0208333,"fl. oz.","0.0208333 fl. oz. sugar"),
+          array("1 handful sugar","sugar",2.67,"fl. oz.","2.67 fl. oz. sugar"),
+
+
           array("1 heaping tablespoon sugar","sugar",1.125,"tbsp.","1.125 tbsp. sugar"),
           array("1 scant cup sugar","sugar",.875,"cup","0.875 cup sugar"),
           array("1 large cup sugar","sugar",1.25,"cup","1.25 cup sugar"),
@@ -228,7 +240,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	 	array("150ml coke cola", "coke cola", 150,"ml.","150 ml. coke cola"), 
 	 	array("300 ml. pasteurized grapefruit juice", "pasteurized grapefruit juice", 300,"ml.","300 ml. pasteurized grapefruit juice"), 
 	 	array("2 tablespoons.chia seeds", "chia seeds", 2,"tbsp.","2 tbsp. chia seeds"),
-    array("2 glasses of milk"," milk",2,"serving","2 milk"),
+    array("2 glasses of milk"," milk",32,"fl. oz.","32 fl. oz. milk"),
 	// 	array("1pkg \"Recover\"", "milk", 1,"gal.","1 gal. milk"),  /// not fuzzy any more
 
 	//  array("2 cartons (1/2 gallon each) milk", "milk", 1,"gal.","1 gal. milk"), 
@@ -267,7 +279,9 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 //array("6 oz. coffee with 2 tbsp. creamer","coke",2,"serving","xx"), UNDO
 	 	//array("2 tablespoons.chia seeds", "chia seeds", 2,"tbsp.","2 tbsp. chia seeds"),
 	 		//array("0.5 tbsp sugar", "sugar", .5,"tbsp.","0.5 tbsp. sugar"), 
-          array("1 heaping tablespoon sugar","sugar",1.125,"tbsp.","1.125 tbsp. sugar"),
+          //array("1 heaping tablespoon sugar","sugar",1.125,"tbsp.","1.125 tbsp. sugar"),
+	  array("1 box (50 ounCes) mac n cheese", "mac n cheese", 50,"oz.","50 oz. mac n cheese"), 
+          //array("1 dollop sprite","sugar",1.125,"serving","2 serving popcorn"),
          
 	  	//array("coke cola 150 ml", "milk", 1,"gal.","1 gal. milk"), 
 	  	//array("i cup of coffee", "milk", 1,"gal.","1 gal. milk"), 
