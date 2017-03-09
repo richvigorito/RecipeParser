@@ -90,8 +90,7 @@ class RecipeParser
     if(isset($this->measurement_quantity))   $return['measurement_quantity'] = $this->measurement_quantity;
     if(isset($this->measurement_unit))       
 				$return['measurement_unit']     = $this->measurement_unit;
-		else 
-				$return['measurement_unit'] = 'serving' ;
+
     if(isset($this->whole_food_quantity))    $return['whole_food_quantity']  = $this->whole_food_quantity;
 
     $this->parse_string =   $this->measurement_quantity  
