@@ -100,7 +100,21 @@ class RecipeParser
 
     $this->parse_string = preg_replace('/(\ )+/',' ',$this->parse_string);
     $return['parse_string'] = $this->parse_string ;
+
+    $this->parse_string = preg_replace('/(\ )+/',' ',$this->parse_string);
+    $return['parse_string'] = $this->parse_string ;
+
     $return['is_precise']	= ($this->is_precise) ? 'true' : 'false';
+
+	if( ($return['is_precise'] == 0 ) and isset($this->fuzzy_measurement_unit)){
+		$this->fuzzy_parse_string = $this->fuzzy_quantity . ' '. $this->fuzzy_measurement_unit; 
+		if(isset($this->container))  
+			$this->fuzzy_parse_string = $this->fuzzy_parse_string . " " . $this->container ;
+		$this->fuzzy_parse_string .= " " . $return['food'];
+                   
+		$return['fuzzy_parse_string'] = $this->fuzzy_parse_string;
+	}
+
     return json_encode($return);
   }
 
@@ -224,6 +238,7 @@ class RecipeParser
   { 
 		if( ! $this->is_precise){
 			$container = array_pop($t->arr);
+			$this->container = $container;
 			$this->$container();
 		}
   }
@@ -403,6 +418,8 @@ class RecipeParser
   private function very_small()		{$this->extra_small();}
   private function extra_small()
   {
+	$this->fuzzy_measurement_unit = 'x-sm.';
+    $this->fuzzy_quantity			= $this->measurement_quantity;
     if(!empty($this->measurement_quantity)) 
       $this->measurement_quantity = (.5 * $this->measurement_quantity);
   }
@@ -410,11 +427,16 @@ class RecipeParser
   private function little()			{$this->small();}
   private function small()
   {
+	$this->fuzzy_measurement_unit = 'sm.';
+    $this->fuzzy_quantity			= $this->measurement_quantity;
     if(!empty($this->measurement_quantity)) 
-      $this->measurement_quantity = (.5 * $this->measurement_quantity);
+      $this->measurement_quantity = (.75 * $this->measurement_quantity);
   }
 
-  private function medium() { /*  times by one, ie dont do shit  */ }
+  private function medium() {
+	$this->fuzzy_measurement_unit = 'md.';
+    $this->fuzzy_quantity			= $this->measurement_quantity;
+ }
 
   private function heaping()		{$this->heaped();}
   private function heaped()		
@@ -426,6 +448,8 @@ class RecipeParser
   private function big() {$this->large();}
   private function large()
   {
+	$this->fuzzy_measurement_unit = 'lg.';
+    $this->fuzzy_quantity			= $this->measurement_quantity;
     if(!empty($this->measurement_quantity)) 
       $this->measurement_quantity = (1.25 * $this->measurement_quantity);
   }
@@ -435,7 +459,9 @@ class RecipeParser
   private function very_big()   {$this->extra_large();}
   private function really_big() {$this->extra_large();}
   private function extra_large()
-  {
+  {			
+	$this->fuzzy_measurement_unit = 'x-lg.';
+    $this->fuzzy_quantity			= $this->measurement_quantity;
     if(!empty($this->measurement_quantity)) 
       $this->measurement_quantity = (1.5 * $this->measurement_quantity);
   }
@@ -460,7 +486,7 @@ class RecipeParser
   private function bag()      {   $this->pound();		   }
   private function packet()   {   $this->ounce();		  $this->multiplier *= 2.5 ;	 }
   private function carton()   {   $this->fluid_ounce();	  $this->multiplier *= 16 ;	 }
-  private function cartons()  {  $this->carton(); }
+  private function cartons()  {   $this->carton(); }
   private function glass()    {   $this->fluid_ounce();	  $this->multiplier *= 8 ;	 }
   private function glasses()  {   $this->glass(); }
   private function bowl()     {   $this->fluid_ounce();	  $this->multiplier *= 12 ;	 }
