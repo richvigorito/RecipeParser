@@ -18,6 +18,7 @@ class RecipeParser
   private $food ;
   private $grammar ;
   private $scanner ;
+  private $precisely_entered; 
   private $multiplier;
 
   public function __construct() 
@@ -68,7 +69,7 @@ class RecipeParser
   public function parse($string) 
   {
     $return = array();
-    $return['user_string'] = $this->user_string = $string;
+    $return['user_string']	= $this->user_string = $string;
 
     $string = $this->prep($string);
 
@@ -99,6 +100,7 @@ class RecipeParser
 
     $this->parse_string = preg_replace('/(\ )+/',' ',$this->parse_string);
     $return['parse_string'] = $this->parse_string ;
+    $return['is_precise']	= ($this->is_precise) ? 'true' : 'false';
     return json_encode($return);
   }
 
@@ -255,6 +257,8 @@ class RecipeParser
 
   private function precise_unit(ExpressionTree $p)
   {
+
+	  		
       $type = implode('',array_keys($p->arr[0]));
       $function = strtolower(substr($type,2));
       $this->$function($p->getNode($type));
