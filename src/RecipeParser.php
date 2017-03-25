@@ -106,10 +106,13 @@ class RecipeParser
 
     $return['is_precise']	= ($this->is_precise) ? 'true' : 'false';
 
-	if( ($return['is_precise'] == 0 ) and isset($this->fuzzy_measurement_unit)){
-		$this->fuzzy_parse_string = $this->fuzzy_quantity . ' '. $this->fuzzy_measurement_unit; 
-		if(isset($this->container))  
+	if( ($return['is_precise'] == 'false' ) and isset($this->fuzzy_measurement_unit)){
+		if(isset($this->container))  {
+			$this->fuzzy_parse_string = $this->fuzzy_quantity . ' '. $this->fuzzy_measurement_unit; 
 			$this->fuzzy_parse_string = $this->fuzzy_parse_string . " " . $this->container ;
+		} else {
+			$this->fuzzy_parse_string = $this->multiplier . ' '. $this->fuzzy_measurement_unit; 
+		}
 		$this->fuzzy_parse_string .= " " . $return['food'];
                    
 		$return['fuzzy_parse_string'] = $this->fuzzy_parse_string;
@@ -122,20 +125,26 @@ class RecipeParser
     $recipe_ingredient_mult = $expr->getNode('T_RECIPE_INGREDIENT_MULT');
     if ( $recipe_ingredient_mult != false) {
       $recipe_ingredient  = $recipe_ingredient_mult->getNode('T_RECIPE_INGREDIENT');
-      $food  							= $recipe_ingredient_mult->getNode('T_FOOD');
-    	if ( $recipe_ingredient != false) {
-    		$this->recipe_ingredient($recipe_ingredient);
-    	} elseif ( $food != false) {
-    		$this->food($food);
-			}
-      $multiplier         = $recipe_ingredient_mult->getNode('T_MULTIPLIER');
-      $number         		= $recipe_ingredient_mult->getNode('T_NUMBER');
+      $food				  = $recipe_ingredient_mult->getNode('T_FOOD');
+    
+      $multiplier       = $recipe_ingredient_mult->getNode('T_MULTIPLIER');
+      $number         	= $recipe_ingredient_mult->getNode('T_NUMBER');
     	if ( $number != false) {
-      	$this->multiplier         *= $this->number($number);
+			$this->multiplier         *= $this->number($number);
     	} 
 			if ( $multiplier != false) {
-      	$this->multiplier         *= $this->multiplier($multiplier);
+				$this->multiplier         *= $this->multiplier($multiplier);
 			}
+
+	if ( $recipe_ingredient != false) {
+    		$this->recipe_ingredient($recipe_ingredient);
+		} elseif ( $food != false) {
+    		$this->food($food);
+	  }
+
+//print_R($this);
+//print_R("----");
+//exit;
     } else {
       $recipe_ingredient = $expr->getNode('T_RECIPE_INGREDIENT');
     	$this->recipe_ingredient($recipe_ingredient);
@@ -178,7 +187,6 @@ class RecipeParser
     $container_mult 	= $ri->getNode('T_CONTAINER_MULT');
     $container			= $ri->getNode('T_CONTAINER');
     $recipe_ingredient 	= $ri->getNode('T_RECIPE_INGREDIENT');
-
 
     if (  $recipe_ingredient != false &&  $container_mult != false) {
       $this->recipe_ingredient($recipe_ingredient);
@@ -259,15 +267,11 @@ class RecipeParser
       if ( $number != false) {
         $this->measurement_quantity = $this->number($number);
       }
-
       $this->imprecise_unit($im->getNode('T_IMPRECISE_UNIT'));
 
       if ( $container != false) {
 		$this->container($container);
       }
-
-
-
   }
 
   private function precise_unit(ExpressionTree $p)
@@ -429,6 +433,7 @@ class RecipeParser
   {
 	$this->fuzzy_measurement_unit = 'sm.';
     $this->fuzzy_quantity			= $this->measurement_quantity;
+
     if(!empty($this->measurement_quantity)) 
       $this->measurement_quantity = (.75 * $this->measurement_quantity);
   }

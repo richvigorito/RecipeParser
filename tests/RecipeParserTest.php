@@ -10,7 +10,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
      * @dataProvider lexemeMatches
      * @ dataProvider lexemeMatches1_off_Matches_to_test_specific
      */
-    public function testRecipieMatching($user_string,$food,$measurement_quantity,$measurement_unit,$parse_string,$is_precise)
+    public function testRecipieMatching($user_string,$food,$measurement_quantity,$measurement_unit,$parse_string,$is_precise,$fuzzy_string = null)
     {
       $parser = new RecipeParser();
       $json = $parser->parse($user_string);
@@ -25,6 +25,9 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
       }
       $array['parse_string']          = $parse_string;  
       $array['is_precise']          	= $is_precise;
+
+			if($fuzzy_string) 
+      	$array['fuzzy_parse_string']= $fuzzy_string;
      
       $json_assert = json_encode($array);
 
@@ -52,7 +55,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
     public function lexemeMatches()
     {
         return array(
-          // array(<user_string>, <food>, <measurement_quantity>, <measurement_unit>,  <parsed_string>),
+          // array(<user_string>, <food>, <measurement_quantity>, <measurement_unit>,  <parsed_string>, <fuzzy-can-be-null),
 
           array("1 sprinkle sugar","sugar",1,"tsp.","1 tsp. sugar","false"),
           array("1 bite sugar","sugar",1,"tbsp.","1 tbsp. sugar","false"),
@@ -87,20 +90,20 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
           array("2 dessertspoons garlic"," garlic",2,"dsp.","2 dsp. garlic","true"),
           array("50 oz sword fish"," sword fish",50,"oz.","50 oz. sword fish","true"),
           array("50 OUNcEs sword fish"," sword fish",50,"oz.","50 oz. sword fish","true"),
-          array("2 small cokes"," cokes",1,null,"1 cokes","false"),
-          array("little apple","apple",.5,null,"0.5 apple","false"),
-          array(" medium coke"," coke",1,null,"1 coke","false"),
+          array("2 small cokes"," cokes",1.5,null,"1.5 cokes","false","2 sm. cokes"),
+          array("little apple","apple",.75,null,"0.75 apple","false", "1 sm. apple"),
+          array(" medium coke"," coke",1,null,"1 coke","false", "1 md. coke"),
           array("rice","rice",1,null,"1 rice","false"),
-          array("2 large cokes"," cokes",2.5,null,"2.5 cokes","false"),
+          array("2 large cokes"," cokes",2.5,null,"2.5 cokes","false", "2 lg. cokes"),
           array("2 22.5 oz beers"," beers",45,"oz.","45 oz. beers","true"),
           array("2 22.5 oz tasty beers"," tasty beers",45,"oz.","45 oz. tasty beers","true"),
           array("2 22.5 oz sweet delicious beers"," sweet delicious beers",45,"oz.","45 oz. sweet delicious beers","true"),
-          array("large coke"," coke",1.25,null,"1.25 coke","false"),
-          array("extra large coke"," coke",1.5,null,"1.5 coke","false"),
-          array("sm. soda"," soda",0.5,null,"0.5 soda","false"),
+          array("large coke"," coke",1.25,null,"1.25 coke","false", "1 lg. coke"),
+          array("extra large coke"," coke",1.5,null,"1.5 coke","false", "1 x-lg. coke"),
+          array("sm. soda"," soda",0.75,null,"0.75 soda","false", "1 sm. soda"),
 
-          array("really big chocolate chip cookie"," chocolate chip cookie",1.5,null,"1.5 chocolate chip cookie","false"),
-          array("2 really big chocolate chip cookie"," chocolate chip cookie",3,null,"3 chocolate chip cookie","false"),
+          array("really big chocolate chip cookie"," chocolate chip cookie",1.5,null,"1.5 chocolate chip cookie","false","1 x-lg. chocolate chip cookie"),
+          array("2 really big chocolate chip cookie"," chocolate chip cookie",3,null,"3 chocolate chip cookie","false","2 x-lg. chocolate chip cookie"),
           array("5 gram salt"," salt",5,"g.","5 g. salt","true"),
           array("5 grams salt"," salt",5,"g.","5 g. salt","true"),
           array("5.345 kilogram butter"," butter",5.345,"kg.","5.345 kg. butter","true"),
@@ -116,7 +119,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
           array(" 50 teaspoon pepper "," pepper",50,"tsp.","50 tsp. pepper","true"),
           array(" 50 tsp. pepper "," pepper",50,"tsp.","50 tsp. pepper","true"),
           array("2 grams rice"," rice",2,"g.","2 g. rice","true"),
-          array("2 large pumpkin crispbreads"," pumpkin crispbreads",2.5,null,"2.5 pumpkin crispbreads","false"),
+          array("2 large pumpkin crispbreads"," pumpkin crispbreads",2.5,null,"2.5 pumpkin crispbreads","false","2 lg. pumpkin crispbreads"),
           array("1.5 c bone broth"," bone broth",1.5,"cup","1.5 cup bone broth","true"),
           array("7 g. butter"," butter",7,"g.","7 g. butter","true"),
           array("1 tbsp frozen butter"," frozen butter",1,"tbsp.","1 tbsp. frozen butter","true"),
@@ -224,8 +227,8 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	 	array("1 scant bowl pears", "pears",10.5,"fl. oz.","10.5 fl. oz. pears","false"), 
 	 	array("1 heaped bowl pears", "pears", 13.5,"fl. oz.","13.5 fl. oz. pears","false"), 
 	 	array("1 heaping bowl pears", "pears", 13.5,"fl. oz.","13.5 fl. oz. pears","false"), 
-	 	array("2 tiny pears", "pears", 1,null,"1 pears","false"), 
-	 	array("1 very small glass of white wine", "white wine", 4,"fl. oz.","4 fl. oz. white wine","false"), 
+	 	array("2 tiny pears", "pears", 1,null,"1 pears","false",'2 x-sm. pears'), 
+	 	array("1 very small glass of white wine", "white wine", 4,"fl. oz.","4 fl. oz. white wine","false",'1 x-sm. glass white wine'), 
 	 	array("butternut squash (350 mg)", "butternut squash", 350,"mg.","350 mg. butternut squash","true"), 
 	 	array("double shot latte", "shot latte", 2,null,"2 shot latte","false"), 
 	 	array("4 triple shot latte", "shot latte", 12,null,"12 shot latte","false"), 
@@ -292,7 +295,10 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	 // array("1 box (50 ounCes) mac n cheese", "mac n cheese", 50,"oz.","50 oz. mac n cheese"), 
 	 // array("1000 g 3 beers", "mac n cheese", 50,"oz.","50 oz. mac n cheese"), 
 	  //array("1 beer", "mac n cheese", 50,null,"50 oz. mac n cheese"), 
-          array("76 oz steak"," steak",76,"oz.","76 oz. steak","true"),
+	 	//array("1 very small glass of white wine", "white wine", 4,"fl. oz.","4 fl. oz. white wine","false",'1 x-sm. glass white wine'), 
+	 	//array("1 very small glass of white wine", "white wine", 4,"fl. oz.","4 fl. oz. white wine","false",'1 x-sm. glass white wine'), 
+          array("2 small cokes"," cokes",1.5,null,"1.5 cokes","false","2 sm. cokes"),
+    //      array("76 oz steak"," steak",76,"oz.","76 oz. steak","true"),
           //array("1 dollop sprite","sugar",1.125,"serving","2 serving popcorn"),
          
 	  	//array("coke cola 150 ml", "milk", 1,"gal.","1 gal. milk"), 
