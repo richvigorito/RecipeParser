@@ -58,15 +58,23 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
           // array(<user_string>, <food>, <measurement_quantity>, <measurement_unit>,  <parsed_string>, <fuzzy-can-be-null),
 
           array("1 sprinkle sugar","sugar",1,"tsp.","1 tsp. sugar","false"),
+          array("1 sprinkles sugar","sugar",1,"tsp.","1 tsp. sugar","false"),
           array("1 bite sugar","sugar",1,"tbsp.","1 tbsp. sugar","false"),
+          array("1 bites sugar","sugar",1,"tbsp.","1 tbsp. sugar","false"),
           array("1 mouthful sugar","sugar",1,"tbsp.","1 tbsp. sugar","false"),
+          array("1 mouthfuls sugar","sugar",1,"tbsp.","1 tbsp. sugar","false"),
           array("1 dollop sugar","sugar",1,"fl. oz.","1 fl. oz. sugar","false"),
+          array("1 dollops sugar","sugar",1,"fl. oz.","1 fl. oz. sugar","false"),
           array("1 knob sugar","sugar",1,"fl. oz.","1 fl. oz. sugar","false"),
-
+          array("1 knobs sugar","sugar",1,"fl. oz.","1 fl. oz. sugar","false"),
           array("1 smidge sugar","sugar",0.00520833,"fl. oz.","0.00520833 fl. oz. sugar","false"),
+          array("1 smidges sugar","sugar",0.00520833,"fl. oz.","0.00520833 fl. oz. sugar","false"),
           array("1 smidgen sugar","sugar",0.00520833,"fl. oz.","0.00520833 fl. oz. sugar","false"),
+          array("1 smidgens sugar","sugar",0.00520833,"fl. oz.","0.00520833 fl. oz. sugar","false"),
           array("1 dash sugar","sugar",0.0208333,"fl. oz.","0.0208333 fl. oz. sugar","false"),
+          array("1 dashes sugar","sugar",0.0208333,"fl. oz.","0.0208333 fl. oz. sugar","false"),
           array("1 handful sugar","sugar",2.67,"fl. oz.","2.67 fl. oz. sugar","false"),
+          array("1 handfuls sugar","sugar",2.67,"fl. oz.","2.67 fl. oz. sugar","false"),
 
 
           array("1 heaping tablespoon sugar","sugar",1.125,"tbsp.","1.125 tbsp. sugar","true"),

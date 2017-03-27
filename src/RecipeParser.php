@@ -474,14 +474,23 @@ class RecipeParser
 
 	/* imprecise units */
   private function sprinkle() {   $this->teaspoon();		}
+  private function sprinkles(){   $this->sprinkle();		}
   private function bite()	  {   $this->tablespoon();		}
+  private function bites()	  {   $this->bite();		}
   private function mouthful() {   $this->tablespoon();		}
+  private function mouthfuls() {   $this->mouthful();		}
   private function dollop()	  {   $this->fluid_ounce();     }
+  private function dollops()	  {   $this->dollop();     }
   private function knob()	  {   $this->fluid_ounce();		}
+  private function knobs()	  {   $this->knob();		}
+  private function smidgens() {   $this->smidgen();			}
+  private function smidges()  {   $this->smidgen();			}
   private function smidge()	  {   $this->smidgen();			}
   private function smidgen()  {   $this->fluid_ounce();   $this->multiplier *= 0.00520833 ; }
   private function dash()	  {   $this->fluid_ounce();   $this->multiplier *= 0.0208333 ;	}
+  private function dashes()	  {   $this->dash(); }
   private function handful()  {   $this->fluid_ounce();   $this->multiplier *= 2.67 ;		}
+  private function handfuls() {   $this->handful(); }
 
 
   private function can()	  {   $this->fluid_ounce();   $this->multiplier *= 15 ;			}
