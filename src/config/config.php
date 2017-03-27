@@ -66,7 +66,7 @@ $defaults =  array(
         "/^(\ )*(2x|3x|4x|5x)$/i"                         => "T_MULTIPLIER", 
 
 
-        "/^(\ )?(can(s)?|mug(s)?|bottle(s)?|pot(s)|glass(es)?|bowl(s)?)$/i"              => "T_CONTAINER" ,
+        "/^(\ )?(can(s)?|mug(s)?|bottle(s)?|pot(s)?|glass(es)?|bowl(s)?)$/i"              => "T_CONTAINER" ,
         "/^(\ )?(carton(s)?|jar(s)?|bag(s)?|packet(s)?|flute(s)?|box(es)?)$/i"           => "T_CONTAINER" ,
         "/^(\ )?(package(s)?|pkg(s)?(\.)?)$/i"                                           => "T_CONTAINER" ,
         "/^(\ )?(T_NUMBER\ )(T_CONTAINER)$/i"                                            => "T_CONTAINER_MULT" ,

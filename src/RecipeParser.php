@@ -494,6 +494,8 @@ class RecipeParser
   private function cartons()  {   $this->carton(); }
   private function glass()    {   $this->fluid_ounce();	  $this->multiplier *= 8 ;	 }
   private function glasses()  {   $this->glass(); }
+  private function pot()      {   $this->fluid_ounce();	  $this->multiplier *= 20.2884 ;	 }
+  private function pots()	  {   $this->pot(); }
   private function bowl()     {   $this->fluid_ounce();	  $this->multiplier *= 12 ;	 }
   private function bowls()    {   $this->bowl(); }
   private function flute()    {   $this->fluid_ounce();	  $this->multiplier *= 6 ;	 }

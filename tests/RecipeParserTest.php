@@ -229,6 +229,8 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	 	array("1 heaping bowl pears", "pears", 13.5,"fl. oz.","13.5 fl. oz. pears","false"), 
 	 	array("2 tiny pears", "pears", 1,null,"1 pears","false",'2 x-sm. pears'), 
 	 	array("1 very small glass of white wine", "white wine", 4,"fl. oz.","4 fl. oz. white wine","false",'1 x-sm. glass white wine'), 
+
+
 	 	array("butternut squash (350 mg)", "butternut squash", 350,"mg.","350 mg. butternut squash","true"), 
 	 	array("double shot latte", "shot latte", 2,null,"2 shot latte","false"), 
 	 	array("4 triple shot latte", "shot latte", 12,null,"12 shot latte","false"), 
@@ -252,6 +254,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	 	array("300 ml. pasteurized grapefruit juice", "pasteurized grapefruit juice", 300,"ml.","300 ml. pasteurized grapefruit juice","true"), 
 	 	array("2 tablespoons.chia seeds", "chia seeds", 2,"tbsp.","2 tbsp. chia seeds","true"),
     array("2 glasses of milk"," milk",16,"fl. oz.","16 fl. oz. milk","false"),
+	 	array("1 pot of coffee", " coffee", 20.2884,"fl. oz.","20.2884 fl. oz. coffee",'false'), 
 	// 	array("1pkg \"Recover\"", "milk", 1,"gal.","1 gal. milk"),  /// not fuzzy any more
 
 	//  array("2 cartons (1/2 gallon each) milk", "milk", 1,"gal.","1 gal. milk"), 
@@ -295,7 +298,9 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	 		//array("0.5 tbsp sugar", "sugar", .5,"tbsp.","0.5 tbsp. sugar"), 
           //array("1 heaping tablespoon sugar","sugar",1.125,"tbsp.","1.125 tbsp. sugar"),
 	 // array("1 box (50 ounCes) mac n cheese", "mac n cheese", 50,"oz.","50 oz. mac n cheese"), 
-	  array("1000 g 3 beers", "mac n cheese", 50,"oz.","50 oz. mac n cheese",'true'), 
+	 	//array("1 pot of coffee", " coffee", 1,"fl. oz.","20.2884 fl. oz. coffee",'false'), 
+	//  array("1000 g 3 beers", "mac n cheese", 50,"oz.","50 oz. mac n cheese",'true'), 
+	 	array("1 pot of coffee", " coffee", 20.2884,"fl. oz.","20.2884 fl. oz. coffee",'false'), 
 	  //array("1 beer", "mac n cheese", 50,null,"50 oz. mac n cheese"), 
 	 	//array("1 very small glass of white wine", "white wine", 4,"fl. oz.","4 fl. oz. white wine","false",'1 x-sm. glass white wine'), 
 	 	//array("1 very small glass of white wine", "white wine", 4,"fl. oz.","4 fl. oz. white wine","false",'1 x-sm. glass white wine'), 
