@@ -266,7 +266,9 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	return array(
  // 		array(" (14.5 oz.) bacon", "bacon", 14.5,"oz.","14.5 oz. bacon"), 
 //	  	array("1pkg \"Recover\"", "milk", 1,"gal.","1 gal. milk"),  /// not fuzzy any more
+	  	//array("1000 g 3 beers", "mac n cheese", 50,"oz.","50 oz. mac n cheese",'true'), 
 	  	array("(Spinach, edamame beans and pickles)" , "Spinach, edamame beans and pickles", 1,null,"1 Spinach, edamame beans and pickles"), 
+
 	  //	array("kale, spinach and mango smoothie" , "kale, spinach and mango smoothie", 1,"","1 kale, spinach and mango smoothie"), 
 	  //	array("kale spinach and mango- smoothie)" , "kale spinach and mango smoothie", 1,"","1 kale spinach and mango smoothie"), 
         ); 
@@ -293,11 +295,11 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	 		//array("0.5 tbsp sugar", "sugar", .5,"tbsp.","0.5 tbsp. sugar"), 
           //array("1 heaping tablespoon sugar","sugar",1.125,"tbsp.","1.125 tbsp. sugar"),
 	 // array("1 box (50 ounCes) mac n cheese", "mac n cheese", 50,"oz.","50 oz. mac n cheese"), 
-	 // array("1000 g 3 beers", "mac n cheese", 50,"oz.","50 oz. mac n cheese"), 
+	  array("1000 g 3 beers", "mac n cheese", 50,"oz.","50 oz. mac n cheese",'true'), 
 	  //array("1 beer", "mac n cheese", 50,null,"50 oz. mac n cheese"), 
 	 	//array("1 very small glass of white wine", "white wine", 4,"fl. oz.","4 fl. oz. white wine","false",'1 x-sm. glass white wine'), 
 	 	//array("1 very small glass of white wine", "white wine", 4,"fl. oz.","4 fl. oz. white wine","false",'1 x-sm. glass white wine'), 
-          array("2 small cokes"," cokes",1.5,null,"1.5 cokes","false","2 sm. cokes"),
+   //       array("2 small cokes"," cokes",1.5,null,"1.5 cokes","false","2 sm. cokes"),
     //      array("76 oz steak"," steak",76,"oz.","76 oz. steak","true"),
           //array("1 dollop sprite","sugar",1.125,"serving","2 serving popcorn"),
          
