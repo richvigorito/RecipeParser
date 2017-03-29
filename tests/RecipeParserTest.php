@@ -263,6 +263,9 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	 	array("2 tablespoons.chia seeds", "chia seeds", 2,"tbsp.","2 tbsp. chia seeds","true"),
     array("2 glasses of milk"," milk",16,"fl. oz.","16 fl. oz. milk","false"),
 	 	array("1 pot of coffee", " coffee", 20.2884,"fl. oz.","20.2884 fl. oz. coffee",'false'), 
+
+ 		array("1 turkey slice", "turkey", 1,"oz.","1 oz. turkey",'false'), 
+ 		array("1 slice turkey", "turkey", 1,"oz.","1 oz. turkey",'false'), 
 	// 	array("1pkg \"Recover\"", "milk", 1,"gal.","1 gal. milk"),  /// not fuzzy any more
 
 	//  array("2 cartons (1/2 gallon each) milk", "milk", 1,"gal.","1 gal. milk"), 
@@ -288,7 +291,8 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 
     public function lexemeMatches1_off_Matches_to_test_specific(){
 	return array(
-  //		array("1 can (14.5 oz.) cream of mushroom soup", "cream mushroom soup", 14.5,"oz.","14.5 oz. cream mushroom soup"), 
+  		array("1 turkey slice", "cream mushroom soup", 14.5,"oz.","14.5 oz. cream mushroom soup",'false'), 
+  		array("1 slice turkey", "cream mushroom soup", 14.5,"oz.","14.5 oz. cream mushroom soup",'false'), 
  // 		array(" (14.5 oz.) bacon", "bacon", 14.5,"oz.","14.5 oz. bacon"), 
 //	  	array("Spinach, edamame beans and pickles" , "Spinach, edamame beans and pickles", 1,"","1 Spinach, edamame beans and pickles"), 
 	 // 	array("kale, spinach and mango smoothie" , "kale, spinach and mango smoothie", 1,"","1 kale, spinach and mango smoothie"), 
@@ -308,7 +312,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	 // array("1 box (50 ounCes) mac n cheese", "mac n cheese", 50,"oz.","50 oz. mac n cheese"), 
 	 	//array("1 pot of coffee", " coffee", 1,"fl. oz.","20.2884 fl. oz. coffee",'false'), 
 	//  array("1000 g 3 beers", "mac n cheese", 50,"oz.","50 oz. mac n cheese",'true'), 
-	 	array("1 pot of coffee", " coffee", 20.2884,"fl. oz.","20.2884 fl. oz. coffee",'false'), 
+	// 	array("1 pot of coffee", " coffee", 20.2884,"fl. oz.","20.2884 fl. oz. coffee",'false'), 
 	  //array("1 beer", "mac n cheese", 50,null,"50 oz. mac n cheese"), 
 	 	//array("1 very small glass of white wine", "white wine", 4,"fl. oz.","4 fl. oz. white wine","false",'1 x-sm. glass white wine'), 
 	 	//array("1 very small glass of white wine", "white wine", 4,"fl. oz.","4 fl. oz. white wine","false",'1 x-sm. glass white wine'), 

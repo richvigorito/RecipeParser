@@ -66,7 +66,7 @@ class RecipeParser
     return trim($string);
   }
  
-  public function parse($string) 
+  public function parse($string,$debug = null) 
   {
     $return = array();
     $return['user_string']	= $this->user_string = $string;
@@ -74,7 +74,7 @@ class RecipeParser
     $string = $this->prep($string);
 
     $l = $this->scanner;
-    $tree = $l::parse($string);
+    $tree = $l::parse($string, $debug);
 
     $err  = $tree->getNode('ERROR');
 
@@ -491,6 +491,8 @@ class RecipeParser
   private function dashes()	  {   $this->dash(); }
   private function handful()  {   $this->fluid_ounce();   $this->multiplier *= 2.67 ;		}
   private function handfuls() {   $this->handful(); }
+  private function slice()    {   $this->ounce();	}
+  private function slices()   {   $this->slice();	}
 
 
   private function can()	  {   $this->fluid_ounce();   $this->multiplier *= 15 ;			}
