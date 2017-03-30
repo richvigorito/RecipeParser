@@ -23,6 +23,7 @@ $defaults =  array(
  
         "/^(\ )?tablespoon(s)?$/i"                        => "T_TABLESPOON",
         "/^(\ )?table spoon(s)?$/i"                       => "T_TABLESPOON", 
+        "/^(\ )?spoon(s)?$/i"							  => "T_TABLESPOON", 
         "/^(\ )?tablespn(s)?$/i"                          => "T_TABLESPOON",
         "/^(\ )?tblspoon(s)?$/i"                          => "T_TABLESPOON", 
         "/^(\ )?tblspn(s)?$/i"                            => "T_TABLESPOON", 
@@ -66,7 +67,8 @@ $defaults =  array(
         "/^(\ )*(2x|3x|4x|5x)$/i"                         => "T_MULTIPLIER", 
 
 
-        "/^(\ )?(can(s)?|mug(s)?|bottle(s)?|pot(s)?|glass(es)?|bowl(s)?)$/i"              => "T_CONTAINER" ,
+        "/^(\ )?(can(s)?|mug(s)?|bottle(s)?|pot(s)?|glass(es)?|bowl(s)?)$/i"             => "T_CONTAINER" ,
+        "/^(\ )?(jigger(s)?|scoop(s)?)$/i"												 => "T_CONTAINER" ,
         "/^(\ )?(carton(s)?|jar(s)?|bag(s)?|packet(s)?|flute(s)?|box(es)?)$/i"           => "T_CONTAINER" ,
         "/^(\ )?(package(s)?|pkg(s)?(\.)?)$/i"                                           => "T_CONTAINER" ,
         "/^(\ )?(T_NUMBER\ )(T_CONTAINER)$/i"                                            => "T_CONTAINER_MULT" ,
@@ -123,7 +125,7 @@ $defaults =  array(
         "/^(\ )?(T_NUMBER(\ )+)?(T_MULTIPLIER)(\ )+T_FOOD(\ )?$/"             => "T_RECIPE_INGREDIENT_MULT",   
         "/^(\ )?T_NUMBER(\ )+T_RECIPE_INGREDIENT(\ )?$/"                      => "T_RECIPE_INGREDIENT_MULT",
 
-      //  "/^(\ )?(T_RECIPE_INGREDIENT|T_RECIPE_INGREDIENT_MULT)T_CONJUST(T_RECIPE_INGREDIENT|T_RECIPE_INGREDIENT_MULT)(\ )?$/"        	=> "T_TERM",
+        //"/^(\ )?(T_RECIPE_INGREDIENT|T_RECIPE_INGREDIENT_MULT)T_CONJUST(T_RECIPE_INGREDIENT|T_RECIPE_INGREDIENT_MULT)(\ )?$/"        	=> "T_TERM",
         "/^(\ )?T_RECIPE_INGREDIENT|T_RECIPE_INGREDIENT_MULT(\ )?$/"        	=> "T_TERM",
   ),
 

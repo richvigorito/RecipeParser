@@ -266,6 +266,17 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 
  		array("1 turkey slice", "turkey", 1,"oz.","1 oz. turkey",'false'), 
  		array("1 slice turkey", "turkey", 1,"oz.","1 oz. turkey",'false'), 
+
+ 		array("1 mug coffee", "coffee", 12,"fl. oz.","12 fl. oz. coffee",'false'), 
+ 		array("2 mugs coffee", "coffee", 24,"fl. oz.","24 fl. oz. coffee",'false'), 
+ 		array("1 scoop ice cream", "ice cream", 3.19995,"fl. oz.","3.19995 fl. oz. ice cream",'false'), 
+ 		array("2 scoop ice cream", "ice cream", 6.3999,"fl. oz.","6.3999 fl. oz. ice cream",'false'), 
+ 		array("1 jigger tea", "tea", 1.5,"fl. oz.","1.5 fl. oz. tea",'false'), 
+ 		array("2 jiggers tea", "tea", 3,"fl. oz.","3 fl. oz. tea",'false'), 
+
+ 		array("1 spoon sugar", "sugar", 1,"tbsp.","1 tbsp. sugar",'true'), 
+ 		array("2 spoons sugar", "sugar", 2,"tbsp.","2 tbsp. sugar",'true'), 
+
 	// 	array("1pkg \"Recover\"", "milk", 1,"gal.","1 gal. milk"),  /// not fuzzy any more
 
 	//  array("2 cartons (1/2 gallon each) milk", "milk", 1,"gal.","1 gal. milk"), 
@@ -291,8 +302,8 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 
     public function lexemeMatches1_off_Matches_to_test_specific(){
 	return array(
-  		array("1 turkey slice", "cream mushroom soup", 14.5,"oz.","14.5 oz. cream mushroom soup",'false'), 
-  		array("1 slice turkey", "cream mushroom soup", 14.5,"oz.","14.5 oz. cream mushroom soup",'false'), 
+//  		array("1 turkey slice", "cream mushroom soup", 14.5,"oz.","14.5 oz. cream mushroom soup",'false'), 
+ // 		array("1 slice turkey", "cream mushroom soup", 14.5,"oz.","14.5 oz. cream mushroom soup",'false'), 
  // 		array(" (14.5 oz.) bacon", "bacon", 14.5,"oz.","14.5 oz. bacon"), 
 //	  	array("Spinach, edamame beans and pickles" , "Spinach, edamame beans and pickles", 1,"","1 Spinach, edamame beans and pickles"), 
 	 // 	array("kale, spinach and mango smoothie" , "kale, spinach and mango smoothie", 1,"","1 kale, spinach and mango smoothie"), 
@@ -305,7 +316,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	 		//array("2x latte", "sugar", 2,"tbsp.","2 tbsp. sugar"), 
           //array("2 glasses of milk"," coke",2,"serving","1 glasses milk"),
           //array("2 glasses of milk"," coke",2,"serving","1 glasses milk"),
-//array("6 oz. coffee with 2 tbsp. creamer","coke",2,"serving","xx"), UNDO
+array("6 oz. coffee with 2 tbsp. creamer","coke",2,"serving","xx",'truxe'), 
 	 	//array("2 tablespoons.chia seeds", "chia seeds", 2,"tbsp.","2 tbsp. chia seeds"),
 	 		//array("0.5 tbsp sugar", "sugar", .5,"tbsp.","0.5 tbsp. sugar"), 
           //array("1 heaping tablespoon sugar","sugar",1.125,"tbsp.","1.125 tbsp. sugar"),

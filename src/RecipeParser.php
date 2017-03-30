@@ -507,10 +507,16 @@ class RecipeParser
   private function glasses()  {   $this->glass(); }
   private function pot()      {   $this->fluid_ounce();	  $this->multiplier *= 20.2884 ;	 }
   private function pots()	  {   $this->pot(); }
+  private function mug()      {   $this->fluid_ounce();	  $this->multiplier *= 12 ;	 }
+  private function mugs()	  {   $this->mug(); }
   private function bowl()     {   $this->fluid_ounce();	  $this->multiplier *= 12 ;	 }
   private function bowls()    {   $this->bowl(); }
   private function flute()    {   $this->fluid_ounce();	  $this->multiplier *= 6 ;	 }
   private function flutes()   {   $this->flute() ; }
+  private function scoop()    {   $this->fluid_ounce();	  $this->multiplier *= 3.19995 ;	 }
+  private function scoops()   {   $this->scoop(); }
+  private function jigger()    {   $this->fluid_ounce();	  $this->multiplier *= 1.5 ;	 }
+  private function jiggers()   {   $this->jigger(); }
 
   /** Lifted right out of tummy. Was trying to get a litte tricker, and preg_replace fractions based on a regex and
      w/ their decimal value but this is fine and the preg_replace is a little more difficult than it sounds */
