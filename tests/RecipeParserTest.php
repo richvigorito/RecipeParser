@@ -302,6 +302,8 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 
     public function lexemeMatches1_off_Matches_to_test_specific(){
 	return array(
+
+	  array("1 can (14.5 ounCes) cream of mushroom soup", "cream mushroom soup", 14.5,"oz.","14.5 oz. cream mushroom soup","true"), 
 //  		array("1 turkey slice", "cream mushroom soup", 14.5,"oz.","14.5 oz. cream mushroom soup",'false'), 
  // 		array("1 slice turkey", "cream mushroom soup", 14.5,"oz.","14.5 oz. cream mushroom soup",'false'), 
  // 		array(" (14.5 oz.) bacon", "bacon", 14.5,"oz.","14.5 oz. bacon"), 
@@ -316,10 +318,10 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	 		//array("2x latte", "sugar", 2,"tbsp.","2 tbsp. sugar"), 
           //array("2 glasses of milk"," coke",2,"serving","1 glasses milk"),
           //array("2 glasses of milk"," coke",2,"serving","1 glasses milk"),
-array("6 oz. coffee with 2 tbsp. creamer","coke",2,"serving","xx",'truxe'), 
+//array("6 oz. coffee with 2 tbsp. creamer","coke",2,"serving","xx",'truxe'), 
 	 	//array("2 tablespoons.chia seeds", "chia seeds", 2,"tbsp.","2 tbsp. chia seeds"),
 	 		//array("0.5 tbsp sugar", "sugar", .5,"tbsp.","0.5 tbsp. sugar"), 
-          //array("1 heaping tablespoon sugar","sugar",1.125,"tbsp.","1.125 tbsp. sugar"),
+          array("1 heaping tablespoon sugar","sugar",1.125,"tbsp.","1.125 tbsp. sugar",'true'),
 	 // array("1 box (50 ounCes) mac n cheese", "mac n cheese", 50,"oz.","50 oz. mac n cheese"), 
 	 	//array("1 pot of coffee", " coffee", 1,"fl. oz.","20.2884 fl. oz. coffee",'false'), 
 	//  array("1000 g 3 beers", "mac n cheese", 50,"oz.","50 oz. mac n cheese",'true'), 
