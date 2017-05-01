@@ -229,6 +229,8 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	  array("2 boxes (50 ounCes) mac n cheese", "mac n cheese", 100,"oz.","100 oz. mac n cheese","true"), 
 	 	array("1/2. Grated carrot", "Grated carrot", .5,null,"0.5 Grated carrot","false"), 
 	 	array("1egg", "egg", 1,null,"1 egg","false"), 
+
+	 	array("half and half creamer", "half and half creamer", 1,null,"1 half and half creamer",'false'), 
 	 	array("1green onion", "green onion", 1,null,"1 green onion","false"), 
 	 	array("coke cola 150 ml", "coke cola", 150,"ml.","150 ml. coke cola","true"), 
 	 	array("1 bowl soup", "soup", 12,"fl. oz.","12 fl. oz. soup","false"), 
@@ -281,6 +283,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
  		array("1 spoon sugar", "sugar", 1,"tbsp.","1 tbsp. sugar",'true'), 
  		array("2 spoons sugar", "sugar", 2,"tbsp.","2 tbsp. sugar",'true'), 
 
+
 	// 	array("1pkg \"Recover\"", "milk", 1,"gal.","1 gal. milk"),  /// not fuzzy any more
 
 	//  array("2 cartons (1/2 gallon each) milk", "milk", 1,"gal.","1 gal. milk"), 
@@ -307,7 +310,8 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
     public function lexemeMatches1_off_Matches_to_test_specific(){
 	return array(
 
-	  array("1 can (14.5 ounCes) cream of mushroom soup", "cream mushroom soup", 14.5,"oz.","14.5 oz. cream mushroom soup","true"), 
+	 	array("half and half creamer", "half and half creamer", 1,"fl. oz.","20.2884 fl. oz. coffee",'false'), 
+	//  array("1 can (14.5 ounCes) cream of mushroom soup", "cream mushroom soup", 14.5,"oz.","14.5 oz. cream mushroom soup","true"), 
 //  		array("1 turkey slice", "cream mushroom soup", 14.5,"oz.","14.5 oz. cream mushroom soup",'false'), 
  // 		array("1 slice turkey", "cream mushroom soup", 14.5,"oz.","14.5 oz. cream mushroom soup",'false'), 
  // 		array(" (14.5 oz.) bacon", "bacon", 14.5,"oz.","14.5 oz. bacon"), 

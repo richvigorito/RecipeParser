@@ -60,8 +60,11 @@ $defaults =  array(
         "/^(\ )*c(\.)?$/"                                 => "T_CUP",
       
         "/^(T_INTEGER|T_DECIMAL)$/"                       => "T_NUMBER", 
-       
-        "/^(\ )*(half|third|quarter|forth|fifth)$/i"      => "T_MULTIPLIER",
+      
+        "/^(\ )*(half and half)(\ )*$/i"				  => "T_WORD", /// dont treat "half" as multipler here
+
+        "/^(?<!half and )half(?! and half)$/i"			  => "T_MULTIPLIER",
+        "/^(\ )*(third|quarter|forth|fifth)$/i"			  => "T_MULTIPLIER",
         "/^(\ )?(single|double|triple|quadruple)$/i"      => "T_MULTIPLIER", 
         "/^(\ )*(.50x|.5x|.25x|.33x|.20x|.2x)$/i"         => "T_MULTIPLIER", 
         "/^(\ )*(2x|3x|4x|5x)$/i"                         => "T_MULTIPLIER", 
