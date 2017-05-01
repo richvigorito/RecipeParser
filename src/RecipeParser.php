@@ -477,8 +477,12 @@ class RecipeParser
   private function sprinkles(){   $this->sprinkle();		}
   private function bite()	  {   $this->tablespoon();		}
   private function bites()	  {   $this->bite();		}
+  private function sip()	  {   $this->mouthful();		$this->multiplier *= 0.5; }
+  private function sips()	  {   $this->sip();				}
+  private function gulp()	  {   $this->mouthful();		}
+  private function gulps()	  {   $this->gulp();		}
   private function mouthful() {   $this->tablespoon();		}
-  private function mouthfuls() {   $this->mouthful();		}
+  private function mouthfuls(){   $this->mouthful();		}
   private function dollop()	  {   $this->fluid_ounce();     }
   private function dollops()	  {   $this->dollop();     }
   private function knob()	  {   $this->fluid_ounce();		}
