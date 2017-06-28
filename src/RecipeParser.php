@@ -348,16 +348,16 @@ class RecipeParser
   {
     $input = strtolower($p->arr[0]); 
     switch ($input){
-      case 'kg.':   case 'kg':	case 'kilogram': case 'kilograms':
+      case 'kg.':   case 'kg':	case 'kgr': case 'kgr.':  case 'kilogram': case 'kilograms':
         $this->measurement_unit = 'kg.' ;
         break;
-      case 'mg.':   case 'mg':  case 'milligram': case 'milligrams':
+      case 'mg.':   case 'mg':  case 'mgr': case 'mgr.': case 'milligram': case 'milligrams':
         $this->measurement_unit = 'mg.' ;
         break;
-      case 'dg.':   case 'dg':	case 'decigram': case 'decigrams':
+      case 'dg.':   case 'dg':	case 'dgr': case 'dgr.': case 'decigram': case 'decigrams':
         $this->measurement_unit = 'dg.' ;
         break;
-      case 'cg.':  case 'cg':  case 'centigram':   case 'centigrams':
+      case 'cg.':  case 'cg':  case 'cgr': case 'cgr.': case 'centigram':   case 'centigrams':
         $this->measurement_unit = 'cg.' ;
         break;
       default:

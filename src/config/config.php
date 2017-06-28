@@ -14,6 +14,7 @@ $defaults =  array(
         
         "/^(\ )*(centi|milli|kilo|deci)?gram(s)?$/i"      => "T_GRAM",
         "/^(\ )*(k|m)?g(\.)?$/"                           => "T_GRAM",
+        "/^(\ )*(k|m)?gr(\.)?$/"                          => "T_GRAM",
     
  //       "/^(\ )*pound(s)?$/i"                                                   => "T_POUND", TEST (be mindful of pound cake) 
  //       "/^(\ )*lbs(\.)?$/"                                                     => "T_POUND", TEST 
