@@ -61,7 +61,9 @@ $defaults =  array(
       
         "/^(T_INTEGER|T_DECIMAL)$/"                       => "T_NUMBER", 
       
-        "/^(\ )*(half and half)(\ )*$/i"				  => "T_WORD", /// dont treat "half" as multipler here
+        "/^(\ )*(half and half)( creamer)?(\ )*$/i"				  => "T_HARD_CODED_FOOD", // dont treat "half" as multipler here
+        "/^(\ )*(half and half)(\ )*$/i"				  => "T_HARD_CODED_FOOD", // dont treat "half" as multipler here
+        "/^(\ )*(big mac)(\ )*$/i"						  => "T_HARD_CODED_FOOD", // dont treat "half" as multipler here
 
         "/^(?<!half and )half(?! and half)$/i"			  => "T_MULTIPLIER",
         "/^(\ )*(third|quarter|forth|fifth)$/i"			  => "T_MULTIPLIER",
@@ -93,6 +95,7 @@ $defaults =  array(
 
       //   "/^(?!T_)with(\ )?$/"												  => "T_CONJUCT",
          "/^(?!T_)[a-zA-z-']*$/"                                              => "T_WORD",
+         "/^(\ )?(T_HARD_CODED_FOOD(\ )+)*T_HARD_CODED_FOOD$/"                => "T_WORD", 
 
          "/^(\ )?(T_WORD(\ )+(T_COMMA(\ )+)?)*T_WORD$/"                       => "T_FOOD", 
          "/^(\ )?(T_WORD(\ )+)*T_WORD$/"                                      => "T_FOOD", 

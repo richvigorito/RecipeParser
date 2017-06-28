@@ -6,6 +6,7 @@ namespace rv\RecipeParser;
 use rv\Lexer\LexicalScanner;
 use rv\Lexer\ExpressionTree;
 
+use rv\RecipeParser\Exceptions\MeasurementUnitNotFound;
 
 class RecipeParser
 {
@@ -45,8 +46,8 @@ class RecipeParser
     $pattern =  "/(\d)(mg|cg|dg|g|kg|ml|cl|dl|l|kl|oz|tbsp|tsp|ts|t|c|lg|sm|m)(\.|\w*)/i";
     $string =  trim(preg_replace($pattern,"$1 $2$3",$string));
     
-    $pattern =  "/(\d)(pkg|package)(\.|\w*)/i";
-    $string =  trim(preg_replace($pattern,"$1 $2",$string));
+    $pattern =  "/(\d)(\ )?(pkg|package)(s)?(\.|\w*)/i";
+    $string =  trim(preg_replace($pattern,"$1 $3",$string));
 
     $pattern =  "/(\d)(\ )+(teaspoon[s]+)(\.)(\w*)/i";
     $string =  trim(preg_replace($pattern,"$1 $3 $5",$string));
@@ -68,10 +69,10 @@ class RecipeParser
  
   public function parse($string,$debug = null) 
   {
-    $return = array();
-    $return['user_string']	= $this->user_string = $string;
+    $this->user_string = $string;
 
     $string = $this->prep($string);
+    $error = false;
 
     $l = $this->scanner;
     $tree = $l::parse($string, $debug);
@@ -79,12 +80,24 @@ class RecipeParser
     $err  = $tree->getNode('ERROR');
 
     if ( false != $err) {
-    	$this->error($err);
-    	$return['error'] = true;
+       $this->error($err);
+       $error = true;
     } else {
-    	$this->expr($tree->getNode('T_TERM'));
+		try {
+			$this->expr($tree->getNode('T_TERM'));
+		} catch (MeasurementUnitNotFound $e){
+			$error = true;
+			$this->error($tree);
+		}
     }
-  
+ 
+	return $this->composeReturn($error);  
+  }
+
+  private function composeReturn($error = false)
+  {
+    if($error) $return['error']		= true;
+    $return['user_string']	= $this->user_string;
     $return['food'] = trim($this->food);
     $return['food'] = str_replace(" , ", ", ",$return['food']);
 
@@ -113,6 +126,7 @@ class RecipeParser
 		} else {
 			$this->fuzzy_parse_string = $this->multiplier . ' '. $this->fuzzy_measurement_unit; 
 		}
+	
 		$this->fuzzy_parse_string .= " " . $return['food'];
                    
 		$return['fuzzy_parse_string'] = $this->fuzzy_parse_string;
@@ -276,10 +290,10 @@ class RecipeParser
 
   private function precise_unit(ExpressionTree $p)
   {
-
-	  		
       $type = implode('',array_keys($p->arr[0]));
       $function = strtolower(substr($type,2));
+	  if(!method_exists($this,$function)) 
+			throw new MeasurementUnitNotFound("$function not found");
       $this->$function($p->getNode($type));
   }
 
@@ -290,6 +304,8 @@ class RecipeParser
       $type = preg_replace('/^(\ )?m(\.)?$/i','medium',$type);
       $type = preg_replace('/^(\ )?lg(\.)?$/i','large',$type);
       $function = strtolower($type);
+	  if(!method_exists($this,$function)) 
+			throw new MeasurementUnitNotFound("$function not found",200);
       $this->$function();
   }
 
@@ -409,7 +425,11 @@ class RecipeParser
 
   private function word(ExpressionTree $p)
   {
-    $this->food .= ' '.implode(' ',array_reverse($p->arr));
+    if(false != $food = $p->getNode('T_HARD_CODED_FOOD')){
+		$this->food .= ' '.implode(' ',$food->arr);
+	} else {
+		$this->food .= ' '.implode(' ',array_reverse($p->arr));
+	}
   }
 
   private function scant()
@@ -471,6 +491,18 @@ class RecipeParser
       $this->measurement_quantity = (1.5 * $this->measurement_quantity);
   }
 
+	
+  // synonym to huge
+  private function very_huge()		{$this->huge();}
+  private function really_huge()	{$this->huge();}
+  private function extra_huge()		{$this->huge();}
+  private function huge()
+  {			
+	$this->fuzzy_measurement_unit = 'huge';
+    $this->fuzzy_quantity			= $this->measurement_quantity;
+    if(!empty($this->measurement_quantity)) 
+      $this->measurement_quantity = (1.5 * $this->measurement_quantity);
+  }
 
 	/* imprecise units */
   private function sprinkle() {   $this->teaspoon();		}
@@ -511,6 +543,8 @@ class RecipeParser
   private function glasses()  {   $this->glass(); }
   private function pot()      {   $this->fluid_ounce();	  $this->multiplier *= 20.2884 ;	 }
   private function pots()	  {   $this->pot(); }
+  private function bottle()      {   $this->fluid_ounce();	  $this->multiplier *= 16 ;	 }
+  private function bottles()	 {   $this->bottle(); }
   private function mug()      {   $this->fluid_ounce();	  $this->multiplier *= 12 ;	 }
   private function mugs()	  {   $this->mug(); }
   private function bowl()     {   $this->fluid_ounce();	  $this->multiplier *= 12 ;	 }
@@ -519,8 +553,20 @@ class RecipeParser
   private function flutes()   {   $this->flute() ; }
   private function scoop()    {   $this->fluid_ounce();	  $this->multiplier *= 3.19995 ;	 }
   private function scoops()   {   $this->scoop(); }
-  private function jigger()    {   $this->fluid_ounce();	  $this->multiplier *= 1.5 ;	 }
-  private function jiggers()   {   $this->jigger(); }
+  private function jigger()   {   $this->fluid_ounce();	  $this->multiplier *= 1.5 ;	 }
+  private function jiggers()  {   $this->jigger(); }
+  
+  private function pkg()  {   $this->package(); }
+  private function pkgs()  {   $this->package(); }
+  private function packages()  {   $this->package(); }
+  private function package()  {   
+	$this->fuzzy_measurement_unit = '';
+    $this->fuzzy_quantity			= $this->measurement_quantity;
+	/* dont do anything with conversion like you would w/ glass or bowl */ 
+  }
+
+
+
 
   /** Lifted right out of tummy. Was trying to get a litte tricker, and preg_replace fractions based on a regex and
      w/ their decimal value but this is fine and the preg_replace is a little more difficult than it sounds */

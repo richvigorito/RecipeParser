@@ -112,6 +112,13 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
           array("2 22.5 oz sweet delicious beers"," sweet delicious beers",45,"oz.","45 oz. sweet delicious beers","true"),
           array("large coke"," coke",1.25,null,"1.25 coke","false", "1 lg. coke"),
           array("extra large coke"," coke",1.5,null,"1.5 coke","false", "1 x-lg. coke"),
+          
+				  array("huge banana"," banana",1.5,null,"1.5 banana","false", "1 huge banana"),
+				  array("2 huge banana"," banana",3,null,"3 banana","false", "2 huge banana"),
+				  array("extra huge banana"," banana",1.5,null,"1.5 banana","false", "1 huge banana"),
+				  array("really huge banana"," banana",1.5,null,"1.5 banana","false", "1 huge banana"),
+				  array("very huge banana"," banana",1.5,null,"1.5 banana","false", "1 huge banana"),
+
           array("sm. soda"," soda",0.75,null,"0.75 soda","false", "1 sm. soda"),
 
           array("really big chocolate chip cookie"," chocolate chip cookie",1.5,null,"1.5 chocolate chip cookie","false","1 x-lg. chocolate chip cookie"),
@@ -231,6 +238,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	 	array("1egg", "egg", 1,null,"1 egg","false"), 
 
 	 	array("half and half creamer", "half and half creamer", 1,null,"1 half and half creamer",'false'), 
+	 	array("1 big mac", "big mac", 1,null,"1 big mac",'false'), 
 	 	array("1green onion", "green onion", 1,null,"1 green onion","false"), 
 	 	array("coke cola 150 ml", "coke cola", 150,"ml.","150 ml. coke cola","true"), 
 	 	array("1 bowl soup", "soup", 12,"fl. oz.","12 fl. oz. soup","false"), 
@@ -283,6 +291,12 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
  		array("1 spoon sugar", "sugar", 1,"tbsp.","1 tbsp. sugar",'true'), 
  		array("2 spoons sugar", "sugar", 2,"tbsp.","2 tbsp. sugar",'true'), 
 
+	 	array("1 package quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1  package quaker oats"),
+	 	array("1 packages quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1  package quaker oats"),
+	 	array("1 pkg quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1  pkg quaker oats"),
+	 	array("1 pkg. quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1  pkg quaker oats"),
+	 	array("1 pkgs quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1  pkg quaker oats"),
+	 	array("1 pkgs. quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1  pkg quaker oats"),
 
 	// 	array("1pkg \"Recover\"", "milk", 1,"gal.","1 gal. milk"),  /// not fuzzy any more
 
@@ -310,7 +324,9 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
     public function lexemeMatches1_off_Matches_to_test_specific(){
 	return array(
 
-	 	array("half and half creamer", "half and half creamer", 1,"fl. oz.","20.2884 fl. oz. coffee",'false'), 
+	 	array("half and half creamer", "half and half creamer", 1,null,"1 half and half creamer",'false'), 
+	 	//array("1 package quaker oats", "quaker oats", 1,null,"1 quaker oats",'false'),
+	 //	array("half and half creamer", "half and half creamer", 1,"fl. oz.","20.2884 fl. oz. coffee",'false'), 
 	//  array("1 can (14.5 ounCes) cream of mushroom soup", "cream mushroom soup", 14.5,"oz.","14.5 oz. cream mushroom soup","true"), 
 //  		array("1 turkey slice", "cream mushroom soup", 14.5,"oz.","14.5 oz. cream mushroom soup",'false'), 
  // 		array("1 slice turkey", "cream mushroom soup", 14.5,"oz.","14.5 oz. cream mushroom soup",'false'), 
