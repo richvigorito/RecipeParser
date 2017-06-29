@@ -253,6 +253,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	 	array("1/2. Grated carrot", "Grated carrot", .5,null,"0.5 Grated carrot","false"), 
 	 	array("1egg", "egg", 1,null,"1 egg","false"), 
 
+	 	array("1 little debbie", "little debbie", 1,null,"1 little debbie",'false'), 
 	 	array("half and half creamer", "half and half creamer", 1,null,"1 half and half creamer",'false'), 
 	 	array("1 big mac", "big mac", 1,null,"1 big mac",'false'), 
 	 	array("1green onion", "green onion", 1,null,"1 green onion","false"), 

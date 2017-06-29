@@ -63,9 +63,10 @@ $defaults =  array(
       
         "/^(T_INTEGER|T_DECIMAL)$/"                       => "T_NUMBER", 
       
-        "/^(\ )*(half and half)( creamer)?(\ )*$/i"				  => "T_HARD_CODED_FOOD", // dont treat "half" as multipler here
+        "/^(\ )*(half and half)( creamer)?(\ )*$/i"		  => "T_HARD_CODED_FOOD", // dont treat "half" as multipler here
         "/^(\ )*(half and half)(\ )*$/i"				  => "T_HARD_CODED_FOOD", // dont treat "half" as multipler here
         "/^(\ )*(big mac)(\ )*$/i"						  => "T_HARD_CODED_FOOD", // dont treat "half" as multipler here
+        "/^(\ )*(little debbie)(\ )*$/i"				  => "T_HARD_CODED_FOOD", // dont treat "half" as multipler here
 
         "/^(?<!half and )half(?! and half)$/i"			  => "T_MULTIPLIER",
         "/^(\ )*(third|quarter|forth|fifth)$/i"			  => "T_MULTIPLIER",
