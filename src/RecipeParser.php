@@ -88,6 +88,12 @@ class RecipeParser
 		} catch (MeasurementUnitNotFound $e){
 			$error = true;
 			$this->error($tree);
+			/* food should be set, but not be if error occured where we couldnt parse so remove [0-9] and roll w/ that */
+			if(!isset($this->food)){
+				$this->food = str_replace($e->getMessage(),'',$string);
+				$this->food = preg_replace('/[0-9]+/', '', $this->food);
+			}
+
 		}
     }
  
@@ -98,6 +104,7 @@ class RecipeParser
   {
     if($error) $return['error']		= true;
     $return['user_string']	= $this->user_string;
+
     $return['food'] = trim($this->food);
     $return['food'] = str_replace(" , ", ", ",$return['food']);
 
@@ -188,7 +195,7 @@ class RecipeParser
       elseif 	( false != $imprecise_measure )		$this->imprecise_measure($imprecise_measure);
       elseif 	( false != $food)			$this->food($food);
       elseif 	( false != $number)			$this->number($number);
-  
+ 
  }
 
 
@@ -293,7 +300,7 @@ class RecipeParser
       $type = implode('',array_keys($p->arr[0]));
       $function = strtolower(substr($type,2));
 	  if(!method_exists($this,$function)) 
-			throw new MeasurementUnitNotFound("$function not found");
+			throw new MeasurementUnitNotFound($function);
       $this->$function($p->getNode($type));
   }
 
@@ -304,8 +311,9 @@ class RecipeParser
       $type = preg_replace('/^(\ )?m(\.)?$/i','medium',$type);
       $type = preg_replace('/^(\ )?lg(\.)?$/i','large',$type);
       $function = strtolower($type);
-	  if(!method_exists($this,$function)) 
-			throw new MeasurementUnitNotFound("$function not found",200);
+	  if(!method_exists($this,$function)) {
+			throw new MeasurementUnitNotFound($function,200);
+	  }
       $this->$function();
   }
 
@@ -348,13 +356,13 @@ class RecipeParser
   {
     $input = strtolower($p->arr[0]); 
     switch ($input){
-      case 'kg.':   case 'kg':	case 'kgr': case 'kgr.':  case 'kilogram': case 'kilograms':
+      case 'kg.':   case 'kg':	case 'kgr': case 'kgr.': case 'kilogram': case 'kilograms':
         $this->measurement_unit = 'kg.' ;
         break;
-      case 'mg.':   case 'mg':  case 'mgr': case 'mgr.': case 'milligram': case 'milligrams':
+      case 'mg.':   case 'mg':	case 'mgr': case 'mgr.': case 'milligram': case 'milligrams':
         $this->measurement_unit = 'mg.' ;
         break;
-      case 'dg.':   case 'dg':	case 'dgr': case 'dgr.': case 'decigram': case 'decigrams':
+      case 'dg.':   case 'dg':  case 'dgr': case 'dgr.': case 'decigram': case 'decigrams':
         $this->measurement_unit = 'dg.' ;
         break;
       case 'cg.':  case 'cg':  case 'cgr': case 'cgr.': case 'centigram':   case 'centigrams':
@@ -491,7 +499,6 @@ class RecipeParser
       $this->measurement_quantity = (1.5 * $this->measurement_quantity);
   }
 
-	
   // synonym to huge
   private function very_huge()		{$this->huge();}
   private function really_huge()	{$this->huge();}

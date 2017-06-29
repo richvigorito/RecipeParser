@@ -127,8 +127,18 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
           array("5 grams salt"," salt",5,"g.","5 g. salt","true"),
           array("5.345 kilogram butter"," butter",5.345,"kg.","5.345 kg. butter","true"),
           array("5 kg water"," water",5,"kg.","5 kg. water","true"),
+
           array("5 kgr water"," water",5,"kg.","5 kg. water","true"),
           array("5 kgr. water"," water",5,"kg.","5 kg. water","true"),
+          array("5 cgr water"," water",5,"cg.","5 cg. water","true"),
+          array("5 cgr. water"," water",5,"cg.","5 cg. water","true"),
+          array("5 mgr water"," water",5,"mg.","5 mg. water","true"),
+          array("5 mgr. water"," water",5,"mg.","5 mg. water","true"),
+          array("5 dg water"," water",5,"dg.","5 dg. water","true"),
+          array("5 dgr water"," water",5,"dg.","5 dg. water","true"),
+          array("5 dgr. water"," water",5,"dg.","5 dg. water","true"),
+
+
           array("5 liter water"," water",5,"l.","5 l. water","true"),
           array("5 liters water"," water",5,"l.","5 l. water","true"),
           array("5 kl water"," water",5,"kl.","5 kl. water","true"),
