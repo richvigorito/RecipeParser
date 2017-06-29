@@ -138,6 +138,8 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
           array("5 dgr water"," water",5,"dg.","5 dg. water","true"),
           array("5 dgr. water"," water",5,"dg.","5 dg. water","true"),
 
+          array("5 litre water"," water",5,"l.","5 l. water","true"),
+          array("5 litres water"," water",5,"l.","5 l. water","true"),
 
           array("5 liter water"," water",5,"l.","5 l. water","true"),
           array("5 liters water"," water",5,"l.","5 l. water","true"),

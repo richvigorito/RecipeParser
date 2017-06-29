@@ -20,6 +20,7 @@ $defaults =  array(
  //       "/^(\ )*lbs(\.)?$/"                                                     => "T_POUND", TEST 
  
         "/^(\ )*(centi|milli|kilo|deci)?liter(s)?$/i"     => "T_LITER",
+        "/^(\ )*(centi|milli|kilo|deci)?litre(s)?$/i"     => "T_LITER",
         "/^(\ )*(k|m|c)?l(\.)?$/"                         => "T_LITER",
  
         "/^(\ )?tablespoon(s)?$/i"                        => "T_TABLESPOON",
