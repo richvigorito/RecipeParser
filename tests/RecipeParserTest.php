@@ -152,6 +152,22 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
           array("5 liters water"," water",5,"l.","5 l. water","true"),
           array("5 kl water"," water",5,"kl.","5 kl. water","true"),
           array("5 kl. water"," water",5,"kl.","5 kl. water","true"),
+
+          array("5 ml water"," water",5,"ml.","5 ml. water","true"),
+          array("5 ml. water"," water",5,"ml.","5 ml. water","true"),
+          array("5 mls water"," water",5,"ml.","5 ml. water","true"),
+          array("5 mls. water"," water",5,"ml.","5 ml. water","true"),
+
+          array("5 dl water"," water",5,"dl.","5 dl. water","true"),
+          array("5 dl. water"," water",5,"dl.","5 dl. water","true"),
+          array("5 dls water"," water",5,"dl.","5 dl. water","true"),
+          array("5 dls. water"," water",5,"dl.","5 dl. water","true"),
+
+					array("5 cl water"," water",5,"cl.","5 cl. water","true"),
+          array("5 cl. water"," water",5,"cl.","5 cl. water","true"),
+          array("5 cls water"," water",5,"cl.","5 cl. water","true"),
+          array("5 cls. water"," water",5,"cl.","5 cl. water","true"),
+
           array("5 kiloliter water"," water",5,"kl.","5 kl. water","true"),
           array("5 kiloliters water"," water",5,"kl.","5 kl. water","true"),
           array("50 OunCes water"," water",50,"oz.","50 oz. water","true"),

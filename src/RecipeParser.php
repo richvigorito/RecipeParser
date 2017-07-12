@@ -340,16 +340,16 @@ class RecipeParser
   {
     $input = strtolower($p->arr[0]); 
     switch ($input){
-      case 'kl.':	case 'kl': case 'kiloliter':   case 'kiloliters':
+      case 'kl.':	case 'kl': case 'kls.':	case 'kls':  case 'kiloliter':   case 'kiloliters':
         $this->measurement_unit = 'kl.' ;
         break; 
-      case 'ml.':  case 'ml':  case 'milliliter': case 'milliliters':
+      case 'ml.':  case 'ml':  case 'mls.':  case 'mls':  case 'milliliter': case 'milliliters':
         $this->measurement_unit = 'ml.' ;
         break;
-      case 'dl.':  case 'dl': case 'deciliter':   case 'deciliters':
+      case 'dl.':  case 'dl':  case 'dls.':  case 'dls': case 'deciliter':   case 'deciliters':
         $this->measurement_unit = 'dl.' ;
         break;
-      case 'cl.':  case 'cl':  case 'centiliter':  case 'centiliters':
+      case 'cl.':  case 'cl':  case 'cls.':  case 'cls': case 'centiliter':  case 'centiliters':
         $this->measurement_unit = 'cl.' ;
         break;
       default:
