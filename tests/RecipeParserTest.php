@@ -284,6 +284,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	 	array("1/2. Grated carrot", "Grated carrot", .5,null,"0.5 Grated carrot","false"), 
 	 	array("1egg", "egg", 1,null,"1 egg","false"), 
 
+		array("dr. pepper", "dr. pepper", 1,null,"1 dr. pepper",'false'),
 	 	array("1 little debbie", "little debbie", 1,null,"1 little debbie",'false'), 
 	 	array("half and half creamer", "half and half creamer", 1,null,"1 half and half creamer",'false'), 
 	 	array("1 big mac", "big mac", 1,null,"1 big mac",'false'), 
@@ -374,7 +375,9 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
     public function lexemeMatches1_off_Matches_to_test_specific(){
 	return array(
  
-	 	array("1 package quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1 pkg. quaker oats"),
+	 	array("Dr. Pepper", "quaker oats", 1,null,"1 quaker oats",'false',"1 pkg. quaker oats"),
+	 	//array("x rashers bacon", "quaker oats", 1,null,"1 quaker oats",'false',"1 pkg. quaker oats"),
+	 //	array("1 package quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1 pkg. quaker oats"),
 	 	//array("half and half creamer", "half and half creamer", 1,null,"1 half and half creamer",'false'), 
 	 	//array("1 package quaker oats", "quaker oats", 1,null,"1 quaker oats",'false'),
 	 //	array("half and half creamer", "half and half creamer", 1,"fl. oz.","20.2884 fl. oz. coffee",'false'), 
