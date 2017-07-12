@@ -591,9 +591,13 @@ class RecipeParser
 
         // Replace all ¼ fractions with decimals to cleanse numbers for the db
         // Yes, the slashes in "1/8" are different than the slashes in "1/8" (Unicode) which is why they are repeated.
+        $text = str_replace(array(           " 1/11", "-1/11", "1/11", " 1/11", "1/11", " 1⁄11", "1⁄11"), " .0909 ", $text);
+        $text = str_replace(array(           " 1/10", "-1/10", "1/10", " 1/10", "1/10", " 1⁄10", "1⁄10"), " .1 ", $text);
+        $text = str_replace(array(           " 1/9", "-1/9", "1/9", " 1/9", "1/9", " 1⁄9", "1⁄9"), " .111 ", $text);
         $text = str_replace(array(" ⅛", "⅛", " 1/8", "-1/8", "1/8", " 1/8", "1/8", " 1⁄8", "1⁄8"), " .125 ", $text);
         $text = str_replace(array(" ¼", "¼", " 1/4", "-1/4", "1/4", " 1/4", "1/4", " 1⁄4", "1⁄4"), " .25 ",  $text);
         $text = str_replace(array(" ⅕", "⅕", " 1/5", "-1/5", "1/5", " 1/5", "1/5", " 1⁄5", "1⁄5"), " .20 ",  $text);
+        $text = str_replace(array(           " 1/6", "-1/6", "1/6", " 1/6", "1/6", " 1⁄6", "1⁄6"), " .166 ", $text);
         $text = str_replace(array(" ⅓", "⅓", " 1/3", "-1/3", "1/3", " 1/3", "1/3", " 1⁄3", "1⁄3"), " .33 ",  $text);
         $text = str_replace(array(" ⅜", "⅜", " 3/8", "-3/8", "3/8", " 3/8", "3/8", " 3⁄8", "3⁄8"), " .375 ", $text);
         $text = str_replace(array(" ⅖", "⅖", " 2/5", "-2/5", "2/5", " 2/5", "2/5", " 2⁄5", "2⁄5"), " .40 ",  $text);
