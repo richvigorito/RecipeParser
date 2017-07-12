@@ -13,8 +13,8 @@ $defaults =  array(
         "/^([0-9])+$/"                                    => "T_INTEGER" ,
         
         "/^(\ )*(centi|milli|kilo|deci)?gram(s)?$/i"      => "T_GRAM",
-        "/^(\ )*(c|d|k|m)?g(\.)?$/"                           => "T_GRAM",
-        "/^(\ )*(c|d|k|m)?gr(\.)?$/"                          => "T_GRAM",
+        "/^(\ )*(c|d|k|m)?g(\.)?$/"                       => "T_GRAM",
+        "/^(\ )*(c|d|k|m)?gr(s)?(\.)?$/"                  => "T_GRAM",
     
  //       "/^(\ )*pound(s)?$/i"                                                   => "T_POUND", TEST (be mindful of pound cake) 
  //       "/^(\ )*lbs(\.)?$/"                                                     => "T_POUND", TEST 
@@ -76,10 +76,11 @@ $defaults =  array(
 
 
         "/^(\ )?(can(s)?|mug(s)?|bottle(s)?|pot(s)?|glass(es)?|bowl(s)?)$/i"             => "T_CONTAINER" ,
-        "/^(\ )?(jigger(s)?|scoop(s)?)$/i"												 => "T_CONTAINER" ,
+        "/^(\ )?(shot(s)?|jigger(s)?|scoop(s)?)$/i"										 => "T_CONTAINER" ,
         "/^(\ )?(carton(s)?|jar(s)?|bag(s)?|packet(s)?|flute(s)?|box(es)?)$/i"           => "T_CONTAINER" ,
         "/^(\ )?(package(s)?|pkg(s)?(\.)?)$/i"                                           => "T_CONTAINER" ,
         "/^(\ )?(T_NUMBER\ )(T_CONTAINER)$/i"                                            => "T_CONTAINER_MULT" ,
+        "/^(\ )?(T_MULTIPLIER\ )(T_CONTAINER)$/i"                                        => "T_CONTAINER_MULT" ,
 
         "/^(extra |really |very )?(\ )*(tiny|scant|heaped|heaping|little|small|medium|large|big|huge)$/i"	=> "T_IMPRECISE_UNIT" ,
         "/^(\ )*(sm|m|lg|x-lg|)(\.)?$/i"																	=> "T_IMPRECISE_UNIT" , 

@@ -135,7 +135,9 @@ class RecipeParser
 		}
 	
 		$this->fuzzy_parse_string .= " " . $return['food'];
+	
                    
+		$this->fuzzy_parse_string = preg_replace('/\s+/', ' ', $this->fuzzy_parse_string);
 		$return['fuzzy_parse_string'] = $this->fuzzy_parse_string;
 	}
 
@@ -275,7 +277,11 @@ class RecipeParser
 
   private function container_mult(ExpressionTree $t)
   {
-	$this->multiplier *= $this->number($t->getNode('T_NUMBER'));
+	if(false != $t->getNode('T_NUMBER'))
+		$this->multiplier *= $this->number($t->getNode('T_NUMBER'));
+	if(false != $t->getNode('T_MULTIPLIER'))
+		$this->multiplier *= $this->multiplier($t->getNode('T_MULTIPLIER'));
+	
 	$this->container($t->getNode('T_CONTAINER'));
   }
   
@@ -356,16 +362,16 @@ class RecipeParser
   {
     $input = strtolower($p->arr[0]); 
     switch ($input){
-      case 'kg.':   case 'kg':	case 'kgr': case 'kgr.': case 'kilogram': case 'kilograms':
+      case 'kg.':   case 'kg':	case 'kgr': case 'kgr.': case 'kgrs': case 'kgrs': case 'kilogram': case 'kilograms':
         $this->measurement_unit = 'kg.' ;
         break;
-      case 'mg.':   case 'mg':	case 'mgr': case 'mgr.': case 'milligram': case 'milligrams':
+      case 'mg.':   case 'mg':	case 'mgrs': case 'mgrs.': case 'mgr': case 'mgr.': case 'milligram': case 'milligrams':
         $this->measurement_unit = 'mg.' ;
         break;
-      case 'dg.':   case 'dg':  case 'dgr': case 'dgr.': case 'decigram': case 'decigrams':
+      case 'dg.':   case 'dg':  case 'dgrs': case 'dgrs.':  case 'dgr': case 'dgr.': case 'decigram': case 'decigrams':
         $this->measurement_unit = 'dg.' ;
         break;
-      case 'cg.':  case 'cg':  case 'cgr': case 'cgr.': case 'centigram':   case 'centigrams':
+      case 'cg.':  case 'cg':  case 'cgrs': case 'cgrs.': case 'cgr': case 'cgr.': case 'centigram':   case 'centigrams':
         $this->measurement_unit = 'cg.' ;
         break;
       default:
@@ -539,10 +545,11 @@ class RecipeParser
 
 
   private function can()	  {   $this->fluid_ounce();   $this->multiplier *= 15 ;			}
+  private function cans()	  {   $this->can() ;		  }
   private function box()      {   $this->ounce();		  $this->multiplier *= 12.8 ;		}
   private function boxes()    {   $this->box();			  }
   private function jar()      {   $this->fluid_ounce();	  $this->multiplier *= 46 ;			}
-  private function bag()      {   $this->pound();		   }
+  private function bag()      {   $this->pound();		  }
   private function packet()   {   $this->ounce();		  $this->multiplier *= 2.5 ;	 }
   private function carton()   {   $this->fluid_ounce();	  $this->multiplier *= 16 ;	 }
   private function cartons()  {   $this->carton(); }
@@ -562,13 +569,16 @@ class RecipeParser
   private function scoops()   {   $this->scoop(); }
   private function jigger()   {   $this->fluid_ounce();	  $this->multiplier *= 1.5 ;	 }
   private function jiggers()  {   $this->jigger(); }
+  private function shot()     {   $this->fluid_ounce();	  $this->multiplier *= 1.5 ;	 }
+  private function shots()    {   $this->shot(); }
   
   private function pkg()  {   $this->package(); }
   private function pkgs()  {   $this->package(); }
   private function packages()  {   $this->package(); }
   private function package()  {   
-	$this->fuzzy_measurement_unit = '';
+	$this->fuzzy_measurement_unit	= 'pkg.';
     $this->fuzzy_quantity			= $this->measurement_quantity;
+	$this->container				= '';
 	/* dont do anything with conversion like you would w/ glass or bowl */ 
   }
 

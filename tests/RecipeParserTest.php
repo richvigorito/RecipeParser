@@ -138,6 +138,13 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
           array("5 dgr water"," water",5,"dg.","5 dg. water","true"),
           array("5 dgr. water"," water",5,"dg.","5 dg. water","true"),
 
+          array("5 kgrs water"," water",5,"kg.","5 kg. water","true"),
+          array("5 cgrs. water"," water",5,"cg.","5 cg. water","true"),
+          array("5 grs. water"," water",5,"g.","5 g. water","true"),
+          array("5 grs water"," water",5,"g.","5 g. water","true"),
+          array("5 grs. water"," water",5,"g.","5 g. water","true"),
+
+
           array("5 litre water"," water",5,"l.","5 l. water","true"),
           array("5 litres water"," water",5,"l.","5 l. water","true"),
 
@@ -271,9 +278,9 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 
 
 	 	array("butternut squash (350 mg)", "butternut squash", 350,"mg.","350 mg. butternut squash","true"), 
-	 	array("double shot latte", "shot latte", 2,null,"2 shot latte","false"), 
-	 	array("4 triple shot latte", "shot latte", 12,null,"12 shot latte","false"), 
-	 	array("2 quadruple shot latte", "shot latte", 8,null,"8 shot latte","false"), 
+	 	array("double shot latte", "latte", 3,'fl. oz.',"3 fl. oz. latte","false"), 
+	 	array("4 triple shot latte", "latte", 18,'fl. oz.',"18 fl. oz. latte","false"), 
+	 	array("2 quadruple shot latte", "latte", 12,'fl. oz.',"12 fl. oz. latte","false"), 
 	 	array("half beer", "beer", .5,null,"0.5 beer","false"), 
 	 	array("quarter beer", "beer", .25,null,"0.25 beer","false"), 
 	 	array("forth beer", "beer", .25,null,"0.25 beer","false"), 
@@ -304,16 +311,18 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
  		array("2 scoop ice cream", "ice cream", 6.3999,"fl. oz.","6.3999 fl. oz. ice cream",'false'), 
  		array("1 jigger tea", "tea", 1.5,"fl. oz.","1.5 fl. oz. tea",'false'), 
  		array("2 jiggers tea", "tea", 3,"fl. oz.","3 fl. oz. tea",'false'), 
+ 		array("1 shot tea", "tea", 1.5,"fl. oz.","1.5 fl. oz. tea",'false'), 
+ 		array("2 shots tea", "tea", 3,"fl. oz.","3 fl. oz. tea",'false'), 
 
  		array("1 spoon sugar", "sugar", 1,"tbsp.","1 tbsp. sugar",'true'), 
  		array("2 spoons sugar", "sugar", 2,"tbsp.","2 tbsp. sugar",'true'), 
 
-	 	array("1 package quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1  package quaker oats"),
-	 	array("1 packages quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1  package quaker oats"),
-	 	array("1 pkg quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1  pkg quaker oats"),
-	 	array("1 pkg. quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1  pkg quaker oats"),
-	 	array("1 pkgs quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1  pkg quaker oats"),
-	 	array("1 pkgs. quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1  pkg quaker oats"),
+	 	array("1 package quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1 pkg. quaker oats"),
+	 	array("1 packages quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1 pkg. quaker oats"),
+	 	array("1 pkg quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1 pkg. quaker oats"),
+	 	array("1 pkg. quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1 pkg. quaker oats"),
+	 	array("1 pkgs quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1 pkg. quaker oats"),
+	 	array("1 pkgs. quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1 pkg. quaker oats"),
 
 	// 	array("1pkg \"Recover\"", "milk", 1,"gal.","1 gal. milk"),  /// not fuzzy any more
 
@@ -340,8 +349,9 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 
     public function lexemeMatches1_off_Matches_to_test_specific(){
 	return array(
-
-	 	array("half and half creamer", "half and half creamer", 1,null,"1 half and half creamer",'false'), 
+ 
+	 	array("1 package quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1 pkg. quaker oats"),
+	 	//array("half and half creamer", "half and half creamer", 1,null,"1 half and half creamer",'false'), 
 	 	//array("1 package quaker oats", "quaker oats", 1,null,"1 quaker oats",'false'),
 	 //	array("half and half creamer", "half and half creamer", 1,"fl. oz.","20.2884 fl. oz. coffee",'false'), 
 	//  array("1 can (14.5 ounCes) cream of mushroom soup", "cream mushroom soup", 14.5,"oz.","14.5 oz. cream mushroom soup","true"), 
