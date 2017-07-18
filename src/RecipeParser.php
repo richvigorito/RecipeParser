@@ -22,6 +22,10 @@ class RecipeParser
   private $precisely_entered; 
   private $multiplier;
 
+
+ private $ignore_words = array('fresh','organic','raw','regular','uncooked');
+
+
   public function __construct() 
   {
 
@@ -451,7 +455,7 @@ class RecipeParser
         $this->food($p->arr[$k][$key]);  
       } elseif($key == 'T_WORD'){
         //$this->word($p->getNode('T_WORD'));  
-        $this->word($p->arr[$k][$key]);  
+		$this->word($p->arr[$k][$key]);  
       } elseif($key == 'T_COMMA'){
         $this->word($p->arr[$k][$key]);  
       } elseif($key == 'T_DOUBLE_QUOTE'){
@@ -467,7 +471,10 @@ class RecipeParser
     if(false != $food = $p->getNode('T_HARD_CODED_FOOD')){
 		$this->food .= ' '.implode(' ',$food->arr);
 	} else {
-		$this->food .= ' '.implode(' ',array_reverse($p->arr));
+		$food = ' '.implode(' ',array_reverse($p->arr));
+		if(!in_array(strtolower(trim($food)),$this->ignore_words)){
+			$this->food .= $food;
+		}
 	}
   }
 

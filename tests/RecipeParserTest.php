@@ -285,6 +285,13 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	 	array("1/2. Grated carrot", "Grated carrot", .5,null,"0.5 Grated carrot","false"), 
 	 	array("1egg", "egg", 1,null,"1 egg","false"), 
 
+
+		array("raw egg", "egg", 1,null,"1 egg",'false'),
+		array("fresh parsly", "parsly", 1,null,"1 parsly",'false'),
+		array("2 organic apples", "apples", 2,null,"2 apples",'false'),
+		array("2 regular coffees", "coffees", 2,null,"2 coffees",'false'),
+		array("2 cups of uncooked walnuts", "walnuts", 2,'cup',"2 cup walnuts",'true'),
+
 		array("dr. pepper", "dr. pepper", 1,null,"1 dr. pepper",'false'),
 	 	array("1 little debbie", "little debbie", 1,null,"1 little debbie",'false'), 
  		array("glass noodles", "glass noodles", 1,null,"1 glass noodles",'false'), 
@@ -385,6 +392,13 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
     public function lexemeMatches1_off_Matches_to_test_specific(){
 	return array(
  
+		array("raw egg", "egg", 1,null,"1 egg",'false'),
+/*		array("fresh parsly", "parsly", 1,null,"1 parsly",'false'),
+		array("2 organic apples", "apples", 2,null,"2 apples",'false'),
+		array("2 regular coffees", "coffees", 2,null,"2 coffees",'false'),
+		array("2 uncooked cups of walnuts", "walnuts", 2,'cup',"2 cups walnults",'true'),
+*/
+
         //  array("2 ( 2 gram chilies )"," whiskey",3,"tbsp.","3 tbsp. whiskey","true"),
          // array("diced green chilies 3 tb"," diced green chilies",3,"tbsp.","3 tbsp. diced green chilies","true"),
 	 			//array("radishes 3", "radishes", 3,null,"3 radishes",'false'),
