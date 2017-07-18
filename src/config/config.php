@@ -67,6 +67,7 @@ $defaults =  array(
         "/^(\ )*(half and half)(\ )*$/i"				  => "T_HARD_CODED_FOOD", // dont treat "half" as multipler here
         "/^(\ )*(big mac)(\ )*$/i"						  => "T_HARD_CODED_FOOD", // dont treat "half" as multipler here
         "/^(\ )*(little debbie)(\ )*$/i"				  => "T_HARD_CODED_FOOD", // dont treat "half" as multipler here
+        "/^(\ )*(glass noodle(s)?)(\ )*$/i"				  => "T_HARD_CODED_FOOD", // dont treat "half" as multipler here
         "/^(\ )*(dr(\.)? pepper)(\ )*$/i"				  => "T_HARD_CODED_FOOD", // dont treat "half" as multipler here
 
         "/^(?<!half and )half(?! and half)$/i"			  => "T_MULTIPLIER",
