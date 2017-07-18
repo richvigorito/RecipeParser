@@ -330,6 +330,8 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 
  		array("1 turkey slice", "turkey", 1,"oz.","1 oz. turkey",'false'), 
  		array("1 slice turkey", "turkey", 1,"oz.","1 oz. turkey",'false'), 
+ 		array("1 rasher of bacon", "bacon", .5,"oz.","0.5 oz. bacon",'false'), 
+ 		array("2 rashers bacon", "bacon", 1,"oz.","1 oz. bacon",'false'), 
 
  		array("1 mug coffee", "coffee", 12,"fl. oz.","12 fl. oz. coffee",'false'), 
  		array("2 mugs coffee", "coffee", 24,"fl. oz.","24 fl. oz. coffee",'false'), 

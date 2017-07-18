@@ -86,7 +86,7 @@ $defaults =  array(
         "/^(extra |really |very )?(\ )*(tiny|scant|heaped|heaping|little|small|medium|large|big|huge)$/i"	=> "T_IMPRECISE_UNIT" ,
         "/^(\ )*(sm|m|lg|x-lg|)(\.)?$/i"																	=> "T_IMPRECISE_UNIT" , 
 
-        "/^(\ )*(dash(es)?|slice(s)?|sprinkle(s)?|bite(s)?|handful(s)?|mouthful(s)?|dollop(s)?|knob(s)?|smidge(s)?|smidgen(s)?)(\.)?$/i"					=> "T_IMPRECISE_UNIT" , 
+        "/^(\ )*(dash(es)?|rasher(s)?|slice(s)?|sprinkle(s)?|bite(s)?|handful(s)?|mouthful(s)?|dollop(s)?|knob(s)?|smidge(s)?|smidgen(s)?)(\.)?$/i"					=> "T_IMPRECISE_UNIT" , 
         "/^(\ )*(sip(s)?|gulp(s)?)(\.)?$/i"												=> "T_IMPRECISE_UNIT" , 
 
     //   "/^(\ )*(tall|venti|grande|tall)$/"                                       => "T_STARBUCKS_UNIT" ,

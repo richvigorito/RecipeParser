@@ -567,6 +567,8 @@ class RecipeParser
   private function handfuls() {   $this->handful(); }
   private function slice()    {   $this->ounce();	}
   private function slices()   {   $this->slice();	}
+  private function rasher()    {   $this->ounce();	$this->multiplier *= 0.5; }
+  private function rashers()   {   $this->rasher();	}
 
 
   private function can()	  {   $this->fluid_ounce();   $this->multiplier *= 15 ;			}
