@@ -54,7 +54,6 @@ class RecipeParser
 
     $pattern =  "/(\d)(\ )+(tablespoon[s]+)(\.)(\w*)/i";
     $string =  trim(preg_replace($pattern,"$1 $3 $5",$string));
-
     $string =  trim(preg_replace("/^(.*)( of | a )(.*)$/i","$1 $3",$string));
     $string =  trim(preg_replace("/^(a )(.*)/i","$2",$string));
 		// 2x is special, ie 2x cookies
@@ -202,9 +201,10 @@ class RecipeParser
 
 
   private function recipe_ingredient(ExpressionTree $ri){
-    $food 		= $ri->getNode('T_FOOD');
-    $number 		= $ri->getNode('T_NUMBER');
+    $food				= $ri->getNode('T_FOOD');
+    $number				= $ri->getNode('T_NUMBER');
     $precise_measure 	= $ri->getNode('T_PRECISE_MEASURE');
+    $precise_unit		= $ri->getNode('T_PRECISE_UNIT');
     $imprecise_measure 	= $ri->getNode('T_IMPRECISE_MEASURE');
     
     $container_mult 	= $ri->getNode('T_CONTAINER_MULT');
@@ -217,6 +217,12 @@ class RecipeParser
     } elseif (  $recipe_ingredient != false &&  $container != false) {
       $this->container($container);
       $this->recipe_ingredient($recipe_ingredient);
+    } else if (  $precise_unit != false &&  $food != false && $number != false) {
+      $this->precise_unit($precise_unit);
+      $this->food($food);
+      $this->number($number);
+	  $this->is_precise = true;
+	  $this->measurement_quantity = $this->number($number);
     } else if (  $precise_measure != false &&  $food != false) {
       $this->precise_measure($precise_measure);
       $this->food($food);
@@ -571,6 +577,8 @@ class RecipeParser
   private function jiggers()  {   $this->jigger(); }
   private function shot()     {   $this->fluid_ounce();	  $this->multiplier *= 1.5 ;	 }
   private function shots()    {   $this->shot(); }
+  private function drop()     {   $this->fluid_ounce();	  $this->multiplier *= 0.001690701 ;	 }
+  private function drops()    {   $this->drop(); }
   
   private function pkg()  {   $this->package(); }
   private function pkgs()  {   $this->package(); }

@@ -77,7 +77,7 @@ $defaults =  array(
 
 
         "/^(\ )?(can(s)?|mug(s)?|bottle(s)?|pot(s)?|glass(es)?|bowl(s)?)$/i"             => "T_CONTAINER" ,
-        "/^(\ )?(shot(s)?|jigger(s)?|scoop(s)?)$/i"										 => "T_CONTAINER" ,
+        "/^(\ )?(drop(s)?|shot(s)?|jigger(s)?|scoop(s)?)$/i"							 => "T_CONTAINER" ,
         "/^(\ )?(carton(s)?|jar(s)?|bag(s)?|packet(s)?|flute(s)?|box(es)?)$/i"           => "T_CONTAINER" ,
         "/^(\ )?(package(s)?|pkg(s)?(\.)?)$/i"                                           => "T_CONTAINER" ,
         "/^(\ )?(T_NUMBER\ )(T_CONTAINER)$/i"                                            => "T_CONTAINER_MULT" ,
@@ -121,10 +121,9 @@ $defaults =  array(
 
         "/^(T_CONTAINER_MULT|T_CONTAINER)(\ )+T_RECIPE_INGREDIENT$/"          => "T_RECIPE_INGREDIENT",  
         "/^(T_CONTAINER_MULT|T_CONTAINER)(\ )+T_FOOD$/"						  => "T_RECIPE_INGREDIENT",  
-        "/^(\ )?T_NUMBER(\ )*T_PRECISE_UNIT$/"                                => "T_PRECISE_MEASURE",
-        
-		"/^(\ )?T_NUMBER(\ )*T_IMPRECISE_MEASURE(\ )*T_PRECISE_UNIT$/"        => "T_PRECISE_MEASURE",   /// This is a known 'precise measure' w/ an imprecse adjective: 'heaping tbsp'
 
+        "/^(\ )?T_NUMBER(\ )*T_PRECISE_UNIT$/"                                => "T_PRECISE_MEASURE",
+		"/^(\ )?T_NUMBER(\ )*T_IMPRECISE_MEASURE(\ )*T_PRECISE_UNIT$/"        => "T_PRECISE_MEASURE",   /// This is a known 'precise measure' w/ an imprecse adjective: 'heaping tbsp'
         "/^(\ )?(T_LPAREN)(\ )*T_PRECISE_MEASURE(\ )*(T_RPAREN)$/"            => "T_PRECISE_MEASURE",
         
         "/^(\ )?T_PRECISE_MEASURE(\ )*T_FOOD(\ )?$/"                          => "T_RECIPE_INGREDIENT",
@@ -132,7 +131,11 @@ $defaults =  array(
         "/^(\ )?(T_NUMBER)?T_IMPRECISE_MEASURE(\ )*T_FOOD(\ )?$/"             => "T_RECIPE_INGREDIENT",
         "/^(\ )?(T_NUMBER)?(\ )?T_FOOD(\ )*T_IMPRECISE_MEASURE(\ )?$/"        => "T_RECIPE_INGREDIENT",
 
+        "/^(\ )?T_FOOD(\ )*T_NUMBER(\ )?T_PRECISE_UNIT(\ )?$/"                     => "T_RECIPE_INGREDIENT",
+
         "/^(\ )?(T_NUMBER\ )(\ )?T_FOOD(\ )?$/"                               => "T_RECIPE_INGREDIENT",  
+        "/^(\ )?(T_FOOD\ )(\ )?T_NUMBER(\ )?$/"                               => "T_RECIPE_INGREDIENT",  
+    
     
         "/^(\ )?(T_NUMBER(\ )+)?(T_MULTIPLIER)(\ )+T_FOOD(\ )?$/"             => "T_RECIPE_INGREDIENT_MULT",   
         "/^(\ )?T_NUMBER(\ )+T_RECIPE_INGREDIENT(\ )?$/"                      => "T_RECIPE_INGREDIENT_MULT",

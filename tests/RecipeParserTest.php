@@ -339,11 +339,15 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
  		array("1 shot tea", "tea", 1.5,"fl. oz.","1.5 fl. oz. tea",'false'), 
  		array("2 shots tea", "tea", 3,"fl. oz.","3 fl. oz. tea",'false'), 
 
+
+ 		array("1 drop booze", "booze", 0.001690701,"fl. oz.","0.001690701 fl. oz. booze",'false'), 
+
  		array("1 spoon sugar", "sugar", 1,"tbsp.","1 tbsp. sugar",'true'), 
  		array("2 spoons sugar", "sugar", 2,"tbsp.","2 tbsp. sugar",'true'), 
 
 	 	array("1 package quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1 pkg. quaker oats"),
 	 	array("1 packages quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1 pkg. quaker oats"),
+	 	array("1 package ramen noodles", "ramen noodles", 1,null,"1 ramen noodles",'false',"1 pkg. ramen noodles"),
 	 	array("1 pkg quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1 pkg. quaker oats"),
 	 	array("1 pkg. quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1 pkg. quaker oats"),
 	 	array("1 pkgs quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1 pkg. quaker oats"),
@@ -355,6 +359,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	  //array("1 pint (1/2 quart) beer", "beer", .5,"qt.",".5 qt. beer"), 
 	  //array("1 pint (quart 1/2 quart) beer", "beer", .5,"qt.",".5 qt. koolaid"), 
 	  //array("2 packet (3 1/2 mg) kool-aid", "kool-aid", 7,"mg.","7 mg. kool-aid"), 
+	 			array("radishes 3", "radishes", 3,null,"3 radishes",'false'),
 
         ); 
     }
@@ -375,7 +380,10 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
     public function lexemeMatches1_off_Matches_to_test_specific(){
 	return array(
  
-	 	array("Dr. Pepper", "quaker oats", 1,null,"1 quaker oats",'false',"1 pkg. quaker oats"),
+	 			//array("radishes 3", "radishes", 3,null,"3 radishes",'false'),
+          array("diced green chilies 3 tb"," diced green chilies",3,"tbsp.","3 tbsp. diced green chilies","true"),
+   //     array("lemon juice 1tbsp "," lemon juice",1,"tbsp.","1 tbsp. lemon juice","true"),
+	 	//array("1 cup 1% milk", "quaker oats", 1,null,"1 quaker oats",'false',"1 pkg. quaker oats"),
 	 	//array("x rashers bacon", "quaker oats", 1,null,"1 quaker oats",'false',"1 pkg. quaker oats"),
 	 //	array("1 package quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1 pkg. quaker oats"),
 	 	//array("half and half creamer", "half and half creamer", 1,null,"1 half and half creamer",'false'), 
@@ -399,7 +407,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 //array("6 oz. coffee with 2 tbsp. creamer","coke",2,"serving","xx",'truxe'), 
 	 	//array("2 tablespoons.chia seeds", "chia seeds", 2,"tbsp.","2 tbsp. chia seeds"),
 	 		//array("0.5 tbsp sugar", "sugar", .5,"tbsp.","0.5 tbsp. sugar"), 
-          array("1 heaping tablespoon sugar","sugar",1.125,"tbsp.","1.125 tbsp. sugar",'true'),
+    //      array("1 heaping tablespoon sugar","sugar",1.125,"tbsp.","1.125 tbsp. sugar",'true'),
 	 // array("1 box (50 ounCes) mac n cheese", "mac n cheese", 50,"oz.","50 oz. mac n cheese"), 
 	 	//array("1 pot of coffee", " coffee", 1,"fl. oz.","20.2884 fl. oz. coffee",'false'), 
 	//  array("1000 g 3 beers", "mac n cheese", 50,"oz.","50 oz. mac n cheese",'true'), 
