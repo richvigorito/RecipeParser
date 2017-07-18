@@ -251,6 +251,25 @@ class RecipeParser
   }  
 
 
+  private function recipe_ingredient_mult(ExpressionTree $ri){
+    $food				= $ri->getNode('T_FOOD');
+    $number				= $ri->getNode('T_NUMBER');
+	$multiplier			= $t->getNode('T_MULTIPLIER');
+	$recipe_ingredient	= $t->getNode('T_RECIPE_INGREDIENT');
+
+	if ( false != $recipe_ingredient && false != $food){
+      $this->food($food);
+      $this->recipe_ingredient($recipe_ingredient);
+	} elseif ( false != $number && false != $food && false != $multiplier){ 
+	  $this->multiplier *= $this->multiplier($t->getNode('T_MULTIPLIER'));
+      $this->food($food);
+	  $this->multiplier *= $this->multiplier($t->getNode('T_MULTIPLIER'));
+	  $this->multiplier *=  $this->number($number);
+	} else {
+      throw new Exception ('todo, figure error handling');
+	}
+  }
+
   private function precise_measure(ExpressionTree $pm)
   {
 	  $this->is_precise = true;

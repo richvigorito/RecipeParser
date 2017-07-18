@@ -127,6 +127,8 @@ $defaults =  array(
         "/^(\ )?(T_LPAREN)(\ )*T_PRECISE_MEASURE(\ )*(T_RPAREN)$/"            => "T_PRECISE_MEASURE",
         
         "/^(\ )?T_PRECISE_MEASURE(\ )*T_FOOD(\ )?$/"                          => "T_RECIPE_INGREDIENT",
+        "/^(\ )?T_FOOD(\ )+((T_COMMA(\ )+)?)*T_PRECISE_MEASURE(\ )?$/"		  => "T_RECIPE_INGREDIENT",
+
         "/^(\ )?T_FOOD(\ )*T_PRECISE_MEASURE(\ )?$/"                          => "T_RECIPE_INGREDIENT",
         "/^(\ )?(T_NUMBER)?T_IMPRECISE_MEASURE(\ )*T_FOOD(\ )?$/"             => "T_RECIPE_INGREDIENT",
         "/^(\ )?(T_NUMBER)?(\ )?T_FOOD(\ )*T_IMPRECISE_MEASURE(\ )?$/"        => "T_RECIPE_INGREDIENT",

@@ -57,6 +57,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
         return array(
           // array(<user_string>, <food>, <measurement_quantity>, <measurement_unit>,  <parsed_string>, <fuzzy-can-be-null),
 
+          array("quinoa, 1/2 cup","quinoa",.5,"cup","0.5 cup quinoa","true"),
           array("1 sprinkle sugar","sugar",1,"tsp.","1 tsp. sugar","false"),
           array("1 sprinkles sugar","sugar",1,"tsp.","1 tsp. sugar","false"),
           array("1 bite sugar","sugar",1,"tbsp.","1 tbsp. sugar","false"),
@@ -341,6 +342,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 
 
  		array("1 drop booze", "booze", 0.001690701,"fl. oz.","0.001690701 fl. oz. booze",'false'), 
+    array("single whiskey","whiskey",1,null,"1 whiskey","false"),
 
  		array("1 spoon sugar", "sugar", 1,"tbsp.","1 tbsp. sugar",'true'), 
  		array("2 spoons sugar", "sugar", 2,"tbsp.","2 tbsp. sugar",'true'), 
@@ -380,8 +382,10 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
     public function lexemeMatches1_off_Matches_to_test_specific(){
 	return array(
  
+        //  array("2 ( 2 gram chilies )"," whiskey",3,"tbsp.","3 tbsp. whiskey","true"),
+         // array("diced green chilies 3 tb"," diced green chilies",3,"tbsp.","3 tbsp. diced green chilies","true"),
 	 			//array("radishes 3", "radishes", 3,null,"3 radishes",'false'),
-          array("diced green chilies 3 tb"," diced green chilies",3,"tbsp.","3 tbsp. diced green chilies","true"),
+          //array("diced green chilies 3 tb"," diced green chilies",3,"tbsp.","3 tbsp. diced green chilies","true"),
    //     array("lemon juice 1tbsp "," lemon juice",1,"tbsp.","1 tbsp. lemon juice","true"),
 	 	//array("1 cup 1% milk", "quaker oats", 1,null,"1 quaker oats",'false',"1 pkg. quaker oats"),
 	 	//array("x rashers bacon", "quaker oats", 1,null,"1 quaker oats",'false',"1 pkg. quaker oats"),
