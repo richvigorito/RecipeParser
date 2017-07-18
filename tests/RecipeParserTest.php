@@ -285,7 +285,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	 	array("1/2. Grated carrot", "Grated carrot", .5,null,"0.5 Grated carrot","false"), 
 	 	array("1egg", "egg", 1,null,"1 egg","false"), 
 
-
+		array("Natural full-fat yogurt","full-fat yogurt",1,null, "1 full-fat yogurt",'false'),
 		array("raw egg", "egg", 1,null,"1 egg",'false'),
 		array("fresh parsly", "parsly", 1,null,"1 parsly",'false'),
 		array("2 organic apples", "apples", 2,null,"2 apples",'false'),
