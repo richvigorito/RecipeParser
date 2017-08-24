@@ -258,8 +258,8 @@ class RecipeParser
   private function recipe_ingredient_mult(ExpressionTree $ri){
     $food				= $ri->getNode('T_FOOD');
     $number				= $ri->getNode('T_NUMBER');
-	$multiplier			= $t->getNode('T_MULTIPLIER');
-	$recipe_ingredient	= $t->getNode('T_RECIPE_INGREDIENT');
+	$multiplier			= $ri->getNode('T_MULTIPLIER');
+	$recipe_ingredient	= $ri->getNode('T_RECIPE_INGREDIENT');
 
 	if ( false != $recipe_ingredient && false != $food){
       $this->food($food);
