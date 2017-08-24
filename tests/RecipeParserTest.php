@@ -86,6 +86,12 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
           array("1 scant cup sugar","sugar",.875,"cup","0.875 cup sugar","true"),
           array("1 large cup sugar","sugar",1.25,"cup","1.25 cup sugar","true"),
 
+					array(".25 pounds turkey", "turkey", .25,'lbs.',"0.25 lbs. turkey",'true'),
+					array(".25 lb deli ham", "deli ham", .25,'lbs.',"0.25 lbs. deli ham",'true'),
+					array("1/4 lb. deli ham", "deli ham", .25,'lbs.',"0.25 lbs. deli ham",'true'),
+					array(".25 lbs. deli ham", "deli ham", .25,'lbs.',"0.25 lbs. deli ham",'true'),
+					array("1/4 lbs deli ham", "deli ham", .25,'lbs.',"0.25 lbs. deli ham",'true'),
+
           array("76 oz steak"," steak",76,"oz.","76 oz. steak","true"),
           array("7 6 ozs. steaks"," steaks",42,"oz.","42 oz. steaks","true"),
           array("2 tablespoon garlic"," garlic",2,"tbsp.","2 tbsp. garlic","true"),
@@ -392,6 +398,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
     public function lexemeMatches1_off_Matches_to_test_specific(){
 	return array(
  
+		array(".25 lb. deli ham", "egg", 1,null,"1 egg",'false'),
 		array("raw egg", "egg", 1,null,"1 egg",'false'),
 /*		array("fresh parsly", "parsly", 1,null,"1 parsly",'false'),
 		array("2 organic apples", "apples", 2,null,"2 apples",'false'),

@@ -47,8 +47,11 @@ class RecipeParser
     $string = str_replace(",", " , ",$string);
     $string = str_replace('"', ' " ',$string);
     $string = trim($string);
-    $pattern =  "/(\d)(mg|cg|dg|g|kg|ml|cl|dl|l|kl|oz|tbsp|tsp|ts|t|c|lg|sm|m)(\.|\w*)/i";
+    $pattern =  "/(\d)(lb|mg|cg|dg|g|kg|ml|cl|dl|l|kl|oz|tbsp|tsp|ts|t|c|lg|sm|m)(\.|\w*)/i";
     $string =  trim(preg_replace($pattern,"$1 $2$3",$string));
+   
+    $pattern =  "/(\d)(\ )?(lb[s]+)(\.|\w*)/i";
+    $string =  trim(preg_replace($pattern,"$1 $3",$string));
     
     $pattern =  "/(\d)(\ )?(pkg|package)(s)?(\.|\w*)/i";
     $string =  trim(preg_replace($pattern,"$1 $3",$string));

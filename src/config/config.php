@@ -16,8 +16,9 @@ $defaults =  array(
         "/^(\ )*(c|d|k|m)?g(\.)?$/"                       => "T_GRAM",
         "/^(\ )*(c|d|k|m)?gr(s)?(\.)?$/"                  => "T_GRAM",
     
- //       "/^(\ )*pound(s)?$/i"                                                   => "T_POUND", TEST (be mindful of pound cake) 
- //       "/^(\ )*lbs(\.)?$/"                                                     => "T_POUND", TEST 
+        "/^(\ )*pound(s)?$/i"                                                => "T_POUND",
+        "/^(\ )*lb(\.)?$/"                                                   => "T_POUND",
+        "/^(\ )*lbs(\.)?$/"                                                   => "T_POUND",
  
         "/^(\ )*(centi|milli|kilo|deci)?liter(s)?$/i"     => "T_LITER",
         "/^(\ )*(centi|milli|kilo|deci)?litre(s)?$/i"     => "T_LITER",
@@ -63,6 +64,7 @@ $defaults =  array(
       
         "/^(T_INTEGER|T_DECIMAL)$/"                       => "T_NUMBER", 
       
+        "/^(\ )*(pound cake)(\ )*$/i"					=> "T_HARD_CODED_FOOD", // dont treat "half" as multipler here
         "/^(\ )*(half and half)( creamer)?(\ )*$/i"		  => "T_HARD_CODED_FOOD", // dont treat "half" as multipler here
         "/^(\ )*(half and half)(\ )*$/i"				  => "T_HARD_CODED_FOOD", // dont treat "half" as multipler here
         "/^(\ )*(big mac)(\ )*$/i"						  => "T_HARD_CODED_FOOD", // dont treat "half" as multipler here
@@ -115,7 +117,7 @@ $defaults =  array(
         /// --- end (potential) kludge
 
         "/^(T_FLUID_OUNCE|T_OUNCE|T_DESSERTSPOON|T_TABLESPOON|T_TEASPOON)$/"  => "T_PRECISE_UNIT", 
-        "/^(T_GALLON|T_PINT|T_QUART|T_LITER|T_GRAM|T_CUP)$/"                  => "T_PRECISE_UNIT", 
+        "/^(T_POUND|T_GALLON|T_PINT|T_QUART|T_LITER|T_GRAM|T_CUP)$/"                  => "T_PRECISE_UNIT", 
         
         "/^(\ )?(T_NUMBER\ )?(\ )?(T_IMPRECISE_UNIT)(\ )+T_CONTAINER$/"       => "T_IMPRECISE_MEASURE",
         "/^(\ )?(T_NUMBER\ )?(\ )?(T_IMPRECISE_UNIT)$/"                       => "T_IMPRECISE_MEASURE",
