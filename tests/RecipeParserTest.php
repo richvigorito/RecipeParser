@@ -232,6 +232,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
           array("6 tb honey"," honey",6,"tbsp.","6 tbsp. honey","true"),
           array("6 tbl honey","honey",6,"tbsp.","6 tbsp. honey","true"),
           array("6 tbs honey"," honey",6,"tbsp.","6 tbsp. honey","true"),
+          array("6 tblsp honey"," honey",6,"tbsp.","6 tbsp. honey","true"),
           array("6 tbls honey"," honey",6,"tbsp.","6 tbsp. honey","true"),
           array("6 t sugar"," sugar",6,"tsp.","6 tsp. sugar","true"),
           array("6 ts azucar"," azucar",6,"tsp.","6 tsp. azucar","true"),

@@ -32,6 +32,7 @@ $defaults =  array(
         "/^(\ )?tblspn(s)?$/i"                            => "T_TABLESPOON", 
         "/^(\ )?spoonful(s)?$/i"                          => "T_TABLESPOON",
         "/^(\ )?tbsp(\.)?$/i"                             => "T_TABLESPOON",
+        "/^(\ )?tblsp(\.)?$/i"                             => "T_TABLESPOON",
         "/^(\ )?tb(s|l|ls|sps)?(\.)?$/i"                  => "T_TABLESPOON",
   
         "/^(\ )?teaspoon(s)?$/i"                          => "T_TEASPOON",
