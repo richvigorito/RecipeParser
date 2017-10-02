@@ -266,6 +266,8 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	  array(" (14.5 oz.) bacon", "bacon", 14.5,"oz.","14.5 oz. bacon","true"), 
 	  array("tea" , "tea", 1,null,"1 tea","false"), 
 
+					array("1 bag deli ham", "deli ham", 1,'lbs.',"1 lbs. deli ham",'false'),
+					array("2 bags deli ham", "deli ham", 2,'lbs.',"2 lbs. deli ham",'false'),
 	  array("1 nakd bar" , "nakd bar", 1,null,"1 nakd bar","false"), 
 	  array("6g Marmite" , "Marmite", 6,"g.","6 g. Marmite","true"), 
 	  array("1c spaggetti squash" , "spaggetti squash", 1,"cup","1 cup spaggetti squash","true"), 

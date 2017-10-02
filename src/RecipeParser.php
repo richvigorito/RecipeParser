@@ -587,6 +587,7 @@ class RecipeParser
   private function boxes()    {   $this->box();			  }
   private function jar()      {   $this->fluid_ounce();	  $this->multiplier *= 46 ;			}
   private function bag()      {   $this->pound();		  }
+  private function bags()     {   $this->bag();		  }
   private function packet()   {   $this->ounce();		  $this->multiplier *= 2.5 ;	 }
   private function carton()   {   $this->fluid_ounce();	  $this->multiplier *= 16 ;	 }
   private function cartons()  {   $this->carton(); }
