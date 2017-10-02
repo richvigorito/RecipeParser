@@ -23,7 +23,7 @@ class RecipeParser
   private $multiplier;
 
 
- private $ignore_words = array('fresh','organic','natural','raw','regular','uncooked');
+ private $ignore_words = array('fresh','organic','natural','raw','regular','uncooked','grass-fed');
 
 
   public function __construct() 

@@ -298,6 +298,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 		array("Natural full-fat yogurt","full-fat yogurt",1,null, "1 full-fat yogurt",'false'),
 		array("raw egg", "egg", 1,null,"1 egg",'false'),
 		array("fresh parsly", "parsly", 1,null,"1 parsly",'false'),
+		array("2 grass-fed burgers", "burgers", 2,null,"2 burgers",'false'),
 		array("2 organic apples", "apples", 2,null,"2 apples",'false'),
 		array("2 regular coffees", "coffees", 2,null,"2 coffees",'false'),
 		array("2 cups of uncooked walnuts", "walnuts", 2,'cup',"2 cup walnuts",'true'),
