@@ -10,7 +10,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
      * @dataProvider lexemeMatches
      * @ dataProvider lexemeMatches1_off_Matches_to_test_specific
      */
-    public function testRecipieMatching($user_string,$food,$measurement_quantity,$measurement_unit,$parse_string,$is_precise,$fuzzy_string = null)
+    public function testRecipieMatching($user_string,$food,$measurement_quantity,$measurement_unit,$parse_string,$is_precise,$fuzzy_string = null,$to_measurement=null)
     {
       $parser = new RecipeParser();
       $json = $parser->parse($user_string);
@@ -28,6 +28,8 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 
 			if($fuzzy_string) 
       	$array['fuzzy_parse_string']= $fuzzy_string;
+			if($to_measurement) 
+      	$array['measurement_to_quantity']= $to_measurement;
      
       $json_assert = json_encode($array);
 
@@ -55,8 +57,10 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
     public function lexemeMatches()
     {
         return array(
-          // array(<user_string>, <food>, <measurement_quantity>, <measurement_unit>,  <parsed_string>, <fuzzy-can-be-null),
+          // array(<user_string>, <food>, <measurement_quantity>, <measurement_unit>,  <parsed_string>, <fuzzy-can-be-null, to_quantity),
 
+		array("1 or 2 tbsp. garlic", "garlic",2 ,'tbsp.',"2 tbsp. garlic",'false',null,"2"),
+		array("About 1 or 2 tbsp. garlic", "garlic",2 ,'tbsp.',"2 tbsp. garlic",'false',null,"2"),
           array("quinoa, 1/2 cup","quinoa",.5,"cup","0.5 cup quinoa","true"),
           array("1 sprinkle sugar","sugar",1,"tsp.","1 tsp. sugar","false"),
           array("1 sprinkles sugar","sugar",1,"tsp.","1 tsp. sugar","false"),
@@ -402,9 +406,8 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 
     public function lexemeMatches1_off_Matches_to_test_specific(){
 	return array(
- 
-		array(".25 lb. deli ham", "egg", 1,null,"1 egg",'false'),
-		array("raw egg", "egg", 1,null,"1 egg",'false'),
+		//array(".25 lb. deli ham", "egg", 1,null,"1 egg",'false'),
+		//array("raw egg", "egg", 1,null,"1 egg",'false'),
 /*		array("fresh parsly", "parsly", 1,null,"1 parsly",'false'),
 		array("2 organic apples", "apples", 2,null,"2 apples",'false'),
 		array("2 regular coffees", "coffees", 2,null,"2 coffees",'false'),

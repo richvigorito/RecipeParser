@@ -37,6 +37,7 @@ class RecipeParser
     $this->scanner    = new LexicalScanner($defaults['grammar']);
     $this->multiplier = 1 ;
     $this->measurement_quantity = 1;
+    $this->measurement_to_quantity = null;
   }
  
   
@@ -132,6 +133,8 @@ class RecipeParser
 
     $return['is_precise']	= ($this->is_precise) ? 'true' : 'false';
 
+
+
 	if( ($return['is_precise'] == 'false' ) and isset($this->fuzzy_measurement_unit)){
 		if(isset($this->container))  {
 			$this->fuzzy_parse_string = $this->fuzzy_quantity . ' '. $this->fuzzy_measurement_unit; 
@@ -145,6 +148,11 @@ class RecipeParser
                    
 		$this->fuzzy_parse_string = preg_replace('/\s+/', ' ', $this->fuzzy_parse_string);
 		$return['fuzzy_parse_string'] = $this->fuzzy_parse_string;
+	}
+
+	if($this->measurement_to_quantity){
+		$return['is_precise']	= 'false';
+		$return['measurement_to_quantity']= $this->measurement_to_quantity;
 	}
 
     return json_encode($return);
@@ -210,6 +218,9 @@ class RecipeParser
   private function recipe_ingredient(ExpressionTree $ri){
     $food				= $ri->getNode('T_FOOD');
     $number				= $ri->getNode('T_NUMBER');
+
+    $to_measurement		= $ri->getNode('T_OR_CONJUNCT');
+
     $precise_measure 	= $ri->getNode('T_PRECISE_MEASURE');
     $precise_unit		= $ri->getNode('T_PRECISE_UNIT');
     $imprecise_measure 	= $ri->getNode('T_IMPRECISE_MEASURE');
@@ -255,6 +266,13 @@ class RecipeParser
     } else {
       throw new Exception ('todo, figure error handling');
     } 
+
+	
+
+    if($to_measurement && $number){
+		$this->measurement_to_quantity = $this->measurement_quantity;
+		$this->measurement_quantity = $this->measurement_quantity;
+	}
   }  
 
 

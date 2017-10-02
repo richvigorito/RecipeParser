@@ -4,6 +4,10 @@ $defaults =  array(
 
   'grammar' => array(
 
+        "/^(\ )*or(\ )*$/i"                               => "T_OR",
+        "/^about(\ )*$/i"                                 => "T_ABOUT",
+        "/^(T_OR)$/"									  => "T_OR_CONJUNCT", 
+
         "/^\($/"                                          => "T_LPAREN",
         "/^\)$/"                                          => "T_RPAREN",
         "/^,$/"                                           => "T_COMMA",
@@ -131,6 +135,8 @@ $defaults =  array(
 		"/^(\ )?T_NUMBER(\ )*T_IMPRECISE_MEASURE(\ )*T_PRECISE_UNIT$/"        => "T_PRECISE_MEASURE",   /// This is a known 'precise measure' w/ an imprecse adjective: 'heaping tbsp'
         "/^(\ )?(T_LPAREN)(\ )*T_PRECISE_MEASURE(\ )*(T_RPAREN)$/"            => "T_PRECISE_MEASURE",
         
+        "/^(T_ABOUT)?(\ )?T_NUMBER(\ )T_OR_CONJUNCT(\ )T_PRECISE_MEASURE(\ )*T_FOOD(\ )?$/" => "T_RECIPE_INGREDIENT",
+
         "/^(\ )?T_PRECISE_MEASURE(\ )*T_FOOD(\ )?$/"                          => "T_RECIPE_INGREDIENT",
         "/^(\ )?T_FOOD(\ )+((T_COMMA(\ )+)?)*T_PRECISE_MEASURE(\ )?$/"		  => "T_RECIPE_INGREDIENT",
 
