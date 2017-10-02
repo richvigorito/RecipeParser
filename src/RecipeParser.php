@@ -48,6 +48,7 @@ class RecipeParser
     $string = str_replace(",", " , ",$string);
     $string = str_replace('"', ' " ',$string);
     $string = trim($string);
+
     $pattern =  "/(\d)(lb|mg|cg|dg|g|kg|ml|cl|dl|l|kl|oz|tbsp|tsp|ts|t|c|lg|sm|m)(\.|\w*)/i";
     $string =  trim(preg_replace($pattern,"$1 $2$3",$string));
    
@@ -467,11 +468,13 @@ class RecipeParser
 
   private function number(ExpressionTree $p)
   {
+      $one  = $p->getNode('T_I_INSTEAD_1');
       $int  = $p->getNode('T_INTEGER');
       $dec  = $p->getNode('T_DECIMAL');
 
       if ( false != $int ) return $int->arr[0];
       if ( false != $dec ) return $dec->arr[0];
+      if ( false != $one ) return 1;
       throw new Exception ('todo, figure error handling');
   }
 

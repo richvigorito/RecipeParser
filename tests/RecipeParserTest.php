@@ -380,6 +380,9 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	 	array("1 pkgs quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1 pkg. quaker oats"),
 	 	array("1 pkgs. quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1 pkg. quaker oats"),
 
+       array("I tbsp garlic"," garlic",1,"tbsp.","1 tbsp. garlic","true"),
+       array("I cup garlic"," garlic",1,"cup","1 cup garlic","true"),
+
 	// 	array("1pkg \"Recover\"", "milk", 1,"gal.","1 gal. milk"),  /// not fuzzy any more
 
 	//  array("2 cartons (1/2 gallon each) milk", "milk", 1,"gal.","1 gal. milk"), 
@@ -405,7 +408,6 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 
     public function lexemeMatches1_off_Matches_to_test_specific(){
 	return array(
-	 			array("radishes 3", "radishes", 3,null,"3 radishes",'false'),
 		//array(".25 lb. deli ham", "egg", 1,null,"1 egg",'false'),
 		//array("raw egg", "egg", 1,null,"1 egg",'false'),
 /*		array("fresh parsly", "parsly", 1,null,"1 parsly",'false'),

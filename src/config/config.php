@@ -6,6 +6,7 @@ $defaults =  array(
 
         "/^(\ )*or(\ )*$/i"                               => "T_OR",
         "/^about(\ )*$/i"                                 => "T_ABOUT",
+        "/^I(\ )*$/"									  => "T_I_INSTEAD_1",
         "/^(T_OR)$/"									  => "T_OR_CONJUNCT", 
 
         "/^\($/"                                          => "T_LPAREN",
@@ -68,9 +69,9 @@ $defaults =  array(
         "/^(\ )*cup(s)?$/i"                               => "T_CUP",
         "/^(\ )*c(\.)?$/"                                 => "T_CUP",
       
-        "/^(T_INTEGER|T_DECIMAL)$/"                       => "T_NUMBER", 
+        "/^(T_INTEGER|T_DECIMAL|T_I_INSTEAD_1)$/"		  => "T_NUMBER", 
       
-        "/^(\ )*(pound cake)(\ )*$/i"					=> "T_HARD_CODED_FOOD", // dont treat "half" as multipler here
+        "/^(\ )*(pound cake)(\ )*$/i"					  => "T_HARD_CODED_FOOD", // dont treat "half" as multipler here
         "/^(\ )*(half and half)( creamer)?(\ )*$/i"		  => "T_HARD_CODED_FOOD", // dont treat "half" as multipler here
         "/^(\ )*(half and half)(\ )*$/i"				  => "T_HARD_CODED_FOOD", // dont treat "half" as multipler here
         "/^(\ )*(big mac)(\ )*$/i"						  => "T_HARD_CODED_FOOD", // dont treat "half" as multipler here
