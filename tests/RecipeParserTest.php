@@ -386,8 +386,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 	  //array("1 pint (1/2 quart) beer", "beer", .5,"qt.",".5 qt. beer"), 
 	  //array("1 pint (quart 1/2 quart) beer", "beer", .5,"qt.",".5 qt. koolaid"), 
 	  //array("2 packet (3 1/2 mg) kool-aid", "kool-aid", 7,"mg.","7 mg. kool-aid"), 
-	 			array("radishes 3", "radishes", 3,null,"3 radishes",'false'),
-
+	 			array("radishes 3", "radishes", 3,null,"3 radishes",'false','3 radishes'),
         ); 
     }
 
@@ -406,6 +405,7 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 
     public function lexemeMatches1_off_Matches_to_test_specific(){
 	return array(
+	 			array("radishes 3", "radishes", 3,null,"3 radishes",'false'),
 		//array(".25 lb. deli ham", "egg", 1,null,"1 egg",'false'),
 		//array("raw egg", "egg", 1,null,"1 egg",'false'),
 /*		array("fresh parsly", "parsly", 1,null,"1 parsly",'false'),

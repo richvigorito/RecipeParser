@@ -149,10 +149,15 @@ class RecipeParser
 		$this->fuzzy_parse_string = preg_replace('/\s+/', ' ', $this->fuzzy_parse_string);
 		$return['fuzzy_parse_string'] = $this->fuzzy_parse_string;
 	}
+		
 
 	if($this->measurement_to_quantity){
 		$return['is_precise']	= 'false';
 		$return['measurement_to_quantity']= $this->measurement_to_quantity;
+	}
+
+	if(isset($this->copy_to_fuzzy) && $this->copy_to_fuzzy){
+		$return['fuzzy_parse_string'] = $this->parse_string;
 	}
 
     return json_encode($return);
@@ -161,7 +166,7 @@ class RecipeParser
   private function expr(ExpressionTree $expr){
     $recipe_ingredient_mult = $expr->getNode('T_RECIPE_INGREDIENT_MULT');
     if ( $recipe_ingredient_mult != false) {
-      $recipe_ingredient  = $recipe_ingredient_mult->getNode('T_RECIPE_INGREDIENT');
+      $recipe_ingredient			= $recipe_ingredient_mult->getNode('T_RECIPE_INGREDIENT');
       $food				  = $recipe_ingredient_mult->getNode('T_FOOD');
     
       $multiplier       = $recipe_ingredient_mult->getNode('T_MULTIPLIER');
@@ -175,13 +180,17 @@ class RecipeParser
 
 	if ( $recipe_ingredient != false) {
     		$this->recipe_ingredient($recipe_ingredient);
-		} elseif ( $food != false) {
+	} elseif ( $food != false) {
     		$this->food($food);
-	  }
+	} 
 
 //print_R($this);
 //print_R("----");
 //exit;
+
+    } else if (false !=   $backwards_recipe_ingredient  = $expr->getNode('T_BACKWARDS_RECIPE_INGREDIENT')){
+		$this->recipe_ingredient($backwards_recipe_ingredient);
+		$this->copy_to_fuzzy = 1;
     } else {
       $recipe_ingredient = $expr->getNode('T_RECIPE_INGREDIENT');
     	$this->recipe_ingredient($recipe_ingredient);

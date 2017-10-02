@@ -147,14 +147,14 @@ $defaults =  array(
         "/^(\ )?T_FOOD(\ )*T_NUMBER(\ )?T_PRECISE_UNIT(\ )?$/"                     => "T_RECIPE_INGREDIENT",
 
         "/^(\ )?(T_NUMBER\ )(\ )?T_FOOD(\ )?$/"                               => "T_RECIPE_INGREDIENT",  
-        "/^(\ )?(T_FOOD\ )(\ )?T_NUMBER(\ )?$/"                               => "T_RECIPE_INGREDIENT",  
+        "/^(\ )?(T_FOOD\ )(\ )?T_NUMBER(\ )?$/"                               => "T_BACKWARDS_RECIPE_INGREDIENT",  
     
     
         "/^(\ )?(T_NUMBER(\ )+)?(T_MULTIPLIER)(\ )+T_FOOD(\ )?$/"             => "T_RECIPE_INGREDIENT_MULT",   
         "/^(\ )?T_NUMBER(\ )+T_RECIPE_INGREDIENT(\ )?$/"                      => "T_RECIPE_INGREDIENT_MULT",
 
         //"/^(\ )?(T_RECIPE_INGREDIENT|T_RECIPE_INGREDIENT_MULT)T_CONJUST(T_RECIPE_INGREDIENT|T_RECIPE_INGREDIENT_MULT)(\ )?$/"        	=> "T_TERM",
-        "/^(\ )?T_RECIPE_INGREDIENT|T_RECIPE_INGREDIENT_MULT(\ )?$/"        	=> "T_TERM",
+        "/^(\ )?T_RECIPE_INGREDIENT|T_BACKWARDS_RECIPE_INGREDIENT|T_RECIPE_INGREDIENT_MULT(\ )?$/"        	=> "T_TERM",
   ),
 
 
