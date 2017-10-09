@@ -18,16 +18,16 @@ $defaults =  array(
         "/^([0-9])+$/"                                    => "T_INTEGER" ,
         
         "/^(\ )*(centi|milli|kilo|deci)?gram(s)?$/i"      => "T_GRAM",
-        "/^(\ )*(c|d|k|m)?g(\.)?$/"                       => "T_GRAM",
+        "/^(\ )*(c|d|k|m)?g(\.)?$/i"                       => "T_GRAM",
         "/^(\ )*(c|d|k|m)?gr(s)?(\.)?$/"                  => "T_GRAM",
     
         "/^(\ )*pound(s)?$/i"                                                => "T_POUND",
-        "/^(\ )*lb(\.)?$/"                                                   => "T_POUND",
-        "/^(\ )*lbs(\.)?$/"                                                   => "T_POUND",
+        "/^(\ )*lb(\.)?$/i"                                                   => "T_POUND",
+        "/^(\ )*lbs(\.)?$/i"                                                   => "T_POUND",
  
         "/^(\ )*(centi|milli|kilo|deci)?liter(s)?$/i"     => "T_LITER",
         "/^(\ )*(centi|milli|kilo|deci)?litre(s)?$/i"     => "T_LITER",
-        "/^(\ )*(k|m|c|d)?l(s)?(\.)?$/"                   => "T_LITER",
+        "/^(\ )*(k|m|c|d)?l(s)?(\.)?$/i"                   => "T_LITER",
  
         "/^(\ )?tablespoon(s)?$/i"                        => "T_TABLESPOON",
         "/^(\ )?table spoon(s)?$/i"                       => "T_TABLESPOON", 

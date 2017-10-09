@@ -94,6 +94,8 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 					array(".25 lb deli ham", "deli ham", .25,'lbs.',"0.25 lbs. deli ham",'true'),
 					array("1/4 lb. deli ham", "deli ham", .25,'lbs.',"0.25 lbs. deli ham",'true'),
 					array(".25 lbs. deli ham", "deli ham", .25,'lbs.',"0.25 lbs. deli ham",'true'),
+					array(".25 LBS. deli ham", "deli ham", .25,'lbs.',"0.25 lbs. deli ham",'true'),
+					array(".25 LBS deli ham", "deli ham", .25,'lbs.',"0.25 lbs. deli ham",'true'),
 					array("1/4 lbs deli ham", "deli ham", .25,'lbs.',"0.25 lbs. deli ham",'true'),
 
           array("76 oz steak"," steak",76,"oz.","76 oz. steak","true"),
@@ -138,6 +140,8 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
           array("5 grams salt"," salt",5,"g.","5 g. salt","true"),
           array("5.345 kilogram butter"," butter",5.345,"kg.","5.345 kg. butter","true"),
           array("5 kg water"," water",5,"kg.","5 kg. water","true"),
+          array("5 kG water"," water",5,"kg.","5 kg. water","true"),
+          array("5 kG. water"," water",5,"kg.","5 kg. water","true"),
 
           array("5 kgr water"," water",5,"kg.","5 kg. water","true"),
           array("5 kgr. water"," water",5,"kg.","5 kg. water","true"),
@@ -163,14 +167,20 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
           array("5 liters water"," water",5,"l.","5 l. water","true"),
           array("5 kl water"," water",5,"kl.","5 kl. water","true"),
           array("5 kl. water"," water",5,"kl.","5 kl. water","true"),
+          array("5 kL. water"," water",5,"kl.","5 kl. water","true"),
+          array("5 kL water"," water",5,"kl.","5 kl. water","true"),
 
           array("5 ml water"," water",5,"ml.","5 ml. water","true"),
+          array("5 mL water"," water",5,"ml.","5 ml. water","true"),
+          array("5 mL. water"," water",5,"ml.","5 ml. water","true"),
           array("5 ml. water"," water",5,"ml.","5 ml. water","true"),
           array("5 mls water"," water",5,"ml.","5 ml. water","true"),
           array("5 mls. water"," water",5,"ml.","5 ml. water","true"),
 
           array("5 dl water"," water",5,"dl.","5 dl. water","true"),
           array("5 dl. water"," water",5,"dl.","5 dl. water","true"),
+          array("5 dL. water"," water",5,"dl.","5 dl. water","true"),
+          array("5 dL water"," water",5,"dl.","5 dl. water","true"),
           array("5 dls water"," water",5,"dl.","5 dl. water","true"),
           array("5 dls. water"," water",5,"dl.","5 dl. water","true"),
 
