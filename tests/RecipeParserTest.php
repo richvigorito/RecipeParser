@@ -382,6 +382,9 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
  		array("1 spoon sugar", "sugar", 1,"tbsp.","1 tbsp. sugar",'true'), 
  		array("2 spoons sugar", "sugar", 2,"tbsp.","2 tbsp. sugar",'true'), 
 
+	 	array("1 sachet quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1 sachet quaker oats"),
+	 	array("1 sachets quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1 sachets quaker oats"),
+
 	 	array("1 package quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1 pkg. quaker oats"),
 	 	array("1 packages quaker oats", "quaker oats", 1,null,"1 quaker oats",'false',"1 pkg. quaker oats"),
 	 	array("1 package ramen noodles", "ramen noodles", 1,null,"1 ramen noodles",'false',"1 pkg. ramen noodles"),
@@ -418,6 +421,11 @@ class RecipeParserTest extends PHPUnit_Framework_TestCase {
 
     public function lexemeMatches1_off_Matches_to_test_specific(){
 	return array(
+
+//array("1 cup cubed cheese","coke",2,"serving","xx",false), 						//		TODO ingredient_preparation:preparation (adjective)
+//array("1 cup lettuce, shredded","coke",2,"serving","xx",false), 			//			TODO ingredient_preparation:preparation (adjective)
+array("1 cup chopped lettuce","coke",2,"serving","xx",false), 			//			TODO ingredient_preparation:preparation (adjective)
+
 		//array(".25 lb. deli ham", "egg", 1,null,"1 egg",'false'),
 		//array("raw egg", "egg", 1,null,"1 egg",'false'),
 /*		array("fresh parsly", "parsly", 1,null,"1 parsly",'false'),

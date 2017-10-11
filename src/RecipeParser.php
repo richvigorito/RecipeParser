@@ -652,8 +652,13 @@ class RecipeParser
 	/* dont do anything with conversion like you would w/ glass or bowl */ 
   }
 
-
-
+  private function sachets()  {    $this->sachet('sachets'); }
+  private function sachet($unit = 'sachet')  {   
+	$this->fuzzy_measurement_unit	= $unit;
+    $this->fuzzy_quantity			= $this->measurement_quantity;
+	$this->container				= '';
+	/* dont do anything with conversion like you would w/ glass or bowl */ 
+  }
 
   /** Lifted right out of tummy. Was trying to get a litte tricker, and preg_replace fractions based on a regex and
      w/ their decimal value but this is fine and the preg_replace is a little more difficult than it sounds */

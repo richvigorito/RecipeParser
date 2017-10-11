@@ -90,6 +90,7 @@ $defaults =  array(
         "/^(\ )?(drop(s)?|shot(s)?|jigger(s)?|scoop(s)?)$/i"							 => "T_CONTAINER" ,
         "/^(\ )?(carton(s)?|jar(s)?|bag(s)?|packet(s)?|flute(s)?|box(es)?)$/i"           => "T_CONTAINER" ,
         "/^(\ )?(package(s)?|pkg(s)?(\.)?)$/i"                                           => "T_CONTAINER" ,
+        "/^(\ )?sachet(s)?$/i"														 => "T_CONTAINER" ,
         "/^(\ )?(T_NUMBER\ )(T_CONTAINER)$/i"                                            => "T_CONTAINER_MULT" ,
         "/^(\ )?(T_MULTIPLIER\ )(T_CONTAINER)$/i"                                        => "T_CONTAINER_MULT" ,
 
